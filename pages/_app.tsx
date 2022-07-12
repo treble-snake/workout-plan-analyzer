@@ -1,8 +1,14 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import '../styles/globals.css';
+import type {AppProps} from 'next/app';
+import {MainLayout} from '../components/MainLayout';
+import {Alert} from 'antd';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function MyApp({Component, pageProps}: AppProps) {
+  return <MainLayout>
+    <Alert.ErrorBoundary>
+      <Component {...pageProps} />
+    </Alert.ErrorBoundary>
+  </MainLayout>;
 }
 
-export default MyApp
+export default MyApp;

@@ -16,15 +16,22 @@ export type Superset = {
   exercises: Exercise[];
 };
 
+export type RestDay = {
+  isRest: boolean;
+}
+
 export type WorkoutDay = {
   title?: string;
-  isRest: boolean;
+  description?: string,
   exercises: (Exercise|Superset)[];
 };
 
+export type PlanDay = WorkoutDay | RestDay;
+
 export type WorkoutPlan ={
   title: string;
+  description?: string,
   /** Days in the microcycle, 7 by default */
   microCycleDays: number;
-  days: WorkoutDay[];
+  days: PlanDay[];
 }
