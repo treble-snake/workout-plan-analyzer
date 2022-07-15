@@ -30,8 +30,9 @@ export type PlanDay = WorkoutDay | RestDay;
 
 export type WorkoutPlan ={
   title: string;
-  description?: string,
+  shortDescription?: string,
+  fullDescription?: string,
   /** Days in the microcycle, 7 by default */
-  microCycleDays: number;
+  // microCycleDays: number;
   days: PlanDay[];
 }
