@@ -1,13 +1,17 @@
 import type {NextPage} from 'next';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import {stronglifts, WorkoutEditor} from '../components/WorkoutEditor';
+import {WorkoutEditor} from '../components/workout-viewer/WorkoutEditor';
+import {DempoProgram} from '../components/DemoProgram.tmp.const';
+import {WorkoutProvider} from '../components/workout-viewer/WorkoutProvider';
 
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <WorkoutEditor plan={stronglifts}/>
+        <WorkoutProvider>
+          <WorkoutEditor />
+        </WorkoutProvider>
       </main>
 
       <footer className={styles.footer}>
