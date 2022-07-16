@@ -1,12 +1,11 @@
 import {PlanDay} from '../../../types/workout';
-import {Card, Collapse} from 'antd';
-import {AddDays} from './AddDays';
+import {Card} from 'antd';
 import {RestDayImage} from './RestDayImage';
 import {WorkoutDayActions} from './WorkoutDayActions';
 import {WorkoutDayTitle} from './WorkoutDayTitle';
 import {ExerciseList} from '../exercises/ExerciseList';
 import {createContext, useContext} from 'react';
-import {WorkoutDayStats} from '../analytics/WorkoutDayStats';
+import {WorkoutDayStats} from '../analytics/day/WorkoutDayStats';
 
 type Props = {
   day: PlanDay

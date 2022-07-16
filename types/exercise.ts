@@ -1,53 +1,9 @@
-export enum BodyPart {
-  Chest = 'Chest',
-  Back = 'Back',
-  Shoulders = 'Shoulders',
-  Arms = 'Arms',
-  Abs = 'Abs',
-  Legs = 'Legs',
-}
-
-/**
- * Form SWEAT! by Geoffrey Verity Schofield
- */
-export enum MovementType {
-  Hinge = 'Hinge',
-  Squat = 'Squat',
-  Row = 'Row',
-  Push = 'Push',
-  Pull = 'Pull',
-  Press = 'Press',
-  Shoulders = 'Shoulders',
-  Curl = 'Curl',
-  Extend = 'Extend',
-  Abs = 'Abs',
-  Calves = 'Calves',
-}
-
-/**
- * Per https://rpstrength.com/
- */
-export enum MuscleGroup {
-  Back = 'Back',
-  Abs = 'Abs',
-  Traps = 'Traps',
-  Triceps = 'Triceps',
-  Forearms = 'Forearms',
-  Calves = 'Calves',
-  FrontDelts = 'FrontDelts',
-  Glutes = 'Glutes',
-  Chest = 'Chest',
-  Biceps = 'Biceps',
-  Quads = 'Quads',
-  SideDelts = 'SideDelts',
-  RearDelts = 'RearDelts',
-}
-
-export enum ExperienceLevel {
-  Beginner = 'Beginner',
-  Intermediate = 'Intermediate',
-  Advanced = 'Advanced',
-}
+import {
+  BodyPart,
+  ExperienceLevel,
+  MovementType,
+  MuscleGroup
+} from '../components/workout-viewer/analytics/Systems';
 
 export type ExerciseInfo = {
   name: string;

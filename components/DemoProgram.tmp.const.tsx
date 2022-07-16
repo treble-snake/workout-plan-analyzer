@@ -1,5 +1,12 @@
 import {WorkoutPlan} from '../types/workout';
-import {ExerciseInfo} from '../types/exercise';
+import {
+  ExerciseInfo
+} from '../types/exercise';
+import {
+  BodyPart,
+  MovementType,
+  MuscleGroup
+} from './workout-viewer/analytics/Systems';
 
 export const DempoProgram: WorkoutPlan = {
   title: 'Demo Program',
@@ -10,27 +17,52 @@ export const DempoProgram: WorkoutPlan = {
       title: 'Workout A',
       exercises: [
         {
-          info: {name: 'Barbell squat'} as ExerciseInfo,
+          info: {
+            name: 'Barbell squat',
+            bodyPart: BodyPart.Legs,
+            muscleGroup: MuscleGroup.Quads,
+            movementType: MovementType.Squat,
+          } as ExerciseInfo,
           sets: {from: 5, to: 5},
           reps: {from: 5, to: 5}
         }, {
-          info: {name: 'Bench press'} as ExerciseInfo,
+          info: {
+            name: 'Barbell bench press',
+            bodyPart: BodyPart.Chest,
+            muscleGroup: MuscleGroup.Chest,
+            movementType: MovementType.Push,
+          } as ExerciseInfo,
           sets: {from: 5, to: 5},
           reps: {from: 5, to: 5}
         }, {
-          info: {name: 'Bent-over row'} as ExerciseInfo,
+          info: {
+            name: 'Barbell bent over row',
+            bodyPart: BodyPart.Back,
+            muscleGroup: MuscleGroup.Back,
+            movementType: MovementType.Row,
+          } as ExerciseInfo,
           sets: {from: 5, to: 5},
           reps: {from: 5, to: 5}
         },
         {
           exercises: [
             {
-              info: {name: 'Barbel curls'} as ExerciseInfo,
+              info: {
+                name: 'Barbel curls',
+                bodyPart: BodyPart.Arms,
+                muscleGroup: MuscleGroup.Biceps,
+                movementType: MovementType.Curl,
+              } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 12, to: 15}
             },
             {
-              info: {name: 'Triceps pushdown'} as ExerciseInfo,
+              info: {
+                name: 'Triceps pushdown',
+                bodyPart: BodyPart.Arms,
+                muscleGroup: MuscleGroup.Triceps,
+                movementType: MovementType.Extend,
+              } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 12, to: 15}
             }
@@ -43,15 +75,30 @@ export const DempoProgram: WorkoutPlan = {
       title: 'Workout B',
       exercises: [
         {
-          info: {name: 'Barbell squat'} as ExerciseInfo,
+          info: {
+            name: 'Barbell squat',
+            bodyPart: BodyPart.Legs,
+            muscleGroup: MuscleGroup.Quads,
+            movementType: MovementType.Squat,
+          } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 3, to: 3}
         }, {
-          info: {name: 'Overhead press'} as ExerciseInfo,
+          info: {
+            name: 'Overhead press',
+            bodyPart: BodyPart.Shoulders,
+            muscleGroup: MuscleGroup.FrontDelts,
+            movementType: MovementType.Press,
+          } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 10, to: 12}
         }, {
-          info: {name: 'Deadlift'} as ExerciseInfo,
+          info: {
+            name: 'Deadlift',
+            bodyPart: BodyPart.Legs,
+            muscleGroup: MuscleGroup.Glutes,
+            movementType: MovementType.Hinge,
+          } as ExerciseInfo,
           sets: {from: 1, to: 1},
           reps: {from: 4, to: 6}
         },

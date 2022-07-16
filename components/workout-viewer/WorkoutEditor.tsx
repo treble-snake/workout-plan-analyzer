@@ -22,7 +22,7 @@ export const WorkoutEditor = () => {
           label="Info">{plan.fullDescription}</Descriptions.Item>
       </Descriptions>
     </PageHeader>
-    <Layout.Content className={'workout-content'}>
+    <Layout.Content className={'plan-content'}>
       <Row gutter={16}>
         {
           plan.days.map((it, i) => (

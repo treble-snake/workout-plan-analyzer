@@ -5,8 +5,8 @@ import {WorkoutEditor} from '../components/workout-viewer/WorkoutEditor';
 import {DempoProgram} from '../components/DemoProgram.tmp.const';
 import {WorkoutProvider} from '../components/workout-viewer/WorkoutProvider';
 import {
-  WorkoutAnalytics
-} from '../components/workout-viewer/analytics/WorkoutAnalytics';
+  PlanAnalytics
+} from '../components/workout-viewer/analytics/plan/PlanAnalytics';
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <WorkoutProvider>
           <WorkoutEditor />
-          <WorkoutAnalytics/>
+          <PlanAnalytics/>
         </WorkoutProvider>
       </main>
 
