@@ -43,3 +43,8 @@ export const textToRange = (text: string) => {
 
   return parseRange(text);
 };
+
+export const sumRanges = (a: QtyRange, b: QtyRange): QtyRange => ({
+  from: a.from + b.from,
+  to: a.to + b.to
+});
