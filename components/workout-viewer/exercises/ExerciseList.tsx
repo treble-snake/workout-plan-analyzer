@@ -3,7 +3,7 @@ import {
   ExerciseListItem
 } from './ExerciseListItem';
 import {SupersetListItem} from './SupersetListItem';
-import {Empty} from 'antd';
+import {Col, Empty, Row} from 'antd';
 
 type Props = {
   day: WorkoutDay;
@@ -15,6 +15,10 @@ export const ExerciseList = ({day}: Props) => {
   }
 
   return <>
+    <Row>
+      <Col span={3} offset={12} style={{textAlign: 'center'}}>Sets</Col>
+      <Col span={5} style={{textAlign: 'center'}}>Reps</Col>
+    </Row>
     {
       day.exercises.map((it, i) => {
         return ('exercises' in it) ?
