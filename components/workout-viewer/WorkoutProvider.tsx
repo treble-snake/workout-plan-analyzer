@@ -1,7 +1,13 @@
 import {createContext, useContext, useState} from 'react';
-import {Superset, WorkoutDay, WorkoutPlan} from '../../types/workout';
+import {
+  Exercise,
+  QtyRange,
+  Superset,
+  WorkoutDay,
+  WorkoutPlan
+} from '../../types/workout';
 import {DempoProgram} from '../DemoProgram.tmp.const';
-import {move, remove} from 'ramda';
+import {clone, move, remove} from 'ramda';
 
 interface WorkoutContainer {
   plan: WorkoutPlan,
@@ -18,6 +24,10 @@ interface WorkoutContainer {
   ): void;
 
   removeExercise(dayIndex: number, exerciseIndex: number, supersetIndex?: number): void;
+
+  setReps(range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number): void
+
+  setSets(range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number): void;
 }
 
 const WorkoutContext = createContext<WorkoutContainer | null>(null);
@@ -25,6 +35,18 @@ const WorkoutContext = createContext<WorkoutContainer | null>(null);
 export const useWorkoutContext = () => {
   return useContext(WorkoutContext)!;
 };
+
+const findExercise = (
+  days: WorkoutPlan['days'],
+  dayIndex: number,
+  exerciseIndex: number,
+  supersetIndex?: number
+) => {
+  const {exercises} = (days[dayIndex] as WorkoutDay);
+  return supersetIndex ?
+    (exercises[supersetIndex] as Superset).exercises[exerciseIndex] :
+    exercises[exerciseIndex] as Exercise;
+}
 
 export const WorkoutProvider = ({children}: any) => {
   const [plan, setPlan] = useState(DempoProgram);
@@ -50,6 +72,20 @@ export const WorkoutProvider = ({children}: any) => {
     const newDays = [...plan.days];
     newDays[index] = {...newDays[index], ...data};
     setDays(newDays);
+  };
+
+  const setReps = (range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number) => {
+    const days = clone(plan.days);
+    const toChange = findExercise(days, dayIndex, exerciseIndex, supersetIndex);
+    toChange.reps = range;
+    setDays(days);
+  };
+
+  const setSets = (range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number) => {
+    const days = clone(plan.days);
+    const toChange = findExercise(days, dayIndex, exerciseIndex, supersetIndex);
+    toChange.sets = range;
+    setDays(days);
   };
 
   const removeExercise = (dayIndex: number, exerciseIndex: number, supersetIndex?: number) => {
@@ -92,7 +128,9 @@ export const WorkoutProvider = ({children}: any) => {
     removeDay,
     moveDay,
     setDayMetadata,
-    removeExercise
+    removeExercise,
+    setReps,
+    setSets
   }}>
     {children}
   </WorkoutContext.Provider>;

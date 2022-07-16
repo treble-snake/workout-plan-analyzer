@@ -10,7 +10,7 @@ export const AddDays = () => {
     <Button
       icon={<PlusCircleOutlined />}
       style={{marginBottom: 15}}
-      type={'primary'} onClick={() => addDay(false)}>Add workday</Button>
+      type={'primary'} onClick={() => addDay(false)}>Add workout</Button>
     <Button
       icon={<PlusCircleOutlined />}
       onClick={() => addDay(true)}>Add rest day</Button>

@@ -1,14 +1,14 @@
 import {ExerciseInfo} from './exercise';
 
-export type Range = {
+export type QtyRange = {
   from: number;
   to: number;
 }
 
 export type Exercise = {
   info: ExerciseInfo;
-  sets: Range;
-  reps: Range;
+  sets: QtyRange;
+  reps: QtyRange;
 }
 
 export type Superset = {

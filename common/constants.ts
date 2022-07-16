@@ -1,6 +1,6 @@
-import {Range} from '../types/workout';
+import {QtyRange} from '../types/workout';
 
-export const COMMON_REP_RANGES: Record<string, Range> = {
+export const COMMON_REP_RANGES: Record<string, QtyRange> = {
   '1_3': {from: 1, to: 3},
   '3_5': {from: 3, to: 5},
   '4_6': {from: 4, to: 6},
