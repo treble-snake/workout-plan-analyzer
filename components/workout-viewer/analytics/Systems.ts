@@ -28,6 +28,7 @@ export enum MovementType {
   Curl = 'Curl',
   Calves = 'Calves',
   Abs = 'Abs',
+  Other = 'Other',
 }
 
 /**
@@ -40,9 +41,9 @@ export enum MuscleGroup {
   Back = 'Back',
   Traps = 'Traps',
   Chest = 'Chest',
-  FrontDelts = 'Front Delts',
-  SideDelts = 'Side Delts',
-  RearDelts = 'Rear Delts',
+  FrontDelts = 'FrontDelts',
+  SideDelts = 'SideDelts',
+  RearDelts = 'RearDelts',
   Triceps = 'Triceps',
   Biceps = 'Biceps',
   Calves = 'Calves',

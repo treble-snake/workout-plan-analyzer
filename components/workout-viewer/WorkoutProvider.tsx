@@ -8,6 +8,7 @@ import {
 } from '../../types/workout';
 import {DempoProgram} from '../DemoProgram.tmp.const';
 import {clone, move, remove} from 'ramda';
+import {SixDayExamplePlan} from '../SixDayExample.tmp.const';
 
 interface WorkoutContainer {
   plan: WorkoutPlan,
@@ -49,7 +50,7 @@ const findExercise = (
 }
 
 export const WorkoutProvider = ({children}: any) => {
-  const [plan, setPlan] = useState(DempoProgram);
+  const [plan, setPlan] = useState(SixDayExamplePlan);
 
   const setDays = (days: WorkoutPlan['days']) =>
     setPlan({...plan, days});
