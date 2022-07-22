@@ -7,14 +7,19 @@ import {WorkoutProvider} from '../components/workout-viewer/WorkoutProvider';
 import {
   PlanAnalytics
 } from '../components/workout-viewer/analytics/plan/PlanAnalytics';
+import {
+  ViewerConfigProvider
+} from '../components/workout-viewer/ViewerConfigProvider';
 
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <WorkoutProvider>
-          <WorkoutEditor />
-          <PlanAnalytics/>
+          <ViewerConfigProvider>
+            <WorkoutEditor />
+            <PlanAnalytics />
+          </ViewerConfigProvider>
         </WorkoutProvider>
       </main>
 
@@ -31,7 +36,7 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

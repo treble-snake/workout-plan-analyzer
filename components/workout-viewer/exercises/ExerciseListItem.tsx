@@ -4,6 +4,7 @@ import {ExerciseControls} from './ExerciseControls';
 import {RangeInput} from './RangeInput';
 import {useDayIndexContext} from '../day-card/WorkoutDayEditor';
 import {useWorkoutContext} from '../WorkoutProvider';
+import {useViewerConfigContext, ViewerMode} from '../ViewerConfigProvider';
 
 type Props = {
   exercise: Exercise;
@@ -18,6 +19,7 @@ export const ExerciseListItem = ({
                                  }: Props) => {
   const dayIndex = useDayIndexContext();
   const {setReps, setSets} = useWorkoutContext();
+  const {mode} = useViewerConfigContext();
 
   const updateReps = (range: QtyRange) => {
     setReps(range, dayIndex, index, supersetIndex);
@@ -28,7 +30,7 @@ export const ExerciseListItem = ({
   }
 
   return <Row>
-    <Col span={12}
+    <Col span={mode === ViewerMode.Edit ? 12 : 16}
          style={{
            paddingLeft: supersetIndex !== undefined ? 0 : 6,
            border: '0px dashed black'
@@ -39,9 +41,13 @@ export const ExerciseListItem = ({
     <Col span={5} style={{textAlign: 'center', border: '0px dashed black'}}>
       <RangeInput range={exercise.reps} update={updateReps} />
     </Col>
-    <Col span={4} style={{border: '0px dashed black'}}>
-      <ExerciseControls index={index} supersetIndex={supersetIndex} />
-    </Col>
+
+    {
+      mode === ViewerMode.Edit &&
+      <Col span={4} style={{border: '0px dashed black'}}>
+        <ExerciseControls index={index} supersetIndex={supersetIndex} />
+      </Col>
+    }
   </Row>;
 }
 

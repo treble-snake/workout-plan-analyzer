@@ -4,19 +4,23 @@ import {
 } from './ExerciseListItem';
 import {SupersetListItem} from './SupersetListItem';
 import {Col, Empty, Row} from 'antd';
+import {useViewerConfigContext, ViewerMode} from '../ViewerConfigProvider';
 
 type Props = {
   day: WorkoutDay;
 }
 
 export const ExerciseList = ({day}: Props) => {
+  const {mode} = useViewerConfigContext();
+
   if (day.exercises.length === 0) {
     return <Empty description={'Add first exercise'} />;
   }
 
   return <>
     <Row>
-      <Col span={3} offset={12} style={{textAlign: 'center'}}>Sets</Col>
+      <Col span={3} offset={mode === ViewerMode.Edit ? 12 : 16}
+           style={{textAlign: 'center'}}>Sets</Col>
       <Col span={5} style={{textAlign: 'center'}}>Reps</Col>
     </Row>
     {

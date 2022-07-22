@@ -2,6 +2,8 @@ import {Col, Descriptions, Layout, PageHeader, Row} from 'antd';
 import {WorkoutDayEditor} from './day-card/WorkoutDayEditor';
 import {useWorkoutContext} from './WorkoutProvider';
 import {AddDays} from './day-card/AddDays';
+import {ViewerConfig} from './ViewerConfig';
+import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
 
 // type Props = {
 //   plan: WorkoutPlan;
@@ -9,12 +11,14 @@ import {AddDays} from './day-card/AddDays';
 
 export const WorkoutEditor = () => {
   const {plan} = useWorkoutContext();
+  const {mode} = useViewerConfigContext();
 
   return <>
     <PageHeader
       title={plan.title}
       subTitle={plan.shortDescription}
     >
+      <ViewerConfig />
       <Descriptions size="small" column={1}>
         <Descriptions.Item
           label="Days">{plan.days.length}</Descriptions.Item>
@@ -33,9 +37,12 @@ export const WorkoutEditor = () => {
             </Col>
           ))
         }
-        <Col span={3}>
-          <AddDays />
-        </Col>
+
+        {mode === ViewerMode.Edit &&
+          <Col span={3}>
+            <AddDays />
+          </Col>
+        }
       </Row>
     </Layout.Content>
   </>;

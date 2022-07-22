@@ -6,6 +6,7 @@ import {WorkoutDayTitle} from './WorkoutDayTitle';
 import {ExerciseList} from '../exercises/ExerciseList';
 import {createContext, useContext} from 'react';
 import {WorkoutDayStats} from '../analytics/day/WorkoutDayStats';
+import {useViewerConfigContext, ViewerMode} from '../ViewerConfigProvider';
 
 type Props = {
   day: PlanDay
@@ -19,12 +20,14 @@ export const useDayIndexContext = () => {
 };
 
 export const WorkoutDayEditor = ({day, index}: Props) => {
+  const {mode} = useViewerConfigContext();
+
   return <DayIndexContext.Provider value={index}>
     <Card
       className={'workout-day-card'}
       size={'small'}
       title={<WorkoutDayTitle day={day} />}
-      extra={<WorkoutDayActions />}
+      extra={mode === ViewerMode.Edit && <WorkoutDayActions />}
       actions={
         'isRest' in day ?
           [] :

@@ -25,11 +25,23 @@ export const calculateFrequency = (plan: WorkoutPlan) => {
   const timesByMuscleGroup = emptyNumberMap(MuscleGroup);
   const timesByMovementType = emptyNumberMap(MovementType);
   workoutDays.forEach((day) => {
+    const dailyBodyParts = {} as Record<BodyPart, boolean>;
+    const dailyMuscles = {} as Record<MuscleGroup, boolean>;
+    const dailyMovements = {} as Record<MovementType, boolean>;
     getAllExercises([day])
       .forEach(({info}) => {
-        timesByBodyPart[info.bodyPart] += 1;
-        timesByMovementType[info.movementType] += 1;
-        timesByMuscleGroup[info.muscleGroup] += 1;
+        if (!dailyBodyParts[info.bodyPart]) {
+          timesByBodyPart[info.bodyPart] += 1;
+          dailyBodyParts[info.bodyPart] = true;
+        }
+        if (!dailyMovements[info.movementType]) {
+          timesByMovementType[info.movementType] += 1;
+          dailyMovements[info.movementType] = true;
+        }
+        if (!dailyMuscles[info.muscleGroup]) {
+          timesByMuscleGroup[info.muscleGroup] += 1;
+          dailyMuscles[info.muscleGroup] = true;
+        }
       });
   });
 
