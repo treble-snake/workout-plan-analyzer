@@ -1,6 +1,6 @@
 import {createContext, useContext, useState} from 'react';
 import {Exercise, Superset, WorkoutDay, WorkoutPlan} from '../../types/workout';
-import {ExperienceLevel} from './analytics/Systems';
+import {ExperienceLevel} from './analytics/systems-data/SystemsCommon';
 
 export enum ViewerMode {
   View = 'View',

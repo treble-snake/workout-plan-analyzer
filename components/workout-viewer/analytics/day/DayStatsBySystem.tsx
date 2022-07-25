@@ -1,7 +1,8 @@
 import {QtyRange} from '../../../../types/workout';
 import {Col, Row} from 'antd';
 import {rangeToText} from '../../exercises/RangeUtils';
-import {System, SystemsMeta} from '../Systems';
+import {System} from '../systems-data/SystemsCommon';
+import {SystemsMeta} from '../systems-data/SystemsMeta';
 
 type Props<T> = {
   system: System,

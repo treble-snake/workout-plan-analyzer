@@ -1,6 +1,8 @@
 import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
 import {Divider, Segmented, Space, Switch, Tag} from 'antd';
-import {ExperienceLevel, System, SystemsMeta} from './analytics/Systems';
+import {ExperienceLevel, System} from './analytics/systems-data/SystemsCommon';
+import {SystemsMeta} from './analytics/systems-data/SystemsMeta';
+import {ExperienceSwitch} from './ExperienceSwitch';
 
 export const ViewerConfig = () => {
   const {setMode, mode, experience, setExperience} = useViewerConfigContext();
@@ -15,14 +17,6 @@ export const ViewerConfig = () => {
             checked={mode === ViewerMode.Edit}
     />
     <Divider type={'vertical'} />
-    <Tag>Experience level</Tag>
-    <Segmented
-      value={experience}
-      onChange={(value) => setExperience(value as ExperienceLevel)}
-      size={'small'}
-      options={Object.values(ExperienceLevel).map((it) => ({
-      label: it, value: it
-    }))} />
-
+    <ExperienceSwitch/>
   </>;
 };

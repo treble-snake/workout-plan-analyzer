@@ -1,10 +1,11 @@
 import {useWorkoutContext} from '../../WorkoutProvider';
 import {rangeToText} from '../../exercises/RangeUtils';
-import {Card, Row} from 'antd';
+import {Card, Divider, Row} from 'antd';
 import {calculateFrequency} from '../utils/Frequency';
 import {calculateWorkingSets} from '../utils/WorkingSets';
 import {PlanStatsBySystem} from './PlanStatsBySystem';
-import {System} from '../Systems';
+import {System} from '../systems-data/SystemsCommon';
+import {ExperienceSwitch} from '../../ExperienceSwitch';
 
 export const PlanAnalytics = () => {
   const {plan} = useWorkoutContext();
@@ -22,7 +23,13 @@ export const PlanAnalytics = () => {
   } = calculateWorkingSets(plan.days);
 
   return (
-    <Card title={'Workout Analysis'} size={'small'}>
+    <Card title={
+      <>
+        Workout Analysis
+        <Divider type={'vertical'} />
+        <ExperienceSwitch/>
+      </>
+    } size={'small'}>
       <p>Total sets: {rangeToText(totalSets)}</p>
       <Row gutter={8}>
         <PlanStatsBySystem system={System.Muscle}

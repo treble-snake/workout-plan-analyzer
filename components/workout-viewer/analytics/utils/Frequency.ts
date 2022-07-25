@@ -1,7 +1,9 @@
 import {mapObjIndexed} from 'ramda';
 import {WorkoutPlan} from '../../../../types/workout';
 import {filterWorkouts, getAllExercises} from './AnalyticUtils';
-import {BodyPart, MovementType, MuscleGroup} from '../Systems';
+import {BodyPart} from '../systems-data/SystemsCommon';
+import {MuscleGroup} from '../systems-data/MuscleGroupsValues';
+import {MovementType} from '../systems-data/MovementTypeValues';
 
 function emptyNumberMap<T extends Object>(by: T): Record<keyof T, number> {
   return Object.values(by).reduce((acc, it) => {

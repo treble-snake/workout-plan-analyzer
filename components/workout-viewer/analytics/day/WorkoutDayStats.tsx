@@ -4,7 +4,8 @@ import {rangeToText} from '../../exercises/RangeUtils';
 import {calculateWorkingSets} from '../utils/WorkingSets';
 import {useState} from 'react';
 import {DayStatsBySystem} from './DayStatsBySystem';
-import {System, SystemsMeta} from '../Systems';
+import {System} from '../systems-data/SystemsCommon';
+import {SystemsMeta} from '../systems-data/SystemsMeta';
 
 type Props = {
   day: WorkoutDay;
