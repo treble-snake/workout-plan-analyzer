@@ -1,7 +1,9 @@
 import {filterWorkouts, getAllExercises} from './AnalyticUtils';
 import {PlanDay, QtyRange, WorkoutDay} from '../../../../types/workout';
 import {sumRanges} from '../../exercises/RangeUtils';
-import {BodyPart, MovementType, MuscleGroup} from '../Systems';
+import {BodyPart} from '../systems-data/SystemsCommon';
+import {MuscleGroup} from '../systems-data/MuscleGroupsValues';
+import {MovementType} from '../systems-data/MovementTypeValues';
 
 function emptyRangeMap<T extends Object>(by: T): Record<keyof T, QtyRange> {
   return Object.values(by).reduce((acc, it) => {

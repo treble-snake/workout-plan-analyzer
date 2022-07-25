@@ -1,12 +1,14 @@
 import {WorkoutPlan} from '../types/workout';
+import {ExerciseInfo} from '../types/exercise';
 import {
-  ExerciseInfo
-} from '../types/exercise';
+  BodyPart
+} from '../components/workout-viewer/analytics/systems-data/SystemsCommon';
 import {
-  BodyPart,
-  MovementType,
   MuscleGroup
-} from './workout-viewer/analytics/Systems';
+} from '../components/workout-viewer/analytics/systems-data/MuscleGroupsValues';
+import {
+  MovementType
+} from '../components/workout-viewer/analytics/systems-data/MovementTypeValues';
 
 export const SixDayExamplePlan: WorkoutPlan = {
   title: '6-day example',
@@ -154,7 +156,7 @@ export const SixDayExamplePlan: WorkoutPlan = {
             muscleGroup: MuscleGroup.Calves,
             movementType: MovementType.Calves,
           } as ExerciseInfo,
-          sets: {from: 1, to: 2},
+          sets: {from: 2, to: 3},
           reps: {from: 40, to: 40}
         },
       ]
@@ -379,7 +381,7 @@ export const SixDayExamplePlan: WorkoutPlan = {
             muscleGroup: MuscleGroup.Calves,
             movementType: MovementType.Calves,
           } as ExerciseInfo,
-          sets: {from: 2, to: 3},
+          sets: {from: 3, to: 5},
           reps: {from: 10, to: 12}
         },
       ]

@@ -48,3 +48,8 @@ export const sumRanges = (a: QtyRange, b: QtyRange): QtyRange => ({
   from: a.from + b.from,
   to: a.to + b.to
 });
+
+
+export const isInRange = (value: number, range: QtyRange) => {
+  return value >= range.from && value <= range.to;
+};

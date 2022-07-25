@@ -3,10 +3,14 @@ import {
   ExerciseInfo
 } from '../types/exercise';
 import {
-  BodyPart,
-  MovementType,
+  BodyPart
+} from '../components/workout-viewer/analytics/systems-data/SystemsCommon';
+import {
   MuscleGroup
-} from './workout-viewer/analytics/Systems';
+} from '../components/workout-viewer/analytics/systems-data/MuscleGroupsValues';
+import {
+  MovementType
+} from '../components/workout-viewer/analytics/systems-data/MovementTypeValues';
 
 export const DempoProgram: WorkoutPlan = {
   title: 'Demo Program',

@@ -2,7 +2,6 @@ import type {NextPage} from 'next';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import {WorkoutEditor} from '../components/workout-viewer/WorkoutEditor';
-import {DempoProgram} from '../components/DemoProgram.tmp.const';
 import {WorkoutProvider} from '../components/workout-viewer/WorkoutProvider';
 import {
   PlanAnalytics

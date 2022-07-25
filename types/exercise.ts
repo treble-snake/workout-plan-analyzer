@@ -1,9 +1,17 @@
 import {
   BodyPart,
   ExperienceLevel,
-  MovementType,
+  // IsolationLevel,
+
+
+  // MuscleInvolvement
+} from '../components/workout-viewer/analytics/systems-data/SystemsCommon';
+import {
   MuscleGroup
-} from '../components/workout-viewer/analytics/Systems';
+} from '../components/workout-viewer/analytics/systems-data/MuscleGroupsValues';
+import {
+  MovementType
+} from '../components/workout-viewer/analytics/systems-data/MovementTypeValues';
 
 export type ExerciseInfo = {
   name: string;
@@ -17,4 +25,7 @@ export type ExerciseInfo = {
   bodyPart: BodyPart;
   movementType: MovementType;
   muscleGroup: MuscleGroup;
+
+  // isolationLevel: IsolationLevel;
+  // muscleInvolvement: MuscleInvolvement;
 }
