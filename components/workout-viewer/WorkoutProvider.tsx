@@ -8,8 +8,8 @@ import {
 } from '../../types/workout';
 import {DempoProgram} from '../../temp-data/DemoProgram.tmp.const';
 import {clone, move, remove} from 'ramda';
-import {SixDayExamplePlan} from '../../temp-data/SixDayExample.tmp.const';
 import {EXERCISES_BY_ID} from '../../temp-data/exercises';
+import {ExerciseInfo} from '../../types/exercise';
 
 interface WorkoutContainer {
   plan: WorkoutPlan,
@@ -26,6 +26,8 @@ interface WorkoutContainer {
   ): void;
 
   removeExercise(dayIndex: number, exerciseIndex: number, supersetIndex?: number): void;
+
+  addExercise(dayIndex: number, exerciseId: string, sets: QtyRange, reps: QtyRange): void;
 
   setReps(range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number): void
 
@@ -62,7 +64,7 @@ const normalizeExercise = (exc: Exercise): Exercise => {
 const normalizePlan = (plan: WorkoutPlan): WorkoutPlan => {
   // TODO: extract and use AnalyticUtils ?
   const newPlan = clone(plan);
-  plan.days.forEach((day) => {
+  newPlan.days.forEach((day) => {
     if ('exercises' in day) {
       day.exercises.forEach((exc) => {
         'exercises' in exc ?
@@ -75,11 +77,12 @@ const normalizePlan = (plan: WorkoutPlan): WorkoutPlan => {
 }
 
 export const WorkoutProvider = ({children}: any) => {
-  const [plan, setPlan] = useState(normalizePlan(SixDayExamplePlan));
-  // const [plan, setPlan] = useState(normalizePlan(DempoProgram));
+  // const [plan, setPlan] = useState(normalizePlan(SixDayExamplePlan));
+  const [plan, setPlan] = useState(normalizePlan(DempoProgram));
 
-  const setDays = (days: WorkoutPlan['days']) =>
-    setPlan({...plan, days});
+  const setDays = (days: WorkoutPlan['days']) => {
+    setPlan(normalizePlan({...plan, days}));
+  }
 
   const addDay = (isRest: boolean) => {
     setDays([...plan.days, isRest ? {isRest} : {exercises: []}]);
@@ -149,12 +152,26 @@ export const WorkoutProvider = ({children}: any) => {
     setDays(newDays);
   };
 
+  const addExercise = (dayIndex: number, exerciseId: string, sets: QtyRange, reps: QtyRange) => {
+    const newDays = [...plan.days];
+    const day = {...plan.days[dayIndex]} as WorkoutDay;
+    newDays[dayIndex] = {
+      ...newDays[dayIndex],
+      exercises: day.exercises.concat({
+        info: {id: exerciseId} as ExerciseInfo,
+        sets, reps
+      })
+    };
+    setDays(newDays);
+  }
+
   return <WorkoutContext.Provider value={{
     plan,
     addDay,
     removeDay,
     moveDay,
     setDayMetadata,
+    addExercise,
     removeExercise,
     setReps,
     setSets

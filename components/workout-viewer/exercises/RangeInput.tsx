@@ -1,6 +1,6 @@
 import {QtyRange} from '../../../types/workout';
 import {useState} from 'react';
-import {isValidRange, rangeToText, textToRange} from './RangeUtils';
+import {isValidTextRange, rangeToText, textToRange} from './RangeUtils';
 import {AutoComplete, Input} from 'antd';
 
 const options = [
@@ -56,7 +56,7 @@ export const RangeInput = ({range, update}: Props) => {
 
   const onChange = (value: string) => {
     setText(value);
-    if (isValidRange(value)) {
+    if (isValidTextRange(value)) {
       update(textToRange(value));
     }
   };
@@ -74,7 +74,7 @@ export const RangeInput = ({range, update}: Props) => {
     value={text}
   >
     <Input size="small"
-           status={isValidRange(text) ? '' : 'error'}
+           status={isValidTextRange(text) ? '' : 'error'}
            style={{
              textAlign: 'center',
              padding: 0,

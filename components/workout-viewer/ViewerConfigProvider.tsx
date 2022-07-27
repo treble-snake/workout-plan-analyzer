@@ -21,7 +21,7 @@ interface ViewerConfig extends ViewerConfigValues {
 
 const DEFAULT_CONFIG = {
   experience: ExperienceLevel.Intermediate,
-  mode: ViewerMode.View
+  mode: ViewerMode.Edit
 };
 
 const ViewerConfigContext = createContext<ViewerConfig>({

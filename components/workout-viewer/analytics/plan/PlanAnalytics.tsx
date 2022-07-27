@@ -27,9 +27,12 @@ export const PlanAnalytics = () => {
       <>
         Workout Analysis
         <Divider type={'vertical'} />
-        <ExperienceSwitch/>
+        <ExperienceSwitch />
       </>
-    } size={'small'}>
+    }
+          size={'small'}
+          style={{marginTop: 10}}
+    >
       <p>Total sets: {rangeToText(totalSets)}</p>
       <Row gutter={8}>
         <PlanStatsBySystem system={System.Muscle}

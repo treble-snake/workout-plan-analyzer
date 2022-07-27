@@ -19,7 +19,16 @@ const parseRange = (text: string) => {
   return range;
 };
 
-export const isValidRange = (text: string) => {
+export const isValidRange = (range: QtyRange) => {
+  const {from, to} = range;
+  if (from <= 0 || to <= 0) {
+    return false;
+  }
+
+  return from <= to;
+}
+
+export const isValidTextRange = (text: string) => {
   if (!RANGE_REGEX.test(text)) {
     return false;
   }
@@ -37,7 +46,7 @@ export const isValidRange = (text: string) => {
 };
 
 export const textToRange = (text: string) => {
-  if (!isValidRange(text)) {
+  if (!isValidTextRange(text)) {
     throw new Error('Not a valid range: ' + text);
   }
 
