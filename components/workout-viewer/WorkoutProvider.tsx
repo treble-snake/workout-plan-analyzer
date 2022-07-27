@@ -9,6 +9,7 @@ import {
 import {DempoProgram} from '../../temp-data/DemoProgram.tmp.const';
 import {clone, move, remove} from 'ramda';
 import {SixDayExamplePlan} from '../../temp-data/SixDayExample.tmp.const';
+import {EXERCISES_BY_ID} from '../../temp-data/exercises';
 
 interface WorkoutContainer {
   plan: WorkoutPlan,
@@ -49,9 +50,33 @@ const findExercise = (
     exercises[exerciseIndex] as Exercise;
 }
 
+const normalizeExercise = (exc: Exercise): Exercise => {
+  const info = EXERCISES_BY_ID[exc.info.id];
+  if (!info) {
+    throw new Error(`Exercise ${exc.info.id} not found`);
+  }
+  exc.info = {...exc.info, ...info};
+  return exc;
+};
+
+const normalizePlan = (plan: WorkoutPlan): WorkoutPlan => {
+  // TODO: extract and use AnalyticUtils ?
+  const newPlan = clone(plan);
+  plan.days.forEach((day) => {
+    if ('exercises' in day) {
+      day.exercises.forEach((exc) => {
+        'exercises' in exc ?
+          exc.exercises.forEach(normalizeExercise) :
+          normalizeExercise(exc);
+      });
+    }
+  })
+  return newPlan;
+}
+
 export const WorkoutProvider = ({children}: any) => {
-  // const [plan, setPlan] = useState(SixDayExamplePlan);
-  const [plan, setPlan] = useState(DempoProgram);
+  const [plan, setPlan] = useState(normalizePlan(SixDayExamplePlan));
+  // const [plan, setPlan] = useState(normalizePlan(DempoProgram));
 
   const setDays = (days: WorkoutPlan['days']) =>
     setPlan({...plan, days});

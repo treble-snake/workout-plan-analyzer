@@ -29,6 +29,7 @@ export const ExerciseControls = ({
     {
       index > 0 &&
       <Button size={'small'}
+              disabled
               icon={<ArrowUpOutlined />}
               type={'link'}
               style={{width: BUTTON_SIZE, height: BUTTON_SIZE}}
@@ -38,6 +39,7 @@ export const ExerciseControls = ({
     {
       index < exrQty - 1 &&
       <Button size={'small'}
+              disabled
               style={{width: BUTTON_SIZE, height: BUTTON_SIZE}}
               icon={<ArrowDownOutlined />}
               type={'link'}
