@@ -22,5 +22,11 @@ export const HAMSTRINGS_EXERCISES: ExerciseInfo[] = [
     bodyPart: BodyPart.Legs,
     muscleGroup: MuscleGroup.Hamstrings,
     movementType: MovementType.Hinge,
+  }, {
+    id: 'cfd00b75-ae60-457f-8b9d-6a5e9c2c0f76',
+    name: 'Back extensions',
+    bodyPart: BodyPart.Legs,
+    muscleGroup: MuscleGroup.Hamstrings,
+    movementType: MovementType.Hinge,
   }
 ];

@@ -32,7 +32,7 @@ export const WorkoutEditor = () => {
           plan.days.map((it, i) => (
             <Col
               style={{marginBottom: 16}}
-              span={5} key={i}>
+              span={6} key={i}>
               <WorkoutDayEditor index={i} day={it} />
             </Col>
           ))

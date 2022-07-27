@@ -22,10 +22,15 @@ export const calculateWorkingSets = (days: PlanDay[]) => {
   let totalSets = {from: 0, to: 0} as QtyRange;
 
   allExercises.forEach(({info, sets}) => {
-    totalSets = sumRanges(totalSets, sets);
-    setsByBodyPart[info.bodyPart] = sumRanges(setsByBodyPart[info.bodyPart], sets);
-    setsByMovementType[info.movementType] = sumRanges(setsByMovementType[info.movementType], sets);
-    setsByMuscleGroup[info.muscleGroup] = sumRanges(setsByMuscleGroup[info.muscleGroup], sets);
+    // TODO: wtf???
+    try {
+      totalSets = sumRanges(totalSets, sets);
+      setsByBodyPart[info.bodyPart] = sumRanges(setsByBodyPart[info.bodyPart], sets);
+      setsByMovementType[info.movementType] = sumRanges(setsByMovementType[info.movementType], sets);
+      setsByMuscleGroup[info.muscleGroup] = sumRanges(setsByMuscleGroup[info.muscleGroup], sets);
+    } catch (e) {
+      console.error('Working sets calc error for', info, sets);
+    }
   });
 
   return {
