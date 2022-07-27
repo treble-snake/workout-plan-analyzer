@@ -2,6 +2,7 @@
  * Per https://rpstrength.com/
  */
 import {ExperienceLevel} from './SystemsCommon';
+import {QtyRange} from '../../../../types/workout';
 
 export enum MuscleGroup {
   Quads = 'Quads',
@@ -33,9 +34,35 @@ export enum VolumeLandmarks {
 
 export const COMMON_SESSION_VOLUME = {from: 4, to: 12}; // For intermediate - advanced ?
 
-const IntermediateAndAdvanced = {
+type MuscleGroupLandmarks = Record<MuscleGroup, {
+  frequency: QtyRange;
+  [VolumeLandmarks.MV]: number,
+  [VolumeLandmarks.MEV]: number,
+  [VolumeLandmarks.MAV]: number,
+  [VolumeLandmarks.MRV]: Record<number, number>,
+}>
+
+// TODO: add Links to the page
+export const RP_URLS = {
+  [MuscleGroup.Quads]: 'https://rpstrength.com/expert-advice/quad-size-training-tips',
+  [MuscleGroup.Glutes]: 'https://rpstrength.com/glute-training-tips-hypertrophy/',
+  [MuscleGroup.Hamstrings]: 'https://rpstrength.com/expert-advice/hamstring-size-training-tips',
+  [MuscleGroup.Back]: 'https://rpstrength.com/back-training-tips-hypertrophy/',
+  [MuscleGroup.Traps]: 'https://rpstrength.com/trap-training-tips-hypertrophy/',
+  [MuscleGroup.Chest]: 'https://rpstrength.com/chest-training-tips-hypertrophy/',
+  [MuscleGroup.FrontDelts]: 'https://rpstrength.com/front-delt-training-tips-hypertrophy/',
+  [MuscleGroup.SideDelts]: 'https://rpstrength.com/expert-advice/side-delt-size-training-tips',
+  [MuscleGroup.RearDelts]: 'https://rpstrength.com/expert-advice/rear-delt-size-training-tips',
+  [MuscleGroup.Triceps]: 'https://rpstrength.com/triceps-hypertrophy-training-tips/',
+  [MuscleGroup.Biceps]: 'https://rpstrength.com/bicep-training-tips-hypertrophy/',
+  [MuscleGroup.Calves]: 'https://rpstrength.com/calves-training-tips-hypertrophy/',
+  [MuscleGroup.Forearms]: 'https://rpstrength.com/expert-advice/forearm-growth-training-tips',
+  [MuscleGroup.Abs]: 'https://rpstrength.com/ab-training/'
+}
+
+const IntermediateAndAdvanced: MuscleGroupLandmarks = {
   [MuscleGroup.Quads]: {
-    // maxFreq: 6,
+    frequency: {from: 2, to: 5},
     [VolumeLandmarks.MV]: 6,
     [VolumeLandmarks.MEV]: 8,
     [VolumeLandmarks.MAV]: 12, // per session
@@ -48,7 +75,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.Glutes]: {
-    // maxFreq: 6,
+    frequency: {from: 2, to: 5},
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 0,
     [VolumeLandmarks.MAV]: 12, // per session
@@ -61,7 +88,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.Hamstrings]: {
-    // maxFreq: 4
+    frequency: {from: 2, to: 3},
     [VolumeLandmarks.MV]: 3,
     [VolumeLandmarks.MEV]: 4,
     [VolumeLandmarks.MAV]: 6, // per session
@@ -74,7 +101,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.Back]: {
-    // maxFreq: 4
+    frequency: {from: 2, to: 4},
     [VolumeLandmarks.MV]: 6,
     [VolumeLandmarks.MEV]: 10,
     [VolumeLandmarks.MAV]: 12, // per session
@@ -87,7 +114,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.Traps]: {
-    // maxFreq: 4
+    frequency: {from: 2, to: 4},
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 0, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -100,7 +127,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.Chest]: {
-    // maxFreq: 4
+    frequency: {from: 2, to: 4},
     [VolumeLandmarks.MV]: 4,
     [VolumeLandmarks.MEV]: 6, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -113,7 +140,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.FrontDelts]: {
-    // maxFreq: 4
+    frequency: {from: 2, to: 3},
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 0, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -126,7 +153,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.SideDelts]: {
-    // maxFreq: 4
+    frequency: {from: 3, to: 6},
     [VolumeLandmarks.MV]: 6,
     [VolumeLandmarks.MEV]: 8, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -139,7 +166,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.RearDelts]: {
-    // maxFreq: 4
+    frequency: {from: 3, to: 6},
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 6, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -152,7 +179,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.Triceps]: {
-    // maxFreq: 4
+    frequency: {from: 2, to: 4},
     [VolumeLandmarks.MV]: 4,
     [VolumeLandmarks.MEV]: 6, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -165,7 +192,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.Biceps]: {
-    // maxFreq: 4
+    frequency: {from: 3, to: 6},
     [VolumeLandmarks.MV]: 4,
     [VolumeLandmarks.MEV]: 8, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -178,7 +205,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.Calves]: {
-    // maxFreq: 4
+    frequency: {from: 3, to: 6},
     [VolumeLandmarks.MV]: 6,
     [VolumeLandmarks.MEV]: 8, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -191,7 +218,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.Forearms]: {
-    // maxFreq: 4
+    frequency: {from: 3, to: 6},
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 4, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -204,7 +231,7 @@ const IntermediateAndAdvanced = {
     }
   },
   [MuscleGroup.Abs]: {
-    // maxFreq: 4
+    frequency: {from: 3, to: 6},
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 4, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -220,8 +247,9 @@ const IntermediateAndAdvanced = {
 
 // Adding Jeff Nippard Fundamentals
 // TODO: check GVS
-const Beginner = {
+const Beginner: MuscleGroupLandmarks = {
   [MuscleGroup.Quads]: {
+    frequency: IntermediateAndAdvanced[MuscleGroup.Quads].frequency,
     [VolumeLandmarks.MV]: 3,
     [VolumeLandmarks.MEV]: 3,
     [VolumeLandmarks.MAV]: 12, // per session
@@ -234,7 +262,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.Glutes]: {
-    // maxFreq: 6,
+    frequency: IntermediateAndAdvanced[MuscleGroup.Glutes].frequency,
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 0,
     [VolumeLandmarks.MAV]: 12, // per session
@@ -247,7 +275,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.Hamstrings]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.Hamstrings].frequency,
     [VolumeLandmarks.MV]: 3,
     [VolumeLandmarks.MEV]: 3,
     [VolumeLandmarks.MAV]: 6, // per session
@@ -260,7 +288,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.Back]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.Back].frequency,
     [VolumeLandmarks.MV]: 3,
     [VolumeLandmarks.MEV]: 4,
     [VolumeLandmarks.MAV]: 12, // per session
@@ -273,7 +301,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.Traps]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.Traps].frequency,
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 0, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -286,7 +314,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.Chest]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.Chest].frequency,
     [VolumeLandmarks.MV]: 3,
     [VolumeLandmarks.MEV]: 3, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -299,7 +327,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.FrontDelts]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.FrontDelts].frequency,
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 0, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -312,7 +340,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.SideDelts]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.SideDelts].frequency,
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 4, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -325,7 +353,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.RearDelts]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.RearDelts].frequency,
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 3, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -338,7 +366,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.Triceps]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.Triceps].frequency,
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 0, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -351,7 +379,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.Biceps]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.Biceps].frequency,
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 0, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -364,7 +392,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.Calves]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.Calves].frequency,
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 3, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -377,7 +405,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.Forearms]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.Forearms].frequency,
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 0, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -390,7 +418,7 @@ const Beginner = {
     }
   },
   [MuscleGroup.Abs]: {
-    // maxFreq: 4
+    frequency: IntermediateAndAdvanced[MuscleGroup.Abs].frequency,
     [VolumeLandmarks.MV]: 0,
     [VolumeLandmarks.MEV]: 0, // 4 for advanced ?
     [VolumeLandmarks.MAV]: 12, // per session
@@ -404,7 +432,7 @@ const Beginner = {
   },
 };
 
-export const WeeklySetsPerMuscleGroup = {
+export const WeeklySetsPerMuscleGroup: Record<ExperienceLevel, MuscleGroupLandmarks> = {
   [ExperienceLevel.Beginner]: Beginner,
   [ExperienceLevel.Intermediate]: IntermediateAndAdvanced,
   [ExperienceLevel.Advanced]: IntermediateAndAdvanced,

@@ -1,21 +1,17 @@
-import {useViewerConfigContext} from '../../../ViewerConfigProvider';
-import {
-  ExperienceLevel
-} from '../../systems-data/SystemsCommon';
+import {ExperienceLevel} from '../../systems-data/SystemsCommon';
 import {QtyRange} from '../../../../../types/workout';
-import {Tag} from 'antd';
 import {
   MuscleGroup,
   VolumeLandmarks,
   WeeklySetsPerMuscleGroup
 } from '../../systems-data/MuscleGroupsValues';
-import {Bad, Doubtful, Good, Great, Okay, Terrible} from './EmojiGrades';
+import {Bad, Doubtful, Good, Great, Okay, Ugly} from './EmojiGrades';
 
 type Props = {
   level: ExperienceLevel;
   muscle: MuscleGroup;
   sets: QtyRange;
-  freq: number;
+  freq: QtyRange;
 }
 
 export const MuscleGroupTotalSetsGrade = ({
@@ -30,76 +26,58 @@ export const MuscleGroupTotalSetsGrade = ({
 
   // TODO: make indirect work affect 0 sets
 
-  if (freq === 0) {
+  let avgFreq = Math.floor((freq.from + freq.to) / 2);
+  if (avgFreq === 0) {
     if (mev === 0) {
-      // return <Tag color={'cyan'}>~EV</Tag>;
       return <Okay />;
     }
 
-    return mv === 0 ?
-      <Okay /> : <Bad />;
-      // <Tag color={'blue'}>MV</Tag> :
-      // <Tag color={'red'}>&lt; MV</Tag>;
-  }
-  if (freq > 5) {
-    freq = 5;
+    return mv === 0 ? <Okay /> : <Bad />;
   }
 
-  const mrvByFreq = landmarks[VolumeLandmarks.MRV];
-  // @ts-ignore
-  const mrv = mrvByFreq[freq] as number;
+  if (avgFreq > 5) {
+    avgFreq = 5;
+  }
 
+  const mrv = landmarks[VolumeLandmarks.MRV][avgFreq];
 
   if (from < mv) {
     if (to < mv) {
-      // return <Tag color={'red'}>&lt; MV</Tag>;
       return <Bad />;
     }
 
     if (to >= mv && to < mev) {
-      // return <Tag color={'geekblue'}>~MV</Tag>;
       return <Okay />;
     }
 
     if (to >= mev && to < mrv) {
-      // return <Tag color={'cyan'}>~EV</Tag>;
       return <Good />;
     }
 
     if (to > mrv) {
-      // return <Tag color={'gold'}>?</Tag>;
       return <Doubtful />;
     }
   }
 
   if (from >= mv && from < mev) {
     if (to < mev) {
-      // return <Tag color={'blue'}>MV</Tag>;
       return <Okay />;
     } else {
-      return to > mrv ?
-        <Doubtful /> : <Good />;
-        // <Tag color={'gold'}>?</Tag> :
-        // <Tag color={'cyan'}>~EV</Tag>;
+      return to > mrv ? <Doubtful /> : <Good />;
     }
   }
 
   if (from >= mev && from <= mrv) {
     if (to <= mrv) {
-      // return <Tag color={'green'}>EV</Tag>;
-      return <Great />;
+      return from < 3 || to < 3 ? <Good/> : <Great />;
     } else {
-      // return <Tag color={to > mrv * 1.5 ? 'red' : 'gold'}>&gt; MRV</Tag>;
-      return to > mrv * 1.5 ? <Terrible /> : <Bad />;
+      return to > mrv * 1.5 ? <Ugly /> : <Bad />;
     }
   }
 
   if (from > mrv) {
-    // return <Tag color={from > mrv * 1.5 || to > mrv * 1.5 ? 'red' : 'gold'}>
-    //   &gt; MRV
-    // </Tag>;
-    return from > mrv * 1.5 || to > mrv * 1.5 ? <Terrible /> : <Bad />;
+    return from > mrv * 1.5 || to > mrv * 1.5 ? <Ugly /> : <Bad />;
   }
 
-  return null;
+  return <Doubtful/>;
 };
