@@ -11,7 +11,7 @@ import {
   Good,
   Great,
   Okay,
-  Terrible
+  Ugly
 } from './EmojiGrades';
 
 type Props = {
@@ -32,15 +32,14 @@ export const MovementTypeTotalSetsGrade = ({
 
   // TODO: make indirect work affect 0 sets
   // TODO: count how many specialization sets are there
-
-  const results = [];
+  // TODO: indicate balanced and spec ranges??
 
   if (balanced.from + balanced.to + spec.from + spec.to === 0) {
     return null;
   }
 
   if (from > spec.to) {
-    return from > spec.to * 1.5 ? <Terrible /> : <Doubtful />;
+    return from > spec.to || to > spec.to * 1.5 ? <Ugly /> : <Doubtful />;
   }
 
   if (to > spec.to) {
@@ -52,17 +51,16 @@ export const MovementTypeTotalSetsGrade = ({
   }
 
   if (from < balanced.from && isInRange(to, balanced)) {
-    results.push(<Okay />);
+    return <Okay />;
   }
 
   if (from >= balanced.from && from <= spec.from) {
-    results.push(<Good />);
+    return isInRange(to, balanced) ? <Great/> : <Good />;
   }
 
   if (isInRange(to, spec)) {
-    results.push(<Great />);
+    return <Great />;
   }
 
-
-  return results.length > 0 ? <>{results}</> : <Doubtful />;
+  return <Doubtful />;
 };
