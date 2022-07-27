@@ -1,14 +1,5 @@
 import {WorkoutPlan} from '../types/workout';
 import {ExerciseInfo} from '../types/exercise';
-import {
-  BodyPart
-} from '../components/workout-viewer/analytics/systems-data/SystemsCommon';
-import {
-  MuscleGroup
-} from '../components/workout-viewer/analytics/systems-data/MuscleGroupsValues';
-import {
-  MovementType
-} from '../components/workout-viewer/analytics/systems-data/MovementTypeValues';
 
 export const SixDayExamplePlan: WorkoutPlan = {
   title: '6-day example',
@@ -20,37 +11,29 @@ export const SixDayExamplePlan: WorkoutPlan = {
       exercises: [
         {
           info: {
-            name: 'Face pull',
-            bodyPart: BodyPart.Shoulders,
-            muscleGroup: MuscleGroup.RearDelts,
-            movementType: MovementType.Shoulders,
+            id: 'a51e5774-ebdb-4477-93fb-996f0bc58675',
+            // name: 'Face pull',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 12, to: 15}
         }, {
           info: {
-            name: 'Incline DB bench press',
-            bodyPart: BodyPart.Chest,
-            muscleGroup: MuscleGroup.Chest,
-            movementType: MovementType.Push,
+            id: '268f1a8e-35ab-489a-bba2-34ed2d9f20c5',
+            // name: 'Incline DB bench press',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 10, to: 12}
         }, {
           info: {
-            name: 'Arnold Press',
-            bodyPart: BodyPart.Shoulders,
-            muscleGroup: MuscleGroup.FrontDelts,
-            movementType: MovementType.Press,
+            id: 'e0f4e162-f04d-45e0-82eb-c9dc41a24374',
+            // name: 'Arnold Press',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 8, to: 12}
         }, {
           info: {
-            name: 'Chest press machine',
-            bodyPart: BodyPart.Chest,
-            muscleGroup: MuscleGroup.Chest,
-            movementType: MovementType.Push,
+            id: '433af736-9527-4efb-b1a5-99bfe3b56a5d',
+            // name: 'Chest press machine',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 12, to: 15}
@@ -59,20 +42,16 @@ export const SixDayExamplePlan: WorkoutPlan = {
           exercises: [
             {
               info: {
-                name: 'Lateral raise',
-                bodyPart: BodyPart.Shoulders,
-                muscleGroup: MuscleGroup.SideDelts,
-                movementType: MovementType.Shoulders,
+                id: '8811b1ee-b232-4a56-bff1-4d5419c7e28f',
+                // name: 'Lateral raise',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 12, to: 15}
             },
             {
               info: {
-                name: 'Triceps pushdown',
-                bodyPart: BodyPart.Arms,
-                muscleGroup: MuscleGroup.Triceps,
-                movementType: MovementType.Extend,
+                id: 'c8790bb9-0b73-4071-a454-c758ccec01cb',
+                // name: 'Triceps pushdown',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 12, to: 15}
@@ -81,20 +60,16 @@ export const SixDayExamplePlan: WorkoutPlan = {
         },
         {
           info: {
-            name: 'Cable crossover',
-            bodyPart: BodyPart.Chest,
-            muscleGroup: MuscleGroup.Chest,
-            movementType: MovementType.Push,
+            id: 'f2d5a714-71eb-4a3b-918d-2f538ad37687',
+            // name: 'Cable crossover (low to high)',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 10, to: 15}
         },
         {
           info: {
-            name: 'Skiers',
-            bodyPart: BodyPart.Shoulders,
-            muscleGroup: MuscleGroup.RearDelts,
-            movementType: MovementType.Shoulders,
+            id: '273ed285-67cf-4819-a448-34155e1b5310',
+            // name: 'Skiers',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 15, to: 20}
@@ -106,55 +81,43 @@ export const SixDayExamplePlan: WorkoutPlan = {
       exercises: [
         {
           info: {
-            name: 'Lying leg curl',
-            bodyPart: BodyPart.Legs,
-            muscleGroup: MuscleGroup.Hamstrings,
-            movementType: MovementType.Hinge,
+            id: '27f79c27-945a-4ce8-88d6-7488d0b3f3b9',
+            // name: 'Lying leg curl',
           } as ExerciseInfo,
           sets: {from: 2, to: 2},
           reps: {from: 12, to: 15}
         }, {
           info: {
-            name: 'Barbell Squat (paused)',
-            bodyPart: BodyPart.Legs,
-            muscleGroup: MuscleGroup.Quads,
-            movementType: MovementType.Squat,
+            id: '4b8f2b2e-0107-46af-a1a9-48f279170a18',
+            // name: 'Barbell Squat (paused)',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 8, to: 10}
         }, {
           info: {
-            name: 'Leg press',
-            bodyPart: BodyPart.Legs,
-            muscleGroup: MuscleGroup.Quads,
-            movementType: MovementType.Squat,
+            id: 'e261830c-a657-4f43-9f17-20e7bb6337bc',
+            // name: 'Leg press',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 10, to: 12}
         }, {
           info: {
-            name: 'Romanian deadlift',
-            bodyPart: BodyPart.Legs,
-            muscleGroup: MuscleGroup.Hamstrings,
-            movementType: MovementType.Hinge,
+            id: 'cc9b0fd3-d83d-4424-a77a-d2b67d190855',
+            // name: 'Romanian deadlift',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 8, to: 10}
         }, {
           info: {
-            name: 'Lunges',
-            bodyPart: BodyPart.Legs,
-            muscleGroup: MuscleGroup.Glutes,
-            movementType: MovementType.Squat,
+            id: '8ce66a4c-8819-4512-8af2-792fafdf3e5e',
+            // name: 'Reverse Lunges',
           } as ExerciseInfo,
           sets: {from: 2, to: 2},
           reps: {from: 16, to: 20}
         }, {
           info: {
-            name: 'Standing calf raise (Smith)',
-            bodyPart: BodyPart.Legs,
-            muscleGroup: MuscleGroup.Calves,
-            movementType: MovementType.Calves,
+            id: '1bdc3e1e-d1ad-414e-8e56-c8ce6a1d0c14',
+            // name: 'Standing calf raise (Smith)',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 40, to: 40}
@@ -166,28 +129,22 @@ export const SixDayExamplePlan: WorkoutPlan = {
       exercises: [
         {
           info: {
-            name: 'Lat pulldown',
-            bodyPart: BodyPart.Back,
-            muscleGroup: MuscleGroup.Back,
-            movementType: MovementType.Pull,
+            id: '2fc6e29e-623d-4351-b0ca-35d810bcc52c',
+            // name: 'Lat pulldown',
           } as ExerciseInfo,
           sets: {from: 3, to: 3},
           reps: {from: 8, to: 12}
         }, {
           info: {
-            name: 'T bar row',
-            bodyPart: BodyPart.Back,
-            muscleGroup: MuscleGroup.Back,
-            movementType: MovementType.Row,
+            id: 'd37d98bf-08e3-4639-8b2f-20b30a3e5b8f',
+            // name: 'Landmine row',
           } as ExerciseInfo,
           sets: {from: 2, to: 4},
           reps: {from: 10, to: 12}
         }, {
           info: {
-            name: 'Seated cable row',
-            bodyPart: BodyPart.Back,
-            muscleGroup: MuscleGroup.Back,
-            movementType: MovementType.Row,
+            id: '1c7a7cb9-4cdd-4b16-b888-b9383b1dcdb8',
+            // name: 'Seated cable row',
           } as ExerciseInfo,
           sets: {from: 3, to: 3},
           reps: {from: 10, to: 12}
@@ -195,19 +152,15 @@ export const SixDayExamplePlan: WorkoutPlan = {
           exercises: [
             {
             info: {
-              name: 'Standing cable pullover',
-              bodyPart: BodyPart.Back,
-              muscleGroup: MuscleGroup.Back,
-              movementType: MovementType.Pull,
+              id: 'bc2318a2-1fe5-4f8a-abe5-36d872978f55',
+              // name: 'Standing cable pullover',
             } as ExerciseInfo,
             sets: {from: 2, to: 3},
             reps: {from: 12, to: 15}
           },{
             info: {
-              name: 'Upright row (Smith?)',
-              bodyPart: BodyPart.Shoulders,
-              muscleGroup: MuscleGroup.SideDelts,
-              movementType: MovementType.Shoulders,
+              id: '968bde1b-2489-4187-a135-db8376113645',
+              // name: 'Barbell Upright row',
             } as ExerciseInfo,
             sets: {from: 2, to: 3},
             reps: {from: 14, to: 18}
@@ -218,19 +171,15 @@ export const SixDayExamplePlan: WorkoutPlan = {
           exercises: [
             {
               info: {
-                name: 'DB Shrug',
-                bodyPart: BodyPart.Back,
-                muscleGroup: MuscleGroup.Traps,
-                movementType: MovementType.Other,
+                id: 'f37064c5-daff-49a5-85db-5649ff2998ee',
+                // name: 'DB Shrug',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 12, to: 15}
             }, {
               info: {
-                name: 'Incline DB Curl',
-                bodyPart: BodyPart.Arms,
-                muscleGroup: MuscleGroup.Biceps,
-                movementType: MovementType.Curl,
+                id: '93828de1-4295-4e5d-9932-327e0faece29',
+                // name: 'Incline DB Curl',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 12, to: 15}
@@ -246,19 +195,15 @@ export const SixDayExamplePlan: WorkoutPlan = {
           exercises: [
             {
               info: {
-                name: 'Barbel curl',
-                bodyPart: BodyPart.Arms,
-                muscleGroup: MuscleGroup.Biceps,
-                movementType: MovementType.Curl,
+                id: '9b9464c1-569f-4f7c-9ba1-ec3a24a0ff0b',
+                // name: 'Barbel curl',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 8, to: 10}
             }, {
               info: {
-                name: 'Tricep cable pushdown',
-                bodyPart: BodyPart.Arms,
-                muscleGroup: MuscleGroup.Triceps,
-                movementType: MovementType.Extend,
+                id: 'c8790bb9-0b73-4071-a454-c758ccec01cb',
+                // name: 'Tricep pushdown',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 12, to: 15}
@@ -268,19 +213,15 @@ export const SixDayExamplePlan: WorkoutPlan = {
           exercises: [
             {
               info: {
-                name: 'Reverse Barbel curl',
-                bodyPart: BodyPart.Arms,
-                muscleGroup: MuscleGroup.Biceps,
-                movementType: MovementType.Curl,
+                id: 'fd4d93d5-6db0-4922-bbdc-166fbed7e8e5',
+                // name: 'Reverse Barbel curl',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 12, to: 15}
             }, {
               info: {
-                name: 'Triceps Extension',
-                bodyPart: BodyPart.Arms,
-                muscleGroup: MuscleGroup.Triceps,
-                movementType: MovementType.Extend,
+                id: '59053cdf-0752-4517-9c87-5876391dddcf',
+                // name: 'Triceps Extension',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 8, to: 10}
@@ -290,19 +231,15 @@ export const SixDayExamplePlan: WorkoutPlan = {
           exercises: [
             {
               info: {
-                name: 'Lateral raise (Cable)',
-                bodyPart: BodyPart.Shoulders,
-                muscleGroup: MuscleGroup.SideDelts,
-                movementType: MovementType.Shoulders,
+                id: 'e1b81ba0-2edd-43d9-adf1-7c6a061d5296',
+                // name: 'Lateral raise (Cable)',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 12, to: 15}
             }, {
               info: {
-                name: 'Hammer curl (Cable)',
-                bodyPart: BodyPart.Arms,
-                muscleGroup: MuscleGroup.Biceps,
-                movementType: MovementType.Curl,
+                id: 'f0af0388-99e7-4442-95b4-1ac00ea9dbe0',
+                // name: 'Hammer curl (Cable)',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 12, to: 15}
@@ -311,10 +248,8 @@ export const SixDayExamplePlan: WorkoutPlan = {
         },
         {
           info: {
-            name: 'Lying Rear Delt raise',
-            bodyPart: BodyPart.Shoulders,
-            muscleGroup: MuscleGroup.RearDelts,
-            movementType: MovementType.Shoulders,
+            id: 'ba84bf05-cfc6-4b66-96dd-9a709110be99',
+            // name: 'Lying Rear Delt raise',
           } as ExerciseInfo,
           sets: {from: 2, to: 4},
           reps: {from: 12, to: 15}
@@ -326,28 +261,22 @@ export const SixDayExamplePlan: WorkoutPlan = {
       exercises: [
         {
           info: {
-            name: 'Deadlift',
-            bodyPart: BodyPart.Legs,
-            muscleGroup: MuscleGroup.Glutes,
-            movementType: MovementType.Hinge,
+            id: '2acd422c-a8f5-4168-8407-abbe9192fc87',
+            // name: 'Deadlift',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 4, to: 6}
         }, {
           info: {
-            name: 'Barbell Squat',
-            bodyPart: BodyPart.Legs,
-            muscleGroup: MuscleGroup.Quads,
-            movementType: MovementType.Squat,
+            id: '4b8f2b2e-0107-46af-a1a9-48f279170a18',
+            // name: 'Barbell Squat',
           } as ExerciseInfo,
           sets: {from: 2, to: 2},
           reps: {from: 8, to: 10}
         }, {
           info: {
-            name: 'Bulgarian split squat (wide step)',
-            bodyPart: BodyPart.Legs,
-            muscleGroup: MuscleGroup.Quads,
-            movementType: MovementType.Squat,
+            id: '76be5e99-8b96-4381-9949-27bc7c4992d6',
+            // name: 'Bulgarian split squat (wide step)',
           } as ExerciseInfo,
           sets: {from: 2, to: 2},
           reps: {from: 10, to: 12}
@@ -356,19 +285,15 @@ export const SixDayExamplePlan: WorkoutPlan = {
           exercises: [
             {
               info: {
-                name: 'Lying leg curl',
-                bodyPart: BodyPart.Legs,
-                muscleGroup: MuscleGroup.Hamstrings,
-                movementType: MovementType.Hinge,
+                id: '27f79c27-945a-4ce8-88d6-7488d0b3f3b9',
+                // name: 'Lying leg curl',
               } as ExerciseInfo,
               sets: {from: 2, to: 2},
               reps: {from: 12, to: 15}
             }, {
               info: {
-                name: 'Shrugs',
-                bodyPart: BodyPart.Back,
-                muscleGroup: MuscleGroup.Traps,
-                movementType: MovementType.Other,
+                id: 'f37064c5-daff-49a5-85db-5649ff2998ee',
+                // name: 'Shrugs',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 10, to: 12}
@@ -376,10 +301,8 @@ export const SixDayExamplePlan: WorkoutPlan = {
           ]
         }, {
           info: {
-            name: 'Seated calf raise',
-            bodyPart: BodyPart.Legs,
-            muscleGroup: MuscleGroup.Calves,
-            movementType: MovementType.Calves,
+            id: '43d201b9-28af-4659-9dfd-1a821d1cf203',
+            // name: 'Seated calf raise',
           } as ExerciseInfo,
           sets: {from: 3, to: 5},
           reps: {from: 10, to: 12}
@@ -391,29 +314,23 @@ export const SixDayExamplePlan: WorkoutPlan = {
       exercises: [
         {
           info: {
-            name: 'Face pull',
-            bodyPart: BodyPart.Shoulders,
-            muscleGroup: MuscleGroup.RearDelts,
-            movementType: MovementType.Shoulders,
+            id: 'a51e5774-ebdb-4477-93fb-996f0bc58675',
+            // name: 'Face pull',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 15, to: 20}
         }, {
           info: {
-            name: 'Flat DB bench press',
-            bodyPart: BodyPart.Chest,
-            muscleGroup: MuscleGroup.Chest,
-            movementType: MovementType.Push,
+            id: '732f4a21-7c19-4a40-a608-99345ba361ea',
+            // name: 'Flat DB bench press',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 8, to: 12}
         },
         {
           info: {
-            name: 'Lat pulldown',
-            bodyPart: BodyPart.Back,
-            muscleGroup: MuscleGroup.Back,
-            movementType: MovementType.Pull,
+            id: '2fc6e29e-623d-4351-b0ca-35d810bcc52c',
+            // name: 'Lat pulldown',
           } as ExerciseInfo,
           sets: {from: 2, to: 3},
           reps: {from: 10, to: 12}
@@ -422,19 +339,15 @@ export const SixDayExamplePlan: WorkoutPlan = {
           exercises: [
             {
               info: {
-                name: 'Overhead Press DB',
-                bodyPart: BodyPart.Shoulders,
-                muscleGroup: MuscleGroup.FrontDelts,
-                movementType: MovementType.Press,
+                id: '9f8c7188-63ff-41a0-be74-e4b76a844ac5',
+                // name: 'Overhead Press DB',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 8, to: 12}
             }, {
               info: {
-                name: 'Seated hammer 1-arm row',
-                bodyPart: BodyPart.Back,
-                muscleGroup: MuscleGroup.Back,
-                movementType: MovementType.Row,
+                id: 'b812061b-7531-47de-aaa6-c34d3202f0a5',
+                // name: 'Seated hammer 1-arm row',
               } as ExerciseInfo,
               sets: {from: 2, to: 3},
               reps: {from: 8, to: 12}
@@ -445,30 +358,24 @@ export const SixDayExamplePlan: WorkoutPlan = {
           exercises: [
             {
               info: {
-                name: 'Triceps pushdown',
-                bodyPart: BodyPart.Arms,
-                muscleGroup: MuscleGroup.Triceps,
-                movementType: MovementType.Extend,
+                id: 'c8790bb9-0b73-4071-a454-c758ccec01cb',
+                // name: 'Triceps pushdown',
               } as ExerciseInfo,
               sets: {from: 2, to: 2},
               reps: {from: 20, to: 25}
             },
             {
               info: {
-                name: 'Hammer curl (DB)',
-                bodyPart: BodyPart.Arms,
-                muscleGroup: MuscleGroup.Biceps,
-                movementType: MovementType.Curl,
+                id: '38952d79-84f7-486e-bf0a-cd01e30d9e8b',
+                // name: 'Hammer curl (DB)',
               } as ExerciseInfo,
               sets: {from: 2, to: 2},
               reps: {from: 20, to: 25}
             },
             {
               info: {
-                name: 'Lateral raise',
-                bodyPart: BodyPart.Shoulders,
-                muscleGroup: MuscleGroup.SideDelts,
-                movementType: MovementType.Shoulders,
+                id: '8811b1ee-b232-4a56-bff1-4d5419c7e28f',
+                // name: 'Lateral raise',
               } as ExerciseInfo,
               sets: {from: 2, to: 2},
               reps: {from: 20, to: 25}
