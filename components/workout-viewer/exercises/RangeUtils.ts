@@ -19,6 +19,7 @@ const parseRange = (text: string) => {
   return range;
 };
 
+// TODO: unused
 export const isValidRange = (range: QtyRange) => {
   const {from, to} = range;
   if (from <= 0 || to <= 0) {

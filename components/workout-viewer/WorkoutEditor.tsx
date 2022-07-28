@@ -1,5 +1,8 @@
 import {Col, Descriptions, Layout, PageHeader, Row, Typography} from 'antd';
-import {WorkoutDayEditor} from './day-card/WorkoutDayEditor';
+import {
+  MemoizedWorkoutDayEditor,
+  WorkoutDayEditor
+} from './day-card/WorkoutDayEditor';
 import {useWorkoutContext} from './WorkoutProvider';
 import {AddDays} from './day-card/AddDays';
 import {ViewerConfig} from './ViewerConfig';
@@ -39,7 +42,8 @@ export const WorkoutEditor = () => {
           <Typography.Paragraph editable={isEditable && {
             onChange: (fullDescription) => setMeta({fullDescription})
           }}>
-            {plan.fullDescription || (isEditable && <i>Add full description</i>)}
+            {plan.fullDescription || (isEditable &&
+              <i>Add full description</i>)}
           </Typography.Paragraph>
         </Descriptions.Item>
       </Descriptions>
@@ -50,15 +54,27 @@ export const WorkoutEditor = () => {
           plan.days.map((it, i) => (
             <Col
               style={{marginBottom: 16}}
-              span={6} key={i}>
-              <WorkoutDayEditor index={i} day={it} />
+              xs={24}
+              sm={12}
+              md={12}
+              xl={8}
+              xxl={6}
+              key={i}>
+              <MemoizedWorkoutDayEditor index={i} day={it} />
+              {/*<WorkoutDayEditor index={i} day={it} />*/}
             </Col>
           ))
         }
 
         {
           isEditable &&
-          <Col span={3}>
+          <Col
+            xs={24}
+            sm={12}
+            md={8}
+            xl={4}
+            xxl={3}
+          >
             <AddDays />
           </Col>
         }

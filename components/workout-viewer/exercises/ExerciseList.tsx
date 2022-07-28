@@ -14,18 +14,23 @@ type Props = {
 export const ExerciseList = ({day}: Props) => {
   const {mode} = useViewerConfigContext();
 
+  const tableHeader = <Row>
+    <Col span={3} offset={mode === ViewerMode.Edit ? 12 : 16}
+         style={{textAlign: 'center'}}>Sets</Col>
+    <Col span={5} style={{textAlign: 'center'}}>Reps</Col>
+  </Row>;
+
   if (day.exercises.length === 0) {
     return mode === ViewerMode.Edit ?
-      <NewExerciseRow /> :
-      <Empty description={'Nothing here'} />;
+      <>
+        {tableHeader}
+        <NewExerciseRow />
+      </> :
+      <Empty description={'Nothing here yet'} />;
   }
 
   return <>
-    <Row>
-      <Col span={3} offset={mode === ViewerMode.Edit ? 12 : 16}
-           style={{textAlign: 'center'}}>Sets</Col>
-      <Col span={5} style={{textAlign: 'center'}}>Reps</Col>
-    </Row>
+    {tableHeader}
     {
       day.exercises.map((it, i) => {
         return ('exercises' in it) ?

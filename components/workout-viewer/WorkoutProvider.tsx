@@ -11,6 +11,7 @@ import {ExerciseInfo} from '../../types/exercise';
 import {fromBase64, normalizePlan} from './WorkoutUtils';
 import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
 import {SixDayExamplePlan} from '../../temp-data/SixDayExample.tmp.const';
+import {DemoProgram} from '../../temp-data/DemoProgram.tmp.const';
 
 interface WorkoutContainer {
   plan: WorkoutPlan,
@@ -55,17 +56,22 @@ const findExercise = (
     exercises[exerciseIndex] as Exercise;
 };
 
-const EMPTY_PLAN: WorkoutPlan = {
+const EMPTY_PLAN: WorkoutPlan = Object.freeze({
   title: 'My New Awesome Plan',
-  shortDescription: 'shortDescription',
-  fullDescription: 'fullDescription',
-  days: []
-};
+  shortDescription: 'Short description',
+  fullDescription: 'Full description',
+  days: [
+    {
+      title: 'First day',
+      exercises: []
+    }
+  ]
+});
 
 export const WorkoutProvider = ({children}: any) => {
-  // const [plan, setPlan] = useState(normalizePlan(SixDayExamplePlan));
+  const [plan, setPlan] = useState(normalizePlan(SixDayExamplePlan));
   // const [plan, setPlan] = useState(normalizePlan(DemoProgram));
-  const [plan, setPlan] = useState(normalizePlan(clone(EMPTY_PLAN)));
+  // const [plan, setPlan] = useState(normalizePlan(clone(EMPTY_PLAN)));
   const {setMode} = useViewerConfigContext();
 
   useEffect(() => {

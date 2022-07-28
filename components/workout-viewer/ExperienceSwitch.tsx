@@ -7,7 +7,7 @@ export const ExperienceSwitch = () => {
 
   return (
     <>
-      <Tag>Experience level</Tag>
+      <Tag>Lifting Experience</Tag>
       <Segmented
         value={experience}
         onChange={(value) => setExperience(value as ExperienceLevel)}

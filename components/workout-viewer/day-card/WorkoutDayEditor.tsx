@@ -4,7 +4,7 @@ import {RestDayImage} from './RestDayImage';
 import {WorkoutDayActions} from './WorkoutDayActions';
 import {WorkoutDayTitle} from './WorkoutDayTitle';
 import {ExerciseList} from '../exercises/ExerciseList';
-import {createContext, useContext} from 'react';
+import {createContext, memo, useContext} from 'react';
 import {WorkoutDayStats} from '../analytics/day/WorkoutDayStats';
 import {useViewerConfigContext, ViewerMode} from '../ViewerConfigProvider';
 
@@ -20,6 +20,7 @@ export const useDayIndexContext = () => {
 };
 
 export const WorkoutDayEditor = ({day, index}: Props) => {
+  console.warn('re-rendered ', index);
   const {mode} = useViewerConfigContext();
 
   return <DayIndexContext.Provider value={index}>
@@ -42,3 +43,5 @@ export const WorkoutDayEditor = ({day, index}: Props) => {
     </Card>
   </DayIndexContext.Provider>;
 };
+
+export const MemoizedWorkoutDayEditor = memo(WorkoutDayEditor);
