@@ -1,12 +1,13 @@
-import { Layout, Menu } from 'antd';
+import {Layout, Menu} from 'antd';
 import Head from 'next/head';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import styles from './MainLayout.module.css';
 
 export const MainLayout = ({children}: any) => {
   const router = useRouter();
 
-  return <div>
+  return <>
     <Head>
       <title>Workout Plan Analyzer</title>
       {/*<meta name="description" content="" />*/}
@@ -27,8 +28,15 @@ export const MainLayout = ({children}: any) => {
         </Menu>
       </Layout.Header>
       <Layout.Content>
-        {children}
+        <div className={styles.container}>
+          <main className={styles.main}>
+            {children}
+          </main>
+        </div>
       </Layout.Content>
+      <Layout.Footer className={styles.footer}>
+        v{process.env.npm_package_version}
+      </Layout.Footer>
     </Layout>
-  </div>;
-}
+  </>;
+};

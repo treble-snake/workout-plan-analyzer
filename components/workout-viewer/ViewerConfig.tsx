@@ -1,14 +1,27 @@
 import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
-import {Divider, Segmented, Space, Switch, Tag} from 'antd';
-import {ExperienceLevel, System} from './analytics/systems-data/SystemsCommon';
-import {SystemsMeta} from './analytics/systems-data/SystemsMeta';
+import {Divider, Switch, Typography} from 'antd';
 import {ExperienceSwitch} from './ExperienceSwitch';
+import {useWorkoutContext} from './WorkoutProvider';
+import {toBase64} from './WorkoutUtils';
+import {useEffect, useState} from 'react';
 
 export const ViewerConfig = () => {
-  const {setMode, mode, experience, setExperience} = useViewerConfigContext();
+  const {setMode, mode} = useViewerConfigContext();
+  const {plan} = useWorkoutContext();
+  const [shareLink, setShareLink] = useState('');
+
+  // TODO: some weird Next.js stuff. Figure out.
+  useEffect(() => {
+    setShareLink(window.origin + '#' + toBase64(plan));
+  }, [plan]);
 
   return <>
-    <Tag>Editor Mode</Tag>
+    <Typography.Text
+      copyable={{text: shareLink}}
+    >
+      <b>Copy URL</b>
+    </Typography.Text>
+    <Divider type={'vertical'} />
     <Switch title={'Editor mode'}
             style={{width: 60}}
             onChange={(value) => setMode(value ? ViewerMode.Edit : ViewerMode.View)}
@@ -17,6 +30,6 @@ export const ViewerConfig = () => {
             checked={mode === ViewerMode.Edit}
     />
     <Divider type={'vertical'} />
-    <ExperienceSwitch/>
+    <ExperienceSwitch />
   </>;
 };

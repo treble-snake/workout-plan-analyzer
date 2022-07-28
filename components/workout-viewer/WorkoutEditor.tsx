@@ -1,4 +1,4 @@
-import {Col, Descriptions, Layout, PageHeader, Row} from 'antd';
+import {Col, Descriptions, Layout, PageHeader, Row, Typography} from 'antd';
 import {WorkoutDayEditor} from './day-card/WorkoutDayEditor';
 import {useWorkoutContext} from './WorkoutProvider';
 import {AddDays} from './day-card/AddDays';
@@ -10,20 +10,38 @@ import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
 // };
 
 export const WorkoutEditor = () => {
-  const {plan} = useWorkoutContext();
+  const {plan, setMeta} = useWorkoutContext();
   const {mode} = useViewerConfigContext();
+  const isEditable = mode === ViewerMode.Edit;
 
   return <>
     <PageHeader
-      title={plan.title}
-      subTitle={plan.shortDescription}
+      title={
+        <Typography.Text editable={isEditable && {
+          onChange: (title) => setMeta({title})
+        }}
+        >
+          {plan.title || (isEditable ? <i>Add title</i> : 'Untitled plan')}
+        </Typography.Text>
+      }
+      subTitle={<Typography.Text editable={isEditable && {
+        onChange: (shortDescription) => setMeta({shortDescription})
+      }}>
+        {plan.shortDescription || (isEditable && <i>Add short description</i>)}
+      </Typography.Text>
+      }
     >
       <ViewerConfig />
       <Descriptions size="small" column={1}>
         <Descriptions.Item
           label="Days">{plan.days.length}</Descriptions.Item>
-        <Descriptions.Item
-          label="Info">{plan.fullDescription}</Descriptions.Item>
+        <Descriptions.Item label="Info">
+          <Typography.Paragraph editable={isEditable && {
+            onChange: (fullDescription) => setMeta({fullDescription})
+          }}>
+            {plan.fullDescription || (isEditable && <i>Add full description</i>)}
+          </Typography.Paragraph>
+        </Descriptions.Item>
       </Descriptions>
     </PageHeader>
     <Layout.Content className={'plan-content'}>
@@ -38,7 +56,8 @@ export const WorkoutEditor = () => {
           ))
         }
 
-        {mode === ViewerMode.Edit &&
+        {
+          isEditable &&
           <Col span={3}>
             <AddDays />
           </Col>
