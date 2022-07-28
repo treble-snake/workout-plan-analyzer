@@ -34,17 +34,20 @@ export const PlanAnalytics = () => {
           style={{marginTop: 10}}
     >
       <p>Total sets: {rangeToText(totalSets)}</p>
-      <Row gutter={8}>
-        <PlanStatsBySystem system={System.Muscle}
-                           sets={setsByMuscleGroup}
-                           frequency={freqByMuscleGroup} />
-        <PlanStatsBySystem system={System.Movement}
-                           sets={setsByMovementType}
-                           frequency={freqByMovementType} />
-        <PlanStatsBySystem system={System.BodyPart}
-                           sets={setsByBodyPart}
-                           frequency={freqByBodyPart} />
-      </Row>
+      {
+        totalSets.to > 0 &&
+        <Row gutter={8}>
+          <PlanStatsBySystem system={System.Muscle}
+                             sets={setsByMuscleGroup}
+                             frequency={freqByMuscleGroup} />
+          <PlanStatsBySystem system={System.Movement}
+                             sets={setsByMovementType}
+                             frequency={freqByMovementType} />
+          <PlanStatsBySystem system={System.BodyPart}
+                             sets={setsByBodyPart}
+                             frequency={freqByBodyPart} />
+        </Row>
+      }
     </Card>
   );
 };

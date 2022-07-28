@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from 'react';
+import {createContext, useContext, useEffect, useState} from 'react';
 import {
   Exercise,
   QtyRange,
@@ -6,10 +6,11 @@ import {
   WorkoutDay,
   WorkoutPlan
 } from '../../types/workout';
-import {DempoProgram} from '../../temp-data/DemoProgram.tmp.const';
 import {clone, move, remove} from 'ramda';
-import {EXERCISES_BY_ID} from '../../temp-data/exercises';
 import {ExerciseInfo} from '../../types/exercise';
+import {fromBase64, normalizePlan} from './WorkoutUtils';
+import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
+import {SixDayExamplePlan} from '../../temp-data/SixDayExample.tmp.const';
 
 interface WorkoutContainer {
   plan: WorkoutPlan,
@@ -32,6 +33,8 @@ interface WorkoutContainer {
   setReps(range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number): void
 
   setSets(range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number): void;
+
+  setMeta(info: Partial<Pick<WorkoutPlan, 'title' | 'shortDescription' | 'fullDescription'>>): void;
 }
 
 const WorkoutContext = createContext<WorkoutContainer | null>(null);
@@ -50,39 +53,32 @@ const findExercise = (
   return supersetIndex ?
     (exercises[supersetIndex] as Superset).exercises[exerciseIndex] :
     exercises[exerciseIndex] as Exercise;
-}
-
-const normalizeExercise = (exc: Exercise): Exercise => {
-  const info = EXERCISES_BY_ID[exc.info.id];
-  if (!info) {
-    throw new Error(`Exercise ${exc.info.id} not found`);
-  }
-  exc.info = {...exc.info, ...info};
-  return exc;
 };
 
-const normalizePlan = (plan: WorkoutPlan): WorkoutPlan => {
-  // TODO: extract and use AnalyticUtils ?
-  const newPlan = clone(plan);
-  newPlan.days.forEach((day) => {
-    if ('exercises' in day) {
-      day.exercises.forEach((exc) => {
-        'exercises' in exc ?
-          exc.exercises.forEach(normalizeExercise) :
-          normalizeExercise(exc);
-      });
-    }
-  })
-  return newPlan;
-}
+const EMPTY_PLAN: WorkoutPlan = {
+  title: 'My New Awesome Plan',
+  shortDescription: 'shortDescription',
+  fullDescription: 'fullDescription',
+  days: []
+};
 
 export const WorkoutProvider = ({children}: any) => {
   // const [plan, setPlan] = useState(normalizePlan(SixDayExamplePlan));
-  const [plan, setPlan] = useState(normalizePlan(DempoProgram));
+  // const [plan, setPlan] = useState(normalizePlan(DemoProgram));
+  const [plan, setPlan] = useState(normalizePlan(clone(EMPTY_PLAN)));
+  const {setMode} = useViewerConfigContext();
+
+  useEffect(() => {
+    if (window.location.hash.length > 1) {
+      setPlan(fromBase64(window.location.hash.substring(1)));
+      setMode(ViewerMode.View);
+      window.location.hash = '';
+    }
+  }, [setMode]);
 
   const setDays = (days: WorkoutPlan['days']) => {
     setPlan(normalizePlan({...plan, days}));
-  }
+  };
 
   const addDay = (isRest: boolean) => {
     setDays([...plan.days, isRest ? {isRest} : {exercises: []}]);
@@ -163,7 +159,11 @@ export const WorkoutProvider = ({children}: any) => {
       })
     };
     setDays(newDays);
-  }
+  };
+
+  const setMeta = (info: Partial<Pick<WorkoutPlan, 'title' | 'shortDescription' | 'fullDescription'>>) => {
+    setPlan({...plan, ...info});
+  };
 
   return <WorkoutContext.Provider value={{
     plan,
@@ -174,7 +174,8 @@ export const WorkoutProvider = ({children}: any) => {
     addExercise,
     removeExercise,
     setReps,
-    setSets
+    setSets,
+    setMeta
   }}>
     {children}
   </WorkoutContext.Provider>;
