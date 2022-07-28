@@ -6,7 +6,7 @@ import {ViewerConfig} from './ViewerConfig';
 import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
 
 // type Props = {
-//   plan: WorkoutPlan;
+//   plans: WorkoutPlan;
 // };
 
 export const WorkoutEditor = () => {
@@ -16,12 +16,13 @@ export const WorkoutEditor = () => {
 
   return <>
     <PageHeader
+      onBack={() => window.history.back()}
       title={
         <Typography.Text editable={isEditable && {
           onChange: (title) => setMeta({title})
         }}
         >
-          {plan.title || (isEditable ? <i>Add title</i> : 'Untitled plan')}
+          {plan.title || (isEditable ? <i>Add title</i> : 'Untitled plans')}
         </Typography.Text>
       }
       subTitle={<Typography.Text editable={isEditable && {
@@ -45,7 +46,7 @@ export const WorkoutEditor = () => {
         </Descriptions.Item>
       </Descriptions>
     </PageHeader>
-    <Layout.Content className={'plan-content'}>
+    <Layout.Content className={'plans-content'}>
       <Row gutter={16}>
         {
           plan.days.map((it, i) => (

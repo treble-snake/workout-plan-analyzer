@@ -29,6 +29,7 @@ export type WorkoutDay = {
 export type PlanDay = WorkoutDay | RestDay;
 
 export type WorkoutPlan ={
+  id: string;
   title: string;
   shortDescription?: string,
   fullDescription?: string,

@@ -2,6 +2,7 @@ import {WorkoutPlan} from '../types/workout';
 import {ExerciseInfo} from '../types/exercise';
 
 export const SixDayExamplePlan: WorkoutPlan = {
+  id: '8def8332-ef3d-4bb0-b822-5ef1b460159d',
   title: '6-day example',
   shortDescription: 'Mess yourself up good!',
   fullDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',

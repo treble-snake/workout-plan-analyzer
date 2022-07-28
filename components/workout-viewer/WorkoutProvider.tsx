@@ -12,6 +12,8 @@ import {fromBase64, normalizePlan} from './WorkoutUtils';
 import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
 import {SixDayExamplePlan} from '../../temp-data/SixDayExample.tmp.const';
 import {DemoProgram} from '../../temp-data/DemoProgram.tmp.const';
+import {LocalStorageApi} from '../../api-lib/LocalStorageApi';
+import {v4 as uuidv4} from 'uuid';
 
 interface WorkoutContainer {
   plan: WorkoutPlan,
@@ -57,6 +59,7 @@ const findExercise = (
 };
 
 const EMPTY_PLAN: WorkoutPlan = Object.freeze({
+  id: '',
   title: 'My New Awesome Plan',
   shortDescription: 'Short description',
   fullDescription: 'Full description',
@@ -68,10 +71,16 @@ const EMPTY_PLAN: WorkoutPlan = Object.freeze({
   ]
 });
 
-export const WorkoutProvider = ({children}: any) => {
-  // const [plan, setPlan] = useState(normalizePlan(SixDayExamplePlan));
-  const [plan, setPlan] = useState(normalizePlan(DemoProgram));
-  // const [plan, setPlan] = useState(normalizePlan(clone(EMPTY_PLAN)));
+type Props = {
+  id?: string;
+  children: any;
+}
+
+export const WorkoutProvider = ({children, id}: Props) => {
+  const [plan, setPlan] = useState(normalizePlan({
+    ...clone(EMPTY_PLAN),
+    id: uuidv4()
+  }));
   const {setMode} = useViewerConfigContext();
 
   useEffect(() => {
@@ -79,8 +88,19 @@ export const WorkoutProvider = ({children}: any) => {
       setPlan(fromBase64(window.location.hash.substring(1)));
       setMode(ViewerMode.View);
       window.location.hash = '';
+      return;
     }
-  }, [setMode]);
+
+    if (id) {
+      LocalStorageApi.getPlan(id)
+        .then((plan) => {
+          if (plan) {
+            setPlan(normalizePlan(plan));
+            setMode(ViewerMode.View);
+          }
+        });
+    }
+  }, [id, setMode]);
 
   const setDays = (days: WorkoutPlan['days']) => {
     setPlan(normalizePlan({...plan, days}));
