@@ -20,7 +20,6 @@ export const useDayIndexContext = () => {
 };
 
 export const WorkoutDayEditor = ({day, index}: Props) => {
-  console.warn('re-rendered ', index);
   const {mode} = useViewerConfigContext();
 
   return <DayIndexContext.Provider value={index}>
@@ -32,7 +31,7 @@ export const WorkoutDayEditor = ({day, index}: Props) => {
       actions={
         'isRest' in day ?
           [] :
-          [<WorkoutDayStats day={day} key={'1'} />]
+          [<WorkoutDayStats day={day} key={'stats'} />]
       }
     >
       {

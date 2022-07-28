@@ -107,14 +107,14 @@ export const WorkoutProvider = ({children}: any) => {
   };
 
   const setReps = (range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number) => {
-    const days = clone(plan.days);
+    const days = [...plan.days];
     const toChange = findExercise(days, dayIndex, exerciseIndex, supersetIndex);
     toChange.reps = range;
     setDays(days);
   };
 
   const setSets = (range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number) => {
-    const days = clone(plan.days);
+    const days = [...plan.days];
     const toChange = findExercise(days, dayIndex, exerciseIndex, supersetIndex);
     toChange.sets = range;
     setDays(days);

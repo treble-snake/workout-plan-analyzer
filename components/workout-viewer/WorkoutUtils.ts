@@ -20,7 +20,7 @@ const denormalizeExercise = (exc: Exercise): Exercise => {
 
 export const normalizePlan = (plan: WorkoutPlan): WorkoutPlan => {
   // TODO: extract and use AnalyticUtils ?
-  const newPlan = clone(plan);
+  const newPlan = {...plan};
   newPlan.days.forEach((day) => {
     if ('exercises' in day) {
       day.exercises.forEach((exc) => {

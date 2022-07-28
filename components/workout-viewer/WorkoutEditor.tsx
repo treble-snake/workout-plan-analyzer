@@ -1,8 +1,5 @@
 import {Col, Descriptions, Layout, PageHeader, Row, Typography} from 'antd';
-import {
-  MemoizedWorkoutDayEditor,
-  WorkoutDayEditor
-} from './day-card/WorkoutDayEditor';
+import {MemoizedWorkoutDayEditor} from './day-card/WorkoutDayEditor';
 import {useWorkoutContext} from './WorkoutProvider';
 import {AddDays} from './day-card/AddDays';
 import {ViewerConfig} from './ViewerConfig';
@@ -61,7 +58,6 @@ export const WorkoutEditor = () => {
               xxl={6}
               key={i}>
               <MemoizedWorkoutDayEditor index={i} day={it} />
-              {/*<WorkoutDayEditor index={i} day={it} />*/}
             </Col>
           ))
         }
