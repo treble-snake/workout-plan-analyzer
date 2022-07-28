@@ -1,8 +1,9 @@
-import {Layout, Menu} from 'antd';
+import {Alert, Layout, Menu} from 'antd';
 import Head from 'next/head';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import styles from './MainLayout.module.css';
+import pj from '../../package.json';
 
 export const MainLayout = ({children}: any) => {
   const router = useRouter();
@@ -13,29 +14,33 @@ export const MainLayout = ({children}: any) => {
       {/*<meta name="description" content="" />*/}
       {/*<link rel="icon" href="/favicon.ico" />*/}
     </Head>
-    <Layout>
+    <Layout className={styles.container}>
+      <Alert type={'warning'}
+             banner
+             message={'This is an early alpha version, things might break or change dramatically.'} />
       <Layout.Header>
-        <Menu theme="dark" mode="horizontal" selectedKeys={[router.asPath]}>
-          <Menu.Item key="/">
-            <Link href={'/'}>Plans</Link>
-          </Menu.Item>
-          <Menu.Item key="/sources">
-            <Link href={'/sources'}>Sources</Link>
-          </Menu.Item>
-          <Menu.Item key="/help">
-            <Link href={'/help'}>Help</Link>
-          </Menu.Item>
-        </Menu>
+        <Menu theme="dark" mode="horizontal" selectedKeys={[router.asPath]}
+              items={[
+                {
+                  label: <Link href={'/'}>Plans</Link>,
+                  key: '/'
+                }, {
+                  label: <Link href={'/sources'}>Sources</Link>,
+                  key: '/sources'
+                }, {
+                  label: <Link href={'/help'}>Help</Link>,
+                  key: '/help'
+                },
+              ]}
+        />
       </Layout.Header>
       <Layout.Content>
-        <div className={styles.container}>
-          <main className={styles.main}>
-            {children}
-          </main>
-        </div>
+        <main className={styles.main}>
+          {children}
+        </main>
       </Layout.Content>
       <Layout.Footer className={styles.footer}>
-        v{process.env.npm_package_version}
+        Version {pj.version} &copy; S.R.M.S.
       </Layout.Footer>
     </Layout>
   </>;
