@@ -69,8 +69,8 @@ const EMPTY_PLAN: WorkoutPlan = Object.freeze({
 });
 
 export const WorkoutProvider = ({children}: any) => {
-  const [plan, setPlan] = useState(normalizePlan(SixDayExamplePlan));
-  // const [plan, setPlan] = useState(normalizePlan(DemoProgram));
+  // const [plan, setPlan] = useState(normalizePlan(SixDayExamplePlan));
+  const [plan, setPlan] = useState(normalizePlan(DemoProgram));
   // const [plan, setPlan] = useState(normalizePlan(clone(EMPTY_PLAN)));
   const {setMode} = useViewerConfigContext();
 
