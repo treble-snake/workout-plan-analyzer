@@ -1,5 +1,5 @@
 import {WorkoutPlan} from '../../types/workout';
-import {Button, Card, Col, Empty, Row} from 'antd';
+import {Button, Card, Col, Empty, Row, Tag} from 'antd';
 import Link from 'next/link';
 
 type Props = {
@@ -31,6 +31,7 @@ export const WorkoutPlanList = ({plans}: Props) => {
                     </Link>
                   ]
                   }
+                  extra={it.isDraft && <Tag>Draft</Tag>}
             >
               <p>{it.shortDescription}</p>
               <p>Days: {it.days.length}</p>

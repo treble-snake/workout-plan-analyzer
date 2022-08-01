@@ -9,11 +9,14 @@ import {
 import {clone, move, remove} from 'ramda';
 import {ExerciseInfo} from '../../types/exercise';
 import {fromBase64, normalizePlan} from './WorkoutUtils';
-import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
+import {
+  useViewerConfigContext,
+  ViewerConfigProvider,
+  ViewerMode
+} from './ViewerConfigProvider';
 import {SixDayExamplePlan} from '../../temp-data/SixDayExample.tmp.const';
 import {DemoProgram} from '../../temp-data/DemoProgram.tmp.const';
 import {LocalStorageApi} from '../../api-lib/LocalStorageApi';
-import {v4 as uuidv4} from 'uuid';
 
 interface WorkoutContainer {
   plan: WorkoutPlan,
@@ -60,6 +63,7 @@ const findExercise = (
 
 const EMPTY_PLAN: WorkoutPlan = Object.freeze({
   id: '',
+  isDraft: true,
   title: 'My New Awesome Plan',
   shortDescription: 'Short description',
   fullDescription: 'Full description',
@@ -73,34 +77,28 @@ const EMPTY_PLAN: WorkoutPlan = Object.freeze({
 
 type Props = {
   id?: string;
+  plan?: WorkoutPlan;
   children: any;
 }
 
-export const WorkoutProvider = ({children, id}: Props) => {
-  const [plan, setPlan] = useState(normalizePlan({
-    ...clone(EMPTY_PLAN),
-    id: uuidv4()
-  }));
-  const {setMode} = useViewerConfigContext();
+export const WorkoutProvider = ({children, id, plan: presetPlan}: Props) => {
+  const [plan, setPlan] = useState(normalizePlan(presetPlan || clone(EMPTY_PLAN)));
 
   useEffect(() => {
-    if (window.location.hash.length > 1) {
-      setPlan(fromBase64(window.location.hash.substring(1)));
-      setMode(ViewerMode.View);
-      window.location.hash = '';
-      return;
-    }
-
     if (id) {
       LocalStorageApi.getPlan(id)
         .then((plan) => {
           if (plan) {
             setPlan(normalizePlan(plan));
-            setMode(ViewerMode.View);
           }
         });
     }
-  }, [id, setMode]);
+  }, [id]);
+
+  // useEffect(() => {
+  //   console.warn('plan changed', plan);
+  // }, [plan]);
+
 
   const setDays = (days: WorkoutPlan['days']) => {
     setPlan(normalizePlan({...plan, days}));
@@ -203,6 +201,8 @@ export const WorkoutProvider = ({children, id}: Props) => {
     setSets,
     setMeta
   }}>
-    {children}
+    <ViewerConfigProvider>
+      {children}
+    </ViewerConfigProvider>
   </WorkoutContext.Provider>;
 };

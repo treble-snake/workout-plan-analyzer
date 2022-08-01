@@ -12,7 +12,7 @@ export const ViewerConfig = () => {
 
   // TODO: some weird Next.js stuff. Figure out.
   useEffect(() => {
-    setShareLink(window.origin + '#' + toBase64(plan));
+    setShareLink(window.origin + '/shared/' + '#' + toBase64(plan));
   }, [plan]);
 
   return <>

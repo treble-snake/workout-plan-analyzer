@@ -10,12 +10,10 @@ import {
 
 const NewPlan: NextPage = () => {
   return (
-    <ViewerConfigProvider>
-      <WorkoutProvider>
-        <WorkoutEditor />
-        <PlanAnalytics />
-      </WorkoutProvider>
-    </ViewerConfigProvider>
+    <WorkoutProvider>
+      <WorkoutEditor />
+      <PlanAnalytics />
+    </WorkoutProvider>
   );
 };
 

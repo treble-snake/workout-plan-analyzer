@@ -30,6 +30,8 @@ export type PlanDay = WorkoutDay | RestDay;
 
 export type WorkoutPlan ={
   id: string;
+  isDraft?: boolean;
+  isShared?: boolean;
   title: string;
   shortDescription?: string,
   fullDescription?: string,

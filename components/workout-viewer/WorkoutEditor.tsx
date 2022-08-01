@@ -1,4 +1,12 @@
-import {Col, Descriptions, Layout, PageHeader, Row, Typography} from 'antd';
+import {
+  Col,
+  Descriptions,
+  Layout,
+  PageHeader,
+  Row, Space,
+  Tag,
+  Typography
+} from 'antd';
 import {MemoizedWorkoutDayEditor} from './day-card/WorkoutDayEditor';
 import {useWorkoutContext} from './WorkoutProvider';
 import {AddDays} from './day-card/AddDays';
@@ -18,12 +26,15 @@ export const WorkoutEditor = () => {
     <PageHeader
       onBack={() => window.history.back()}
       title={
-        <Typography.Text editable={isEditable && {
-          onChange: (title) => setMeta({title})
-        }}
-        >
-          {plan.title || (isEditable ? <i>Add title</i> : 'Untitled plans')}
-        </Typography.Text>
+        <Space>
+          {plan.isDraft && <Tag>Draft</Tag>}
+          <Typography.Text editable={isEditable && {
+            onChange: (title) => setMeta({title})
+          }}
+          >
+            {plan.title || (isEditable ? <i>Add title</i> : 'Untitled plan')}
+          </Typography.Text>
+        </Space>
       }
       subTitle={<Typography.Text editable={isEditable && {
         onChange: (shortDescription) => setMeta({shortDescription})

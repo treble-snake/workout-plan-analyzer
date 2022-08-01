@@ -51,6 +51,5 @@ export const toBase64 = (plan: WorkoutPlan) => {
 
 export const fromBase64 = (encoded: string): WorkoutPlan => {
   const denormalizedPlan = JSON.parse(window.atob(encoded));
-  console.warn('denormalizedPlan', denormalizedPlan);
   return normalizePlan(denormalizedPlan);
 }
