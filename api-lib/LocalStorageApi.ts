@@ -1,6 +1,8 @@
 import {WorkoutPlan} from '../types/workout';
 import {SixDayExamplePlan} from '../temp-data/SixDayExample.tmp.const';
 import {DemoProgram} from '../temp-data/DemoProgram.tmp.const';
+import {PlanStorageApi} from './index';
+import {clone} from 'ramda';
 
 async function listPlans(): Promise<WorkoutPlan[]> {
   return [
@@ -14,7 +16,37 @@ async function getPlan(id: string): Promise<WorkoutPlan | undefined> {
   return plans.find(it => it.id === id);
 }
 
-export const LocalStorageApi = {
+const EMPTY_PLAN: WorkoutPlan = Object.freeze({
+  id: '',
+  isDraft: true,
+  title: 'My New Awesome Plan',
+  shortDescription: 'Short description',
+  fullDescription: 'Full description',
+  days: [
+    {
+      title: 'First day',
+      exercises: []
+    }
+  ]
+});
+
+const DRAFT_KEY = 'wpa:draft';
+
+
+export const LocalStorageApi: PlanStorageApi = {
   listPlans,
-  getPlan
+  getPlan,
+  async createPlan(): Promise<WorkoutPlan> {
+    return EMPTY_PLAN;
+  },
+  async loadDraft(): Promise<WorkoutPlan> {
+    const draftJson = localStorage.getItem(DRAFT_KEY)
+    if (draftJson) {
+      return JSON.parse(draftJson);
+    }
+    return clone(EMPTY_PLAN);
+  },
+  async saveDraft(draft: WorkoutPlan): Promise<void> {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+  }
 };

@@ -39,6 +39,13 @@ export const BACK_EXERCISES: ExerciseInfo[] = [
     movementType: MovementType.Pull,
   },
   {
+    id: 'f87f5639-fe6e-4fd3-b1a1-d81048d021cf',
+    name: 'Straight arm pushdown',
+    bodyPart: BodyPart.Back,
+    muscleGroup: MuscleGroup.Back,
+    movementType: MovementType.Pull,
+  },
+  {
     id: 'e95519ae-32d0-48dd-b863-372e427e1097',
     name: 'Barbell bent over row',
     bodyPart: BodyPart.Back,

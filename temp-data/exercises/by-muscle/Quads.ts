@@ -30,5 +30,12 @@ export const QUADS_EXERCISES: ExerciseInfo[] = [
     bodyPart: BodyPart.Legs,
     muscleGroup: MuscleGroup.Quads,
     movementType: MovementType.Squat,
+  },
+  {
+    id: '2dac6dbb-3b64-4ba0-9e3f-20ff7091e290',
+    name: 'Leg extension',
+    bodyPart: BodyPart.Legs,
+    muscleGroup: MuscleGroup.Quads,
+    movementType: MovementType.Squat,
   }
 ];

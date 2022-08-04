@@ -49,7 +49,7 @@ export const ViewerConfigProvider = ({children}: Props) => {
     if(config.mode !== mode) {
       setConfig({...config, mode});
     }
-  }, [plan]);
+  }, []);
 
   // TODO: setMode from WorkoutProvider causes infinite loop if not checked
   //       it might be a smell. Having WorkoutProvider inside ConfigProvider seems wrong.

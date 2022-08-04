@@ -8,7 +8,7 @@ import {
 } from '../../types/workout';
 import {clone, move, remove} from 'ramda';
 import {ExerciseInfo} from '../../types/exercise';
-import {fromBase64, normalizePlan} from './WorkoutUtils';
+import {denormalizePlan, fromBase64, normalizePlan} from './WorkoutUtils';
 import {
   useViewerConfigContext,
   ViewerConfigProvider,
@@ -17,6 +17,7 @@ import {
 import {SixDayExamplePlan} from '../../temp-data/SixDayExample.tmp.const';
 import {DemoProgram} from '../../temp-data/DemoProgram.tmp.const';
 import {LocalStorageApi} from '../../api-lib/LocalStorageApi';
+import {PlanStorage} from '../../api-lib';
 
 interface WorkoutContainer {
   plan: WorkoutPlan,
@@ -86,7 +87,7 @@ export const WorkoutProvider = ({children, id, plan: presetPlan}: Props) => {
 
   useEffect(() => {
     if (id) {
-      LocalStorageApi.getPlan(id)
+      PlanStorage.getPlan(id)
         .then((plan) => {
           if (plan) {
             setPlan(normalizePlan(plan));
@@ -95,9 +96,14 @@ export const WorkoutProvider = ({children, id, plan: presetPlan}: Props) => {
     }
   }, [id]);
 
-  // useEffect(() => {
-  //   console.warn('plan changed', plan);
-  // }, [plan]);
+  useEffect(() => {
+    if (plan.isDraft) {
+      // TODO: throttle
+      PlanStorage.saveDraft(denormalizePlan(plan))
+        .then(() => console.debug('Draft saved'))
+        .catch(e => console.error('Draft saving failed', e));
+    }
+  }, [plan]);
 
 
   const setDays = (days: WorkoutPlan['days']) => {

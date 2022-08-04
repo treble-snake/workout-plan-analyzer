@@ -1,6 +1,6 @@
 import {Spin} from 'antd';
 
-export const GlobalLoading = ({enabled}: { enabled: boolean }) => {
+export const GlobalLoading = ({enabled = true}: { enabled?: boolean }) => {
   if (!enabled) {
     return null;
   }

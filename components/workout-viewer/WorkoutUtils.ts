@@ -2,7 +2,6 @@ import {Exercise, WorkoutPlan} from '../../types/workout';
 import {EXERCISES_BY_ID} from '../../temp-data/exercises';
 import {clone} from 'ramda';
 import {ExerciseInfo} from '../../types/exercise';
-import {btoa} from 'buffer';
 
 const normalizeExercise = (exc: Exercise): Exercise => {
   const info = EXERCISES_BY_ID[exc.info.id];
@@ -33,7 +32,7 @@ export const normalizePlan = (plan: WorkoutPlan): WorkoutPlan => {
   return newPlan;
 };
 
-export const toBase64 = (plan: WorkoutPlan) => {
+export const denormalizePlan = (plan: WorkoutPlan) => {
   const denormalizedPlan = clone(plan);
 
   denormalizedPlan.days.forEach((day) => {
@@ -46,7 +45,11 @@ export const toBase64 = (plan: WorkoutPlan) => {
     }
   });
 
-  return window.btoa(JSON.stringify(denormalizedPlan));
+  return denormalizedPlan;
+}
+
+export const toBase64 = (plan: WorkoutPlan) => {
+  return window.btoa(JSON.stringify(denormalizePlan(plan)));
 }
 
 export const fromBase64 = (encoded: string): WorkoutPlan => {
