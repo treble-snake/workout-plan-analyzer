@@ -20,11 +20,9 @@ const EMPTY_PLAN: WorkoutPlan = Object.freeze({
   id: '',
   isDraft: true,
   title: 'My New Awesome Plan',
-  shortDescription: 'Short description',
   fullDescription: 'Full description',
   days: [
     {
-      title: 'First day',
       exercises: []
     }
   ]

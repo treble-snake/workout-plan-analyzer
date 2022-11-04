@@ -1,6 +1,4 @@
 import {ExperienceLevel} from './SystemsCommon';
-import {VolumeLandmarks} from './MuscleGroupsValues';
-import {QtyRange} from '../../../../types/workout';
 
 export enum VolumeType {
   Balanced = 'Balanced',

@@ -12,11 +12,9 @@ export const PlanAnalytics = () => {
   const {
     freqByMuscleGroup,
     freqByMovementType,
-    freqByBodyPart
   } = calculateFrequency(plan);
 
   const {
-    setsByBodyPart,
     totalSets,
     setsByMovementType,
     setsByMuscleGroup
@@ -43,9 +41,6 @@ export const PlanAnalytics = () => {
           <PlanStatsBySystem system={System.Movement}
                              sets={setsByMovementType}
                              frequency={freqByMovementType} />
-          <PlanStatsBySystem system={System.BodyPart}
-                             sets={setsByBodyPart}
-                             frequency={freqByBodyPart} />
         </Row>
       }
     </Card>

@@ -1,7 +1,5 @@
 import {WorkoutDay} from '../../../types/workout';
-import {
-  ExerciseListItem
-} from './ExerciseListItem';
+import {ExerciseListItem} from './ExerciseListItem';
 import {SupersetListItem} from './SupersetListItem';
 import {Col, Empty, Row} from 'antd';
 import {useViewerConfigContext, ViewerMode} from '../ViewerConfigProvider';

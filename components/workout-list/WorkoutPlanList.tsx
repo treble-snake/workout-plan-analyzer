@@ -33,7 +33,6 @@ export const WorkoutPlanList = ({plans}: Props) => {
                   }
                   extra={it.isDraft && <Tag>Draft</Tag>}
             >
-              <p>{it.shortDescription}</p>
               <p>Days: {it.days.length}</p>
             </Card>
           </Col>

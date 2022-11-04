@@ -1,16 +1,6 @@
 export enum System {
   Muscle = 'Muscle',
   Movement = 'Movement',
-  BodyPart = 'BodyPart'
-}
-
-export enum BodyPart {
-  Legs = 'Legs',
-  Back = 'Back',
-  Chest = 'Chest',
-  Shoulders = 'Shoulders',
-  Arms = 'Arms',
-  Abs = 'Abs',
 }
 
 export enum ExperienceLevel {

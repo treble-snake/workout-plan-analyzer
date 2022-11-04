@@ -4,9 +4,6 @@ import {WorkoutProvider} from '../components/workout-viewer/WorkoutProvider';
 import {
   PlanAnalytics
 } from '../components/workout-viewer/analytics/plan/PlanAnalytics';
-import {
-  ViewerConfigProvider
-} from '../components/workout-viewer/ViewerConfigProvider';
 import {useEffect, useState} from 'react';
 import {PlanStorage} from '../api-lib';
 import {WorkoutPlan} from '../types/workout';
@@ -17,11 +14,9 @@ const EMPTY_PLAN: WorkoutPlan = Object.freeze({
   id: '',
   isDraft: true,
   title: 'My New Awesome Plan',
-  shortDescription: 'Short description',
   fullDescription: 'Full description',
   days: [
     {
-      title: 'First day',
       exercises: []
     }
   ]

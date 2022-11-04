@@ -14,7 +14,7 @@ type Props = {
 export const WorkoutDayStats = ({day}: Props) => {
   const [system, setSystem] = useState<number | string>(System.Muscle);
   const {
-    totalSets, setsByBodyPart, setsByMovementType, setsByMuscleGroup
+    totalSets, setsByMovementType, setsByMuscleGroup
   } = calculateWorkingSets([day]);
 
   return (
@@ -43,10 +43,6 @@ export const WorkoutDayStats = ({day}: Props) => {
           system === System.Movement &&
           <DayStatsBySystem system={System.Movement}
                             sets={setsByMovementType} />
-        }
-        {
-          system === System.BodyPart &&
-          <DayStatsBySystem system={System.BodyPart} sets={setsByBodyPart} />
         }
         </Collapse.Panel>
     </Collapse>

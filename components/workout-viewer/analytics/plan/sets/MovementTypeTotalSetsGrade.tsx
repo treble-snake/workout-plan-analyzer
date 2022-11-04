@@ -5,14 +5,7 @@ import {
   WeeklySetsPerMovementType
 } from '../../systems-data/MovementTypeValues';
 import {isInRange} from '../../../exercises/RangeUtils';
-import {
-  Bad,
-  Doubtful,
-  Good,
-  Great,
-  Okay,
-  Ugly
-} from './EmojiGrades';
+import {Bad, Doubtful, Good, Great, Okay, Ugly} from './EmojiGrades';
 
 type Props = {
   level: ExperienceLevel;

@@ -1,7 +1,6 @@
 import {filterWorkouts, getAllExercises} from './AnalyticUtils';
-import {PlanDay, QtyRange, WorkoutDay} from '../../../../types/workout';
+import {PlanDay, QtyRange} from '../../../../types/workout';
 import {sumRanges} from '../../exercises/RangeUtils';
-import {BodyPart} from '../systems-data/SystemsCommon';
 import {MuscleGroup} from '../systems-data/MuscleGroupsValues';
 import {MovementType} from '../systems-data/MovementTypeValues';
 
@@ -16,7 +15,6 @@ export const calculateWorkingSets = (days: PlanDay[]) => {
   const workoutDays = filterWorkouts(days);
 
   const allExercises = getAllExercises(workoutDays);
-  const setsByBodyPart = emptyRangeMap(BodyPart);
   const setsByMuscleGroup = emptyRangeMap(MuscleGroup);
   const setsByMovementType = emptyRangeMap(MovementType);
   let totalSets = {from: 0, to: 0} as QtyRange;
@@ -25,7 +23,6 @@ export const calculateWorkingSets = (days: PlanDay[]) => {
     // TODO: wtf???
     try {
       totalSets = sumRanges(totalSets, sets);
-      setsByBodyPart[info.bodyPart] = sumRanges(setsByBodyPart[info.bodyPart], sets);
       setsByMovementType[info.movementType] = sumRanges(setsByMovementType[info.movementType], sets);
       setsByMuscleGroup[info.muscleGroup] = sumRanges(setsByMuscleGroup[info.muscleGroup], sets);
     } catch (e) {
@@ -35,7 +32,6 @@ export const calculateWorkingSets = (days: PlanDay[]) => {
 
   return {
     totalSets,
-    setsByBodyPart,
     setsByMovementType,
     setsByMuscleGroup
   };

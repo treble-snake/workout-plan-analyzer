@@ -1,12 +1,4 @@
 import {
-  BodyPart,
-  ExperienceLevel,
-  // IsolationLevel,
-
-
-  // MuscleInvolvement
-} from '../components/workout-viewer/analytics/systems-data/SystemsCommon';
-import {
   MuscleGroup
 } from '../components/workout-viewer/analytics/systems-data/MuscleGroupsValues';
 import {
@@ -22,7 +14,6 @@ export type ExerciseInfo = {
   // /** Average seconds per 1 rep */
   // pace?: number;
 
-  bodyPart: BodyPart;
   movementType: MovementType;
   muscleGroup: MuscleGroup;
 

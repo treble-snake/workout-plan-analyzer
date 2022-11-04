@@ -1,5 +1,5 @@
 import {Exercise, QtyRange} from '../../../types/workout';
-import {Col, Popover, Row, Tooltip, Typography} from 'antd';
+import {Col, Row, Tooltip, Typography} from 'antd';
 import {ExerciseControls} from './ExerciseControls';
 import {RangeInput} from './RangeInput';
 import {useDayIndexContext} from '../day-card/WorkoutDayEditor';

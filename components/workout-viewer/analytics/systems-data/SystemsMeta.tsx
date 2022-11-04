@@ -1,5 +1,5 @@
 import {MuscleGroup} from './MuscleGroupsValues';
-import {BodyPart, System} from './SystemsCommon';
+import {System} from './SystemsCommon';
 import {MovementType} from './MovementTypeValues';
 import React from 'react';
 import {LinkOutlined, YoutubeOutlined} from '@ant-design/icons';
@@ -43,10 +43,4 @@ export const SystemsMeta: Record<System, SystemMetaInfo> = {
     </a>
     </>
   },
-  [System.BodyPart]: {
-    title: 'Body part',
-    short: 'Body part',
-    units: BodyPart,
-    description: <>I don&apos;t know why I added this 🤷️</>
-  }
 };

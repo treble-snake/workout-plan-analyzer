@@ -6,7 +6,9 @@ import {BACK_EXERCISES} from './by-muscle/Back';
 import {CHEST_EXERCISES} from './by-muscle/Chest';
 import {SHOULDERS_EXERCISES} from './by-muscle/Shoulders';
 import {ARMS_EXERCISES} from './by-muscle/Arms';
+
 import {indexBy, prop} from 'ramda';
+import {ABS_EXERCISES} from './by-muscle/Abs';
 
 export const ALL_EXERCISES = [
   ...QUADS_EXERCISES,
@@ -16,7 +18,8 @@ export const ALL_EXERCISES = [
   ...BACK_EXERCISES,
   ...CHEST_EXERCISES,
   ...SHOULDERS_EXERCISES,
-  ...ARMS_EXERCISES
+  ...ARMS_EXERCISES,
+  ...ABS_EXERCISES
 ];
 
 export const EXERCISES_BY_ID = indexBy(prop('id'), ALL_EXERCISES);

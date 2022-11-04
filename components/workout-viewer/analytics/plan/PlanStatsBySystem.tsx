@@ -23,25 +23,24 @@ export const PlanStatsBySystem = <T extends Record<string, string>>(props: Props
   const {title, units, description} = SystemsMeta[system];
   const {experience} = useViewerConfigContext();
 
-  const isBodyPart = system === System.BodyPart;
   return (
-    <Col span={isBodyPart ? 6 : 9}>
+    <Col xl={12} md={24} xxl={9}>
       <b>By {title}</b>
       {description &&
         <p>{description}</p>
       }
       <Row>
         <Col style={{textAlign: 'center'}}
-             span={isBodyPart ? 8 : 6}
-             offset={isBodyPart ? 8 : 12}><b>Sets</b></Col>
+             span={6}
+             offset={12}><b>Sets</b></Col>
         <Col style={{textAlign: 'center'}}
-             span={isBodyPart ? 8 : 6}><b>Times/week</b></Col>
+             span={6}><b>Times/week</b></Col>
       </Row>
       {
         Object.values(units).map((it) => {
           return (
             <Row key={it} gutter={10}>
-              <Col span={isBodyPart ? 8 : 12} style={{marginBottom: 4}}>
+              <Col span={12} style={{marginBottom: 4}}>
                 <Space
                   style={{display: 'flex', justifyContent: 'space-between'}}>
                   {it}
@@ -59,7 +58,7 @@ export const PlanStatsBySystem = <T extends Record<string, string>>(props: Props
                   }
                 </Space>
               </Col>
-              <Col span={isBodyPart ? 8 : 6} style={{textAlign: 'center'}}>
+              <Col span={6} style={{textAlign: 'center'}}>
                 <Row>
                   <Col span={12}>
                     {rangeToText(sets[it])}
@@ -83,7 +82,7 @@ export const PlanStatsBySystem = <T extends Record<string, string>>(props: Props
                   </Col>
                 </Row>
               </Col>
-              <Col span={isBodyPart ? 8 : 6} style={{textAlign: 'center'}}>
+              <Col span={6} style={{textAlign: 'center'}}>
                 <Row>
                   <Col span={system === System.Muscle ? 12 : 24}>
                     {rangeToText(frequency[it])}

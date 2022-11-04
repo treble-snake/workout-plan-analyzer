@@ -1,4 +1,3 @@
-import styles from './MovementTypeGrades.module.css';
 import {Tag} from 'antd';
 
 

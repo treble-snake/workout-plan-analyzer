@@ -1,6 +1,7 @@
 import {Button, Popconfirm, Tooltip} from 'antd';
 import {
-  ArrowLeftOutlined, ArrowRightOutlined,
+  ArrowLeftOutlined,
+  ArrowRightOutlined,
   DeleteFilled,
   QuestionCircleOutlined
 } from '@ant-design/icons';

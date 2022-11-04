@@ -8,15 +8,8 @@ import {
 } from '../../types/workout';
 import {clone, move, remove} from 'ramda';
 import {ExerciseInfo} from '../../types/exercise';
-import {denormalizePlan, fromBase64, normalizePlan} from './WorkoutUtils';
-import {
-  useViewerConfigContext,
-  ViewerConfigProvider,
-  ViewerMode
-} from './ViewerConfigProvider';
-import {SixDayExamplePlan} from '../../temp-data/SixDayExample.tmp.const';
-import {DemoProgram} from '../../temp-data/DemoProgram.tmp.const';
-import {LocalStorageApi} from '../../api-lib/LocalStorageApi';
+import {denormalizePlan, normalizePlan} from './WorkoutUtils';
+import {ViewerConfigProvider} from './ViewerConfigProvider';
 import {PlanStorage} from '../../api-lib';
 
 interface WorkoutContainer {
@@ -41,7 +34,7 @@ interface WorkoutContainer {
 
   setSets(range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number): void;
 
-  setMeta(info: Partial<Pick<WorkoutPlan, 'title' | 'shortDescription' | 'fullDescription'>>): void;
+  setMeta(info: Partial<Pick<WorkoutPlan, 'title' | 'fullDescription'>>): void;
 }
 
 const WorkoutContext = createContext<WorkoutContainer | null>(null);
@@ -66,11 +59,9 @@ const EMPTY_PLAN: WorkoutPlan = Object.freeze({
   id: '',
   isDraft: true,
   title: 'My New Awesome Plan',
-  shortDescription: 'Short description',
   fullDescription: 'Full description',
   days: [
     {
-      title: 'First day',
       exercises: []
     }
   ]
@@ -191,7 +182,7 @@ export const WorkoutProvider = ({children, id, plan: presetPlan}: Props) => {
     setDays(newDays);
   };
 
-  const setMeta = (info: Partial<Pick<WorkoutPlan, 'title' | 'shortDescription' | 'fullDescription'>>) => {
+  const setMeta = (info: Partial<Pick<WorkoutPlan, 'title' | 'fullDescription'>>) => {
     setPlan({...plan, ...info});
   };
 

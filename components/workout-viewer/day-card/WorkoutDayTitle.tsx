@@ -22,6 +22,6 @@ export const WorkoutDayTitle = ({day}: Props) => {
   return <Paragraph editable={mode === ViewerMode.View ? false : {
     onChange: (value) => setDayMetadata(dayIndex, {title: value}),
   }}>
-    {day.title || `Day ${dayIndex}`}
+    {day.title || `Day ${dayIndex + 1}`}
   </Paragraph>;
 };

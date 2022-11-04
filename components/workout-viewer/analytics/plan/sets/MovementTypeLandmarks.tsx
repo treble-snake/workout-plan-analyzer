@@ -1,10 +1,5 @@
 import {ExperienceLevel} from '../../systems-data/SystemsCommon';
-import {
-  MuscleGroup,
-  VolumeLandmarks,
-  WeeklySetsPerMuscleGroup
-} from '../../systems-data/MuscleGroupsValues';
-import {Space, Tag} from 'antd';
+import {Tag} from 'antd';
 import {
   MovementType,
   WeeklySetsPerMovementType

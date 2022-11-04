@@ -3,7 +3,8 @@ import {
   Descriptions,
   Layout,
   PageHeader,
-  Row, Space,
+  Row,
+  Space,
   Tag,
   Typography
 } from 'antd';
@@ -35,12 +36,6 @@ export const WorkoutEditor = () => {
             {plan.title || (isEditable ? <i>Add title</i> : 'Untitled plan')}
           </Typography.Text>
         </Space>
-      }
-      subTitle={<Typography.Text editable={isEditable && {
-        onChange: (shortDescription) => setMeta({shortDescription})
-      }}>
-        {plan.shortDescription || (isEditable && <i>Add short description</i>)}
-      </Typography.Text>
       }
     >
       <ViewerConfig />
