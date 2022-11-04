@@ -33,7 +33,7 @@ export type WorkoutPlan ={
   isDraft?: boolean;
   isShared?: boolean;
   title: string;
-  fullDescription?: string,
+  recommendations?: string,
   /** Days in the microcycle, 7 by default */
   // microCycleDays: number;
   days: PlanDay[];

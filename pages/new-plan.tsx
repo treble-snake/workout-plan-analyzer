@@ -10,18 +10,6 @@ import {WorkoutPlan} from '../types/workout';
 import {GlobalLoading} from '../common/GlobalLoading';
 import {Alert} from 'antd';
 
-const EMPTY_PLAN: WorkoutPlan = Object.freeze({
-  id: '',
-  isDraft: true,
-  title: 'My New Awesome Plan',
-  fullDescription: 'Full description',
-  days: [
-    {
-      exercises: []
-    }
-  ]
-});
-
 const NewPlan: NextPage = () => {
   const [loading, setLoading] = useState(true);
   const [draft, setDraft] = useState<WorkoutPlan | null>(null);

@@ -34,7 +34,7 @@ interface WorkoutContainer {
 
   setSets(range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number): void;
 
-  setMeta(info: Partial<Pick<WorkoutPlan, 'title' | 'fullDescription'>>): void;
+  setMeta(info: Partial<Pick<WorkoutPlan, 'title' | 'recommendations'>>): void;
 }
 
 const WorkoutContext = createContext<WorkoutContainer | null>(null);
@@ -59,7 +59,7 @@ const EMPTY_PLAN: WorkoutPlan = Object.freeze({
   id: '',
   isDraft: true,
   title: 'My New Awesome Plan',
-  fullDescription: 'Full description',
+  recommendations: 'Full description',
   days: [
     {
       exercises: []
@@ -182,7 +182,7 @@ export const WorkoutProvider = ({children, id, plan: presetPlan}: Props) => {
     setDays(newDays);
   };
 
-  const setMeta = (info: Partial<Pick<WorkoutPlan, 'title' | 'fullDescription'>>) => {
+  const setMeta = (info: Partial<Pick<WorkoutPlan, 'title' | 'recommendations'>>) => {
     setPlan({...plan, ...info});
   };
 

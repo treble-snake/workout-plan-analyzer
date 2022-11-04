@@ -42,14 +42,6 @@ export const WorkoutEditor = () => {
       <Descriptions size="small" column={1}>
         <Descriptions.Item
           label="Days">{plan.days.length}</Descriptions.Item>
-        <Descriptions.Item label="Info">
-          <Typography.Paragraph editable={isEditable && {
-            onChange: (fullDescription) => setMeta({fullDescription})
-          }}>
-            {plan.fullDescription || (isEditable &&
-              <i>Add full description</i>)}
-          </Typography.Paragraph>
-        </Descriptions.Item>
       </Descriptions>
     </PageHeader>
     <Layout.Content className={'plans-content'}>
@@ -72,6 +64,7 @@ export const WorkoutEditor = () => {
         {
           isEditable &&
           <Col
+            style={{marginBottom: 16}}
             xs={24}
             sm={12}
             md={8}
@@ -83,5 +76,15 @@ export const WorkoutEditor = () => {
         }
       </Row>
     </Layout.Content>
+    <Descriptions>
+      <Descriptions.Item label="Recommendations">
+        <Typography.Paragraph editable={isEditable && {
+          onChange: (recommendations) => setMeta({recommendations}),
+        }}>
+          {plan.recommendations || (isEditable &&
+            <i>Add full description</i>)}
+        </Typography.Paragraph>
+      </Descriptions.Item>
+    </Descriptions>
   </>;
 };
