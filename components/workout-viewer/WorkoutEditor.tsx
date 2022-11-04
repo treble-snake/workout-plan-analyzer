@@ -82,7 +82,7 @@ export const WorkoutEditor = () => {
           onChange: (recommendations) => setMeta({recommendations}),
         }}>
           {plan.recommendations || (isEditable &&
-            <i>Add full description</i>)}
+            <i>Add recommendations</i>)}
         </Typography.Paragraph>
       </Descriptions.Item>
     </Descriptions>
