@@ -34,6 +34,12 @@ export const SHOULDERS_EXERCISES: ExerciseInfo[] = [
     movementType: MovementType.Shoulders,
   },
   {
+    id: '98dbf00d-23f1-423b-a7d5-aef187dd20c1',
+    name: 'Machine Lateral raise',
+    muscleGroup: MuscleGroup.SideDelts,
+    movementType: MovementType.Shoulders,
+  },
+  {
     id: '968bde1b-2489-4187-a135-db8376113645',
     name: 'Barbell Upright row',
     muscleGroup: MuscleGroup.SideDelts,
