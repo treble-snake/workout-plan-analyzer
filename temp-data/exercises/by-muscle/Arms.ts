@@ -22,10 +22,19 @@ export const ARMS_EXERCISES: ExerciseInfo[] = [
     id: '38952d79-84f7-486e-bf0a-cd01e30d9e8b',
     name: 'Dumbbell Hammer curl',
     ...BICEPS_TYPE
+  },  {
+    id: '3c815064-e79a-46b3-931b-d5ed8c0fa2e2',
+    name: 'Pinwheel curl',
+    ...BICEPS_TYPE
   },
   {
     id: '93828de1-4295-4e5d-9932-327e0faece29',
     name: 'Incline Dumbbell Curl',
+    ...BICEPS_TYPE
+  },
+  {
+    id: '6be964a1-7b63-4cd0-b292-8d190875e861',
+    name: 'Barbell Curl',
     ...BICEPS_TYPE
   },
   {
@@ -111,7 +120,7 @@ export const ARMS_EXERCISES: ExerciseInfo[] = [
   },
   {
     id: '09ac8c2b-5275-4f80-9abd-260d9d27b976',
-    name: 'PRJ Pullover',
+    name: 'PJR Pullover',
     ...TRICEPS_TYPE
   },
   {

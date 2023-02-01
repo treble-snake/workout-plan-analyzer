@@ -20,6 +20,12 @@ export const QUADS_EXERCISES: ExerciseInfo[] = [
     movementType: MovementType.Squat,
   },
   {
+    id: 'd1678d25-958d-48be-8854-bc6f8a0beed4',
+    name: 'Hack squat',
+    muscleGroup: MuscleGroup.Quads,
+    movementType: MovementType.Squat,
+  },
+  {
     id: '76be5e99-8b96-4381-9949-27bc7c4992d6',
     name: 'Bulgarian split squat (quad focused)',
     muscleGroup: MuscleGroup.Quads,
