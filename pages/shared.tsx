@@ -16,10 +16,18 @@ const SharedPlan: NextPage = () => {
   const [plan, setPlan] = useState<WorkoutPlan | null>(null);
 
   useEffect(() => {
+    setLoading(true);
     // TODO: use query instead of hash ?
     if (window.location.hash.length > 1) {
       try {
-        setPlan(fromBase64(window.location.hash.substring(1)));
+        const plan: WorkoutPlan = {
+          ...fromBase64(window.location.hash.substring(1)),
+          isDemo: false,
+          isDraft: false,
+          isShared: true,
+          id: ''
+        };
+        setPlan(plan);
       } catch (e) {
         console.error('Failed to parse shared plan', e);
         setError('Failed to read shared plan data');
