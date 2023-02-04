@@ -2,6 +2,7 @@ import {WorkoutPlan} from '../types/workout';
 import {ExerciseInfo} from '../types/exercise';
 
 export const DemoProgram: WorkoutPlan = {
+  isDemo: true,
   id: '3251ebb6-8642-4c20-b89d-6114566a94b2',
   title: 'Demo Program',
   recommendations: 'Warm up recommendations: before the workout you might do 5-10 minutes of light cardio like walking on a treadmill. Before each exercise do a few sets with lower weights until you feel confident and connected to the movement.',

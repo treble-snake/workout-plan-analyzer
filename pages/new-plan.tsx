@@ -16,6 +16,7 @@ const NewPlan: NextPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     PlanStorage.loadDraft()
       .then((draft) => setDraft(draft))
       .catch(error => {

@@ -12,6 +12,10 @@ export interface PlanStorageApi {
   loadDraft(): Promise<WorkoutPlan>;
 
   saveDraft(draft: WorkoutPlan): Promise<void>;
+
+  savePlan(plan: WorkoutPlan): Promise<string>;
+
+  deletePlan(id: string): Promise<void>;
 }
 
 export const PlanStorage: PlanStorageApi = LocalStorageApi;

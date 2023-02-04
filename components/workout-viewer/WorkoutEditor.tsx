@@ -11,21 +11,20 @@ import {
 import {MemoizedWorkoutDayEditor} from './day-card/WorkoutDayEditor';
 import {useWorkoutContext} from './WorkoutProvider';
 import {AddDays} from './day-card/AddDays';
-import {ViewerConfig} from './ViewerConfig';
+import {ViewerActions} from './actions/ViewerActions';
 import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
-
-// type Props = {
-//   plans: WorkoutPlan;
-// };
+import {useRouter} from 'next/router';
 
 export const WorkoutEditor = () => {
   const {plan, setMeta} = useWorkoutContext();
   const {mode} = useViewerConfigContext();
+  const router = useRouter();
+
   const isEditable = mode === ViewerMode.Edit;
 
   return <>
     <PageHeader
-      onBack={() => window.history.back()}
+      onBack={() => router.push('/')}
       title={
         <Space>
           {plan.isDraft && <Tag>Draft</Tag>}
@@ -38,7 +37,7 @@ export const WorkoutEditor = () => {
         </Space>
       }
     >
-      <ViewerConfig />
+      <ViewerActions />
       <Descriptions size="small" column={1}>
         <Descriptions.Item
           label="Days">{plan.days.length}</Descriptions.Item>

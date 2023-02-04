@@ -11,6 +11,7 @@ import {ExerciseInfo} from '../../types/exercise';
 import {denormalizePlan, normalizePlan} from './WorkoutUtils';
 import {ViewerConfigProvider} from './ViewerConfigProvider';
 import {PlanStorage} from '../../api-lib';
+import {EMPTY_PLAN} from '../../common/constants';
 
 interface WorkoutContainer {
   plan: WorkoutPlan,
@@ -35,6 +36,12 @@ interface WorkoutContainer {
   setSets(range: QtyRange, dayIndex: number, exerciseIndex: number, supersetIndex?: number): void;
 
   setMeta(info: Partial<Pick<WorkoutPlan, 'title' | 'recommendations'>>): void;
+
+  saveChanges(): Promise<string>;
+
+  deletePlan(): Promise<void>;
+
+  resetDraft(): Promise<void>;
 }
 
 const WorkoutContext = createContext<WorkoutContainer | null>(null);
@@ -55,37 +62,14 @@ const findExercise = (
     exercises[exerciseIndex] as Exercise;
 };
 
-const EMPTY_PLAN: WorkoutPlan = Object.freeze({
-  id: '',
-  isDraft: true,
-  title: 'My New Awesome Plan',
-  recommendations: 'Warm up recommendations: before the workout you might do 5-10 minutes of light cardio like walking on a treadmill. Before each exercise do a few sets with lower weights until you feel confident and connected to the movement.',
-  days: [
-    {
-      exercises: []
-    }
-  ]
-});
-
 type Props = {
-  id?: string;
-  plan?: WorkoutPlan;
+  plan: WorkoutPlan;
   children: any;
 }
 
-export const WorkoutProvider = ({children, id, plan: presetPlan}: Props) => {
+// TODO: Split into draft, shared and editor providers?
+export const WorkoutProvider = ({children, plan: presetPlan}: Props) => {
   const [plan, setPlan] = useState(normalizePlan(presetPlan || clone(EMPTY_PLAN)));
-
-  useEffect(() => {
-    if (id) {
-      PlanStorage.getPlan(id)
-        .then((plan) => {
-          if (plan) {
-            setPlan(normalizePlan(plan));
-          }
-        });
-    }
-  }, [id]);
 
   useEffect(() => {
     if (plan.isDraft) {
@@ -186,6 +170,11 @@ export const WorkoutProvider = ({children, id, plan: presetPlan}: Props) => {
     setPlan({...plan, ...info});
   };
 
+  const resetDraft = async () => {
+    const newPlan = denormalizePlan(await PlanStorage.createPlan());
+    await PlanStorage.saveDraft(newPlan);
+    setPlan(newPlan);
+  }
   return <WorkoutContext.Provider value={{
     plan,
     addDay,
@@ -196,7 +185,10 @@ export const WorkoutProvider = ({children, id, plan: presetPlan}: Props) => {
     removeExercise,
     setReps,
     setSets,
-    setMeta
+    setMeta,
+    saveChanges: async () =>PlanStorage.savePlan(plan),
+    deletePlan: async () => PlanStorage.deletePlan(plan.id),
+    resetDraft
   }}>
     <ViewerConfigProvider>
       {children}
