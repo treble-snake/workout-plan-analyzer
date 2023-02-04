@@ -53,7 +53,7 @@ export const ARMS_EXERCISES: ExerciseInfo[] = [
     ...BICEPS_TYPE
   },
   {
-    id: 'f0af0388-99e7-4442-95b4-1ac00ea9dbe0',
+    id: '5a4e9c98-4baa-414a-98a7-23bbfe5b7b6f',
     name: 'Cable curl',
     ...BICEPS_TYPE
   },
