@@ -16,19 +16,17 @@ const Home: NextPage = () => {
       })
       .catch(() => message.error('Load failed'));
   }, []);
-  return (
-    <>
-      {/*<Typography.Title>Workout Plans</Typography.Title>*/}
-      <PageHeader title={'Workout Plans'}
-                  subTitle={<Link href={'/new-plan'}>
-                    <Button icon={<PlusCircleOutlined />} type={'primary'}>
-                      New plan
-                    </Button>
-                  </Link>}
-      />
-      <WorkoutPlanList plans={plans} />
-    </>
-  );
+  return <>
+    {/*<Typography.Title>Workout Plans</Typography.Title>*/}
+    <PageHeader title={'Workout Plans'}
+                subTitle={<Link href={'/new-plan'} legacyBehavior>
+                  <Button icon={<PlusCircleOutlined />} type={'primary'}>
+                    New plan
+                  </Button>
+                </Link>}
+    />
+    <WorkoutPlanList plans={plans} />
+  </>;
 };
 
 export default Home;
