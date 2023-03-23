@@ -11,33 +11,35 @@ export const WorkoutPlanList = ({plans}: Props) => {
     return <Empty />;
   }
 
-  return <Row gutter={16}>
-    {
-      plans.map((it) => {
-        return (
-          <Col
-            key={it.id}
-            xs={24}
-            sm={12}
-            md={8}
-            lg={6}
-            xxl={4}
-          >
-            <Card title={it.title}
-                  style={{marginBottom: 16}}
-                  actions={[
-                    <Link key={'open'} href={`/plans/${it.id}`}>
-                      <Button>Open</Button>
-                    </Link>
-                  ]
-                  }
-                  extra={it.isDraft && <Tag>Draft</Tag>}
+  return (
+    <Row gutter={16}>
+      {
+        plans.map((it) => {
+          return (
+            <Col
+              key={it.id}
+              xs={24}
+              sm={12}
+              md={8}
+              lg={6}
+              xxl={4}
             >
-              <p>Days: {it.days.length}</p>
-            </Card>
-          </Col>
-        );
-      })
-    }
-  </Row>;
+              <Card title={it.title}
+                    style={{marginBottom: 16}}
+                    actions={[
+                      <Link key={'open'} href={`/plans/${it.id}`} legacyBehavior>
+                        <Button>Open</Button>
+                      </Link>
+                    ]
+                    }
+                    extra={it.isDraft && <Tag>Draft</Tag>}
+              >
+                <p>Days: {it.days.length}</p>
+              </Card>
+            </Col>
+          );
+        })
+      }
+    </Row>
+  );
 };
