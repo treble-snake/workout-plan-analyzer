@@ -3,7 +3,16 @@ import {useState} from 'react';
 import {isValidTextRange, rangeToText, textToRange} from './RangeUtils';
 import {AutoComplete, Input} from 'antd';
 
-const options = [
+const SET_RANGE_OPTIONS = [{
+  label: 'Examples',
+  options: [
+    {value: '3'},
+    {value: '2-3'},
+    {value: '2-4'}
+  ]
+}];
+
+const REP_RANGE_OPTIONS = [
   {
     label: 'Strength',
     options: [
@@ -46,12 +55,18 @@ const options = [
   },
 ];
 
-type Props = {
-  range: QtyRange;
-  update: (range: QtyRange) => void
+export enum RangeType {
+  Reps,
+  Sets
 }
 
-export const RangeInput = ({range, update}: Props) => {
+type Props = {
+  range: QtyRange;
+  type?: RangeType,
+  update: (range: QtyRange) => void,
+}
+
+export const RangeInput = ({range, update, type = RangeType.Reps}: Props) => {
   const [text, setText] = useState(rangeToText(range));
 
   const onChange = (value: string) => {
@@ -69,7 +84,7 @@ export const RangeInput = ({range, update}: Props) => {
       // TODO: replace with controlled options and onSearch()
       return Boolean(option?.options?.some(it => it.value.includes(inputValue)));
     }}
-    options={options}
+    options={type === RangeType.Sets ? SET_RANGE_OPTIONS : REP_RANGE_OPTIONS}
     onChange={onChange}
     value={text}
   >
