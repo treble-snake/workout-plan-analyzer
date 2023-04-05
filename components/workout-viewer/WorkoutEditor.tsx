@@ -1,13 +1,5 @@
-import {
-  Col,
-  Descriptions,
-  Layout,
-  PageHeader,
-  Row,
-  Space,
-  Tag,
-  Typography
-} from 'antd';
+import { PageHeader } from '@ant-design/pro-layout';
+import { Col, Descriptions, Layout, Row, Space, Tag, Typography } from 'antd';
 import {MemoizedWorkoutDayEditor} from './day-card/WorkoutDayEditor';
 import {useWorkoutContext} from './WorkoutProvider';
 import {AddDays} from './day-card/AddDays';
