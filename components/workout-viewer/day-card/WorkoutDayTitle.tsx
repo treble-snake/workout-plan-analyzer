@@ -19,7 +19,9 @@ export const WorkoutDayTitle = ({day}: Props) => {
     return <>Rest</>;
   }
 
-  return <Paragraph editable={mode === ViewerMode.View ? false : {
+  return <Paragraph
+    style={{margin: 0}}
+    editable={mode === ViewerMode.View ? false : {
     onChange: (value) => setDayMetadata(dayIndex, {title: value}),
   }}>
     {day.title || `Day ${dayIndex + 1}`}
