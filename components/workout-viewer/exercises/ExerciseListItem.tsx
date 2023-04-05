@@ -1,7 +1,7 @@
 import {Exercise, QtyRange} from '../../../types/workout';
 import {Col, Row, Tooltip, Typography} from 'antd';
 import {ExerciseControls} from './ExerciseControls';
-import {RangeInput} from './RangeInput';
+import {RangeInput, RangeType} from './RangeInput';
 import {useDayIndexContext} from '../day-card/WorkoutDayEditor';
 import {useWorkoutContext} from '../WorkoutProvider';
 import {useViewerConfigContext, ViewerMode} from '../ViewerConfigProvider';
@@ -41,10 +41,10 @@ export const ExerciseListItem = ({
       </Tooltip>
     </Col>
     <Col span={3} style={{textAlign: 'center', border: '0px dashed black'}}>
-      <RangeInput range={exercise.sets} update={updateSets} />
+      <RangeInput range={exercise.sets} update={updateSets} type={RangeType.Sets} />
     </Col>
     <Col span={5} style={{textAlign: 'center', border: '0px dashed black'}}>
-      <RangeInput range={exercise.reps} update={updateReps} />
+      <RangeInput range={exercise.reps} update={updateReps} type={RangeType.Reps} />
     </Col>
 
     {
