@@ -17,6 +17,7 @@ export type Superset = {
 };
 
 export type RestDay = {
+  title?: string;
   isRest: boolean;
 }
 

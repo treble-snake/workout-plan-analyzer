@@ -15,15 +15,12 @@ export const WorkoutDayTitle = ({day}: Props) => {
   const {mode} = useViewerConfigContext();
   const dayIndex = useDayIndexContext();
 
-  if ('isRest' in day) {
-    return <>Rest</>;
-  }
-
+  const defaultTitle = 'isRest' in day ? 'Rest' : `Day ${dayIndex + 1}`;
   return <Paragraph
     style={{margin: 0}}
     editable={mode === ViewerMode.View ? false : {
     onChange: (value) => setDayMetadata(dayIndex, {title: value}),
   }}>
-    {day.title || `Day ${dayIndex + 1}`}
+    {day.title || defaultTitle}
   </Paragraph>;
 };
