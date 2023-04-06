@@ -2,11 +2,21 @@ import {Col, Row, Select} from 'antd';
 import {ALL_EXERCISES} from '../../../temp-data/exercises';
 import {useWorkoutContext} from '../WorkoutProvider';
 import {useDayIndexContext} from '../day-card/WorkoutDayEditor';
+import {groupBy, prop, sortBy} from 'ramda';
 
-const SELECT_OPTIONS = ALL_EXERCISES.map((it) => ({
-  value: it.id,
-  label: it.name
-}));
+const BY_MUSCLE_GROUP = Object.entries(
+  groupBy(prop('muscleGroup'), sortBy(prop('muscleGroup'), ALL_EXERCISES))
+)
+  .map(([key, value]) => {
+    return {
+      label: key,
+      options: value.map(it => ({
+        value: it.id,
+        label: it.name
+      }))
+    };
+  });
+
 const DEFAULT_SETS = {from: 2, to: 3};
 const DEFAULT_REPS = {from: 10, to: 12};
 
@@ -25,7 +35,7 @@ export const NewExerciseRow = () => {
           showSearch
           allowClear
           placeholder={'Add exercise'}
-          options={SELECT_OPTIONS}
+          options={BY_MUSCLE_GROUP}
           value={null}
           onChange={apply}
           bordered={false}
