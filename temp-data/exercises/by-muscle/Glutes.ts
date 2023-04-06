@@ -24,5 +24,11 @@ export const GLUTES_EXERCISES: ExerciseInfo[] = [
     name: 'Cable Pull-Through',
     muscleGroup: MuscleGroup.Glutes,
     movementType: MovementType.Hinge,
+  },
+  {
+    id: 'f6907db2-a446-4e8a-b0a1-b90c19a75368',
+    name: 'Any Glutes variation',
+    muscleGroup: MuscleGroup.Glutes,
+    movementType: MovementType.Hinge,
   }
 ];

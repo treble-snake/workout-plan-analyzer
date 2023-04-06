@@ -26,6 +26,18 @@ export const SHOULDERS_EXERCISES: ExerciseInfo[] = [
     muscleGroup: MuscleGroup.FrontDelts,
     movementType: MovementType.Press,
   },
+  {
+    id: 'e310d69b-8e89-4c42-a7af-83b09c03a720',
+    name: 'Any Overhead Press variation',
+    muscleGroup: MuscleGroup.FrontDelts,
+    movementType: MovementType.Press,
+  },
+  {
+    id: '91eeda8c-7e6e-4a8f-8b58-bda8024bd837',
+    name: 'Any Front Delts variation',
+    muscleGroup: MuscleGroup.FrontDelts,
+    movementType: MovementType.Press,
+  },
   // side delts
   {
     id: '8811b1ee-b232-4a56-bff1-4d5419c7e28f',
@@ -51,6 +63,12 @@ export const SHOULDERS_EXERCISES: ExerciseInfo[] = [
     muscleGroup: MuscleGroup.SideDelts,
     movementType: MovementType.Shoulders,
   },
+  {
+    id: 'aba3e621-8d59-434c-86ec-a7e25fdaf2f1',
+    name: 'Any Side Delts variation',
+    muscleGroup: MuscleGroup.SideDelts,
+    movementType: MovementType.Shoulders,
+  },
   // rear delts
   {
     id: 'a51e5774-ebdb-4477-93fb-996f0bc58675',
@@ -67,6 +85,12 @@ export const SHOULDERS_EXERCISES: ExerciseInfo[] = [
   {
     id: 'ba84bf05-cfc6-4b66-96dd-9a709110be99',
     name: 'Lying Rear Delt raise',
+    muscleGroup: MuscleGroup.RearDelts,
+    movementType: MovementType.Shoulders,
+  },
+  {
+    id: '5e6221f3-ed3a-4fd7-a66d-85018e3bbab3',
+    name: 'Any Rear Delts variation',
     muscleGroup: MuscleGroup.RearDelts,
     movementType: MovementType.Shoulders,
   }

@@ -41,12 +41,29 @@ export const ABS_EXERCISES: ExerciseInfo[] = [
     id: '5917b6a7-876b-495e-82bc-7da39bf43de0',
     name: 'V-up',
     ...type,
-  },
-
-  {
-    id: '1173fbc8-907b-41c6-a75c-77225b5dddc5',
-    name: 'Generic abs exercise',
+  },  {
+    id: '8805814d-cfb2-4bc1-b677-d8909f3a0183',
+    name: 'Ab wheel',
     ...type,
   },
-
+  {
+    id: '1173fbc8-907b-41c6-a75c-77225b5dddc5',
+    name: 'Any ab variation',
+    ...type,
+  },
+  {
+    id: 'b2883ff0-110b-4fa8-ab99-b8aecb083e6e',
+    name: 'Crunch variation',
+    ...type
+  },
+  {
+    id: '34a46f10-912d-4a04-a5aa-60480924e4cf',
+    name: 'Leg Raise variation',
+    ...type
+  },
+  {
+    id: '957afbe2-fe5d-4d7d-be23-a7714aba75af',
+    name: 'Plank variation',
+    ...type
+  }
 ];

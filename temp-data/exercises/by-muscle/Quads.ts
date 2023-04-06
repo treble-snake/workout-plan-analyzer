@@ -42,5 +42,18 @@ export const QUADS_EXERCISES: ExerciseInfo[] = [
     name: 'Goblet Squat',
     muscleGroup: MuscleGroup.Quads,
     movementType: MovementType.Squat,
+  },
+  {
+    id: 'c8e27740-5b0a-4f64-a048-234c4fb0a1e8',
+    name: 'Any Quads variation',
+    muscleGroup: MuscleGroup.Quads,
+    movementType: MovementType.Squat,
+  },
+  {
+    id: 'a472f45c-f3e0-491a-ab7c-e191004ec61c',
+    name: 'Any Squat variation',
+    muscleGroup: MuscleGroup.Quads,
+    movementType: MovementType.Squat,
   }
+
 ];
