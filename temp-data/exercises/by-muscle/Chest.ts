@@ -54,5 +54,11 @@ export const CHEST_EXERCISES: ExerciseInfo[] = [
     name: 'Pec deck',
     muscleGroup: MuscleGroup.Chest,
     movementType: MovementType.Push,
+  },
+  {
+    id: '8782fc27-ed26-41e2-87f4-f127f4d1f47a',
+    name: 'Any chest variation',
+    muscleGroup: MuscleGroup.Chest,
+    movementType: MovementType.Push,
   }
 ];

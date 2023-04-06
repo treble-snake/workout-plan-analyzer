@@ -74,7 +74,7 @@ export const ARMS_EXERCISES: ExerciseInfo[] = [
   },
   {
     id: '2279459b-de8f-4b8c-b7c4-d8490cd552e4',
-    name: 'Generic biceps exercise',
+    name: 'Any biceps variation',
     ...BICEPS_TYPE,
   },
   // triceps
@@ -125,7 +125,7 @@ export const ARMS_EXERCISES: ExerciseInfo[] = [
   },
   {
     id: '417d48f3-57fd-4775-a8a4-86463ff0be3b',
-    name: 'Generic triceps exercise',
+    name: 'Any triceps variation',
     ...TRICEPS_TYPE,
   },
 ];

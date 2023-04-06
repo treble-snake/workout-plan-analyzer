@@ -55,6 +55,18 @@ export const BACK_EXERCISES: ExerciseInfo[] = [
     muscleGroup: MuscleGroup.Back,
     movementType: MovementType.Pull,
   },
+  {
+    id: 'f0d4c3a8-7c1c-4d26-9b97-8ba7c01b3392',
+    name: 'Any vertical pull variation',
+    muscleGroup: MuscleGroup.Back,
+    movementType: MovementType.Pull,
+  },
+  {
+    id: '510574e3-e79c-4534-acf7-c7a2f2337782',
+    name: 'Any row variation',
+    muscleGroup: MuscleGroup.Back,
+    movementType: MovementType.Row,
+  },
   // TODO: Too specific
   {
     id: 'b812061b-7531-47de-aaa6-c34d3202f0a5',
@@ -84,6 +96,12 @@ export const BACK_EXERCISES: ExerciseInfo[] = [
   {
     id: 'eeadc3f2-56ae-4c6d-a18c-8edeeb6d67b2',
     name: 'Power Shrug',
+    muscleGroup: MuscleGroup.Traps,
+    movementType: MovementType.Row,
+  },
+  {
+    id: '73ef846e-8f76-4597-8eae-0c828fb93cff',
+    name: 'Any Shrug variation',
     muscleGroup: MuscleGroup.Traps,
     movementType: MovementType.Row,
   },

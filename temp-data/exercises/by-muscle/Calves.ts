@@ -18,5 +18,11 @@ export const CALVES_EXERCISES: ExerciseInfo[] = [
     name: 'Seated calf raise',
     muscleGroup: MuscleGroup.Calves,
     movementType: MovementType.Calves,
+  },
+  {
+    id: '505f5038-45ee-4c75-abef-3bc3c555e141',
+    name: 'Any calf raise variation',
+    muscleGroup: MuscleGroup.Calves,
+    movementType: MovementType.Calves,
   }
 ];
