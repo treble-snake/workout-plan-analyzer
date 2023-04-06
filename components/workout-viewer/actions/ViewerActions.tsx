@@ -1,5 +1,4 @@
 import {Divider, Space} from 'antd';
-import {ExperienceSwitch} from '../ExperienceSwitch';
 import {useWorkoutContext} from '../WorkoutProvider';
 import {SavePlanButton} from './elements/SavePlanButton';
 import {ResetDraftButton} from './elements/ResetDraftButton';
@@ -29,6 +28,5 @@ export const ViewerActions = () => {
         <Divider type={'vertical'} />
       </>
     }
-    <ExperienceSwitch />
   </>;
 };
