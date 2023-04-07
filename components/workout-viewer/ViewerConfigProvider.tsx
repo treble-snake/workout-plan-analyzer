@@ -1,35 +1,56 @@
 import {createContext, useContext, useEffect, useState} from 'react';
 import {ExperienceLevel} from './analytics/systems-data/SystemsCommon';
 import {useWorkoutContext} from './WorkoutProvider';
+import {identity} from 'ramda';
 
 export enum ViewerMode {
   View = 'View',
   Edit = 'Edit'
 }
 
+export enum AnalyticsMode {
+  Simple = 'Simple',
+  Detailed = 'Detailed'
+}
+
+export enum SimpleViewMode {
+  WarningsOnly = 'WarningsOnly',
+  All = 'All',
+}
+
 interface ViewerConfigValues {
   mode: ViewerMode;
 
   experience: ExperienceLevel;
+
+  analyticsMode: AnalyticsMode;
+
+  simpleViewMode: SimpleViewMode;
 }
 
 interface ViewerConfig extends ViewerConfigValues {
   setMode: (mode: ViewerMode) => void;
 
   setExperience: (value: ExperienceLevel) => void;
+
+  setAnalyticsMode: (mode: AnalyticsMode) => void;
+
+  setSimpleViewMode: (mode: SimpleViewMode) => void;
 }
 
 const DEFAULT_CONFIG: ViewerConfigValues = {
   experience: ExperienceLevel.Intermediate,
-  mode: ViewerMode.Edit
+  mode: ViewerMode.Edit,
+  analyticsMode: AnalyticsMode.Simple,
+  simpleViewMode: SimpleViewMode.WarningsOnly
 };
 
 const ViewerConfigContext = createContext<ViewerConfig>({
   ...DEFAULT_CONFIG,
-  setMode: () => {
-  },
-  setExperience: () => {
-  }
+  setMode: identity,
+  setExperience: identity,
+  setAnalyticsMode: identity,
+  setSimpleViewMode: identity
 });
 
 export const useViewerConfigContext = () => {
@@ -46,7 +67,7 @@ export const ViewerConfigProvider = ({children}: Props) => {
 
   useEffect(() => {
     const mode = plan.isDraft ? ViewerMode.Edit : ViewerMode.View;
-    if(config.mode !== mode) {
+    if (config.mode !== mode) {
       setConfig({...config, mode});
     }
   }, []);
@@ -59,6 +80,10 @@ export const ViewerConfigProvider = ({children}: Props) => {
       mode !== config.mode && setConfig({...config, mode}),
     setExperience: (experience) =>
       experience !== config.experience && setConfig({...config, experience}),
+    setAnalyticsMode: (mode: AnalyticsMode) =>
+      mode !== config.analyticsMode && setConfig({...config, analyticsMode: mode}),
+    setSimpleViewMode: (mode: SimpleViewMode) =>
+      mode !== config.simpleViewMode && setConfig({...config, simpleViewMode: mode})
   }}>
     {children}
   </ViewerConfigContext.Provider>;

@@ -1,5 +1,5 @@
 import {useViewerConfigContext} from './ViewerConfigProvider';
-import {Segmented, Tag} from 'antd';
+import {Segmented} from 'antd';
 import {ExperienceLevel} from './analytics/systems-data/SystemsCommon';
 
 export const ExperienceSwitch = () => {
@@ -7,7 +7,7 @@ export const ExperienceSwitch = () => {
 
   return (
     <>
-      <Tag>Lifting Experience</Tag>
+      <span>Lifting Experience:</span>
       <Segmented
         value={experience}
         onChange={(value) => setExperience(value as ExperienceLevel)}

@@ -20,7 +20,6 @@ export enum MovementType {
   Curl = 'Curl',
   Calves = 'Calves',
   Abs = 'Abs',
-  Other = 'Other',
 }
 
 // type MovementTypeSets = Record<MovementType, Record<VolumeType, QtyRange>>;
@@ -70,10 +69,6 @@ const Beginner = {
     [VolumeType.Balanced]: {from: 0, to: 4},
     [VolumeType.Specialization]: {from: 10, to: 12},
   },
-  [MovementType.Other]: {
-    [VolumeType.Balanced]: {from: 0, to: 0},
-    [VolumeType.Specialization]: {from: 0, to: 0},
-  }
 };
 
 const Intermediate = {
@@ -121,10 +116,6 @@ const Intermediate = {
     [VolumeType.Balanced]: {from: 2, to: 8},
     [VolumeType.Specialization]: {from: 12, to: 18},
   },
-  [MovementType.Other]: {
-    [VolumeType.Balanced]: {from: 0, to: 0},
-    [VolumeType.Specialization]: {from: 0, to: 0},
-  }
 };
 
 const Advanced = {
@@ -172,10 +163,6 @@ const Advanced = {
     [VolumeType.Balanced]: {from: 6, to: 12},
     [VolumeType.Specialization]: {from: 16, to: 30},
   },
-  [MovementType.Other]: {
-    [VolumeType.Balanced]: {from: 0, to: 0},
-    [VolumeType.Specialization]: {from: 0, to: 0},
-  }
 };
 
 export const WeeklySetsPerMovementType = {
