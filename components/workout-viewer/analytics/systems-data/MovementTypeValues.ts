@@ -1,4 +1,5 @@
 import {ExperienceLevel} from './SystemsCommon';
+import {QtyRange} from '../../../../types/workout';
 
 export enum VolumeType {
   Balanced = 'Balanced',
@@ -20,9 +21,8 @@ export enum MovementType {
   Curl = 'Curl',
   Calves = 'Calves',
   Abs = 'Abs',
+  Forearms = 'Forearms'
 }
-
-// type MovementTypeSets = Record<MovementType, Record<VolumeType, QtyRange>>;
 
 const Beginner = {
   [MovementType.Hinge]: {
@@ -69,6 +69,7 @@ const Beginner = {
     [VolumeType.Balanced]: {from: 0, to: 4},
     [VolumeType.Specialization]: {from: 10, to: 12},
   },
+  [MovementType.Forearms]: null
 };
 
 const Intermediate = {
@@ -116,6 +117,7 @@ const Intermediate = {
     [VolumeType.Balanced]: {from: 2, to: 8},
     [VolumeType.Specialization]: {from: 12, to: 18},
   },
+  [MovementType.Forearms]: null
 };
 
 const Advanced = {
@@ -163,6 +165,7 @@ const Advanced = {
     [VolumeType.Balanced]: {from: 6, to: 12},
     [VolumeType.Specialization]: {from: 16, to: 30},
   },
+  [MovementType.Forearms]: null
 };
 
 export const WeeklySetsPerMovementType = {

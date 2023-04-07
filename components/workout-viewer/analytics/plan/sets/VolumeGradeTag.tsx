@@ -11,14 +11,18 @@ type Props = {
 
 // TODO: add clarifications
 export const VolumeGradeTag = ({
-                                       grade
-                                     }: Props) => {
+                                 grade
+                               }: Props) => {
   if (grade.type == VolumeGradeType.Uncertain) {
     return <Doubtful />;
   }
 
   if (grade.type === VolumeGradeType.Ok) {
     return grade.confidence === ConfidenceLevel.High ? <Great /> : <Good />;
+  }
+
+  if (grade.type === VolumeGradeType.NoInfo) {
+    return null;
   }
 
   // all bad stuff

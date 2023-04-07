@@ -15,7 +15,8 @@ const RECS = {
   [VolumeGradeType.Low]: 'too low',
   [VolumeGradeType.Ok]: 'OK',
   [VolumeGradeType.High]: 'too high',
-  [VolumeGradeType.TooSpread]: 'too spread'
+  [VolumeGradeType.TooSpread]: 'too spread',
+  [VolumeGradeType.NoInfo]: ''
 };
 
 const CONFIDENCE = {
@@ -33,6 +34,10 @@ const getWording = (grade: VolumeGrade): string => {
 };
 
 export const VolumeGradeInfo = ({grade, unit}: Props) => {
+  if (grade.type === VolumeGradeType.NoInfo) {
+    return null;
+  }
+
   return <Alert showIcon
                 style={{marginBottom: 10}}
                 type={grade.type === VolumeGradeType.Ok ?

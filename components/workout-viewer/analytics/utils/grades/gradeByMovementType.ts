@@ -24,10 +24,15 @@ export const gradeByMovementType = ({
                                       sets: {from, to}
                                     }: Props): VolumeGrade => {
 
+  const landmarks = WeeklySetsPerMovementType[level][movement];
+  if (!landmarks) {
+    return {type: VolumeGradeType.NoInfo, confidence: ConfidenceLevel.High}
+  }
+
   const {
     Balanced: balanced,
     Specialization: spec
-  } = WeeklySetsPerMovementType[level][movement];
+  } = landmarks;
 
   if (from < balanced.from && to < balanced.from) {
     return to === 0 ?

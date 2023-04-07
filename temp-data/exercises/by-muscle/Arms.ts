@@ -128,4 +128,11 @@ export const ARMS_EXERCISES: ExerciseInfo[] = [
     name: 'Any triceps variation',
     ...TRICEPS_TYPE,
   },
+  // forearms
+  {
+    id: 'da138066-f0bc-401c-a64e-d803cd81faab',
+    name: 'Any forarms variation',
+    movementType: MovementType.Forearms,
+    muscleGroup: MuscleGroup.Forearms
+  }
 ];
