@@ -14,38 +14,34 @@ const SET_RANGE_OPTIONS = [{
 
 const REP_RANGE_OPTIONS = [
   {
-    label: 'Strength',
+    label: 'Low',
     options: [
       {value: '1'},
       {value: '1-3'},
       {value: '3-5'},
-    ]
-  },
-  {
-    label: 'Strength/Size',
-    options: [
       {value: '4-6'},
-      {value: '8-10'}
     ]
   },
   {
-    label: 'Size',
+    label: 'Moderate',
     options: [
+      {value: '6-8'},
+      {value: '8-10'},
       {value: '8-12'},
       {value: '10-12'},
-      {value: '12-15'},
-      {value: '10-15'},
     ]
   },
   {
-    label: 'Size/Endurance',
+    label: 'High',
     options: [
+      {value: '10-15'},
+      {value: '12-15'},
       {value: '10-20'},
       {value: '15-20'},
     ]
   },
   {
-    label: 'Endurance',
+    label: 'Ultra High',
     options: [
       {value: '15-25'},
       {value: '20-25'},
