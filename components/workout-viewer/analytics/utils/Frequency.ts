@@ -1,5 +1,5 @@
 import {mapObjIndexed} from 'ramda';
-import {WorkoutPlan} from '../../../../types/workout';
+import {PlanDay} from '../../../../types/workout';
 import {filterWorkouts, getAllExercises} from './AnalyticUtils';
 import {MuscleGroup} from '../systems-data/MuscleGroupsValues';
 import {MovementType} from '../systems-data/MovementTypeValues';
@@ -19,8 +19,8 @@ const calcWeeklyFrequency = <T extends Object>(planLength: number, timePerWeek: 
   }, timePerWeek);
 };
 
-export const calculateFrequency = (plan: WorkoutPlan) => {
-  const workoutDays = filterWorkouts(plan.days);
+export const calculateFrequency = (days: PlanDay[]) => {
+  const workoutDays = filterWorkouts(days);
 
   const timesByMuscleGroup = emptyNumberMap(MuscleGroup);
   const timesByMovementType = emptyNumberMap(MovementType);
@@ -40,7 +40,7 @@ export const calculateFrequency = (plan: WorkoutPlan) => {
       });
   });
 
-  const daysInPlan = plan.days.length;
+  const daysInPlan = days.length;
   const freqByMuscleGroup = calcWeeklyFrequency(daysInPlan, timesByMuscleGroup);
   const freqByMovementType = calcWeeklyFrequency(daysInPlan, timesByMovementType);
 
