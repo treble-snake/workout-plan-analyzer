@@ -3,7 +3,8 @@ export enum VolumeGradeType {
   Ok = 'Ok',
   High = 'High',
   TooSpread = 'TooSpread',
-  Uncertain = 'Uncertain'
+  Uncertain = 'Uncertain',
+  NoInfo = 'NoInfo',
 }
 
 export enum ConfidenceLevel {

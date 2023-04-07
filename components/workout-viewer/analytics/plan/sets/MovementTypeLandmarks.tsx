@@ -16,10 +16,15 @@ export const MovementTypeLandmarks = ({
                                        movement, level
                                      }: Props) => {
 
+  const landmarks = WeeklySetsPerMovementType[level][movement];
+  if (!landmarks) {
+    return <Tag>No recommendations</Tag>
+  }
+
   const {
     Balanced: balanced,
     Specialization: spec
-  } = WeeklySetsPerMovementType[level][movement];
+  } = landmarks;
 
   return <>
     <Tag>Balanced: {rangeToText(balanced)}, Spec: {rangeToText(spec)}</Tag>
