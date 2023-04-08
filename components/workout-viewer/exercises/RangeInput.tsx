@@ -74,7 +74,6 @@ export const RangeInput = ({range, update, type = RangeType.Reps}: Props) => {
 
   return <AutoComplete
     dropdownMatchSelectWidth={120}
-    size={'small'}
     style={{width: '100%'}}
     filterOption={(inputValue, option) => {
       // TODO: replace with controlled options and onSearch()
@@ -84,7 +83,8 @@ export const RangeInput = ({range, update, type = RangeType.Reps}: Props) => {
     onChange={onChange}
     value={text}
   >
-    <Input size="small"
+    <Input
+      size="small"
            status={isValidTextRange(text) ? '' : 'error'}
            style={{
              textAlign: 'center',
