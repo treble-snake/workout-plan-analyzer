@@ -8,6 +8,8 @@ import {
 import {VolumeGradeInfo} from './VolumeGradeInfo';
 import {VolumeGradeType} from '../../utils/grades/Grades';
 import {GradedSets} from '../types';
+import {MuscleGroup} from '../../systems-data/MuscleGroupsValues';
+import {MovementType} from '../../systems-data/MovementTypeValues';
 
 type Props<T> = {
   system: System,
@@ -18,7 +20,7 @@ type Props<T> = {
 export const SimpleAnalytics = <T extends Record<string, string>>(props: Props<T>) => {
   const {system, sets, frequency} = props;
   const {units} = SystemsMeta[system];
-  const {simpleViewMode} = useViewerConfigContext();
+  const {simpleViewMode, highlightedExercises: highlighted} = useViewerConfigContext();
 
   // TODO: add frequency tips
 
@@ -26,10 +28,14 @@ export const SimpleAnalytics = <T extends Record<string, string>>(props: Props<T
     {
       Object.values(units)
         .map((it) => ({
-          unit: it,
+          unit: it as (MuscleGroup | MovementType),
           grade: sets[it].grade
         }))
-        .filter(({grade}) => {
+        .filter(({grade, unit}) => {
+          if (highlighted && highlighted.system === system && highlighted.unit === unit) {
+            return true;
+          }
+
           return simpleViewMode === SimpleViewMode.All || grade.type !== VolumeGradeType.Ok;
         })
         .sort((a, b) => {
@@ -52,12 +58,8 @@ export const SimpleAnalytics = <T extends Record<string, string>>(props: Props<T
           return 0;
         })
         .map(({unit, grade}) => {
-          if (simpleViewMode === SimpleViewMode.WarningsOnly && grade.type === VolumeGradeType.Ok) {
-            return null;
-          }
-
           return (
-            <VolumeGradeInfo key={unit} grade={grade} unit={unit} />
+            <VolumeGradeInfo key={unit} grade={grade} system={system} unit={unit} />
           );
         })
     }
