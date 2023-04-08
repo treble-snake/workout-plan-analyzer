@@ -10,9 +10,8 @@ export const MainLayout = ({children}: any) => {
 
   return <>
     <Head>
-      <title>Workout Plan Analyzer</title>
-      {/*<meta name="description" content="" />*/}
-      {/*<link rel="icon" href="/favicon.ico" />*/}
+      <title>{'Icebreaker "Bicep"'}</title>
+      <meta name="description" content="Your little helper in composing and analyzing workout plans for hypertrophy" />
     </Head>
     <Layout className={styles.container}>
       <Alert type={'warning'}
