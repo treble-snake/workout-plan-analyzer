@@ -1,8 +1,9 @@
 import {
-  AnalyticsMode, SimpleViewMode,
+  AnalyticsMode,
+  SimpleViewMode,
   useViewerConfigContext
 } from '../../../ViewerConfigProvider';
-import {Segmented, Space, Tag} from 'antd';
+import {Segmented, Space} from 'antd';
 
 export const AnalyticsModeSwitch = () => {
   const {

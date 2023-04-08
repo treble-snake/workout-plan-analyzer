@@ -26,25 +26,25 @@ export const ExerciseControls = ({
     ((day.exercises[supersetIndex] as Superset).exercises.length) :
     day.exercises.length;
   return <>
-    {
-      index > 0 &&
-      <Button size={'small'}
-              disabled
-              icon={<ArrowUpOutlined />}
-              type={'link'}
-              style={{width: BUTTON_SIZE, height: BUTTON_SIZE}}
-      />
-    }
+    {/*{*/}
+    {/*  index > 0 &&*/}
+    {/*  <Button size={'small'}*/}
+    {/*          disabled*/}
+    {/*          icon={<ArrowUpOutlined />}*/}
+    {/*          type={'link'}*/}
+    {/*          style={{width: BUTTON_SIZE, height: BUTTON_SIZE}}*/}
+    {/*  />*/}
+    {/*}*/}
 
-    {
-      index < exrQty - 1 &&
-      <Button size={'small'}
-              disabled
-              style={{width: BUTTON_SIZE, height: BUTTON_SIZE}}
-              icon={<ArrowDownOutlined />}
-              type={'link'}
-      />
-    }
+    {/*{*/}
+    {/*  index < exrQty - 1 &&*/}
+    {/*  <Button size={'small'}*/}
+    {/*          disabled*/}
+    {/*          style={{width: BUTTON_SIZE, height: BUTTON_SIZE}}*/}
+    {/*          icon={<ArrowDownOutlined />}*/}
+    {/*          type={'link'}*/}
+    {/*  />*/}
+    {/*}*/}
 
     <Tooltip title={'Delete'}>
       <Button size={'small'}

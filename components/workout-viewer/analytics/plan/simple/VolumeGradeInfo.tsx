@@ -3,12 +3,18 @@ import {
   VolumeGrade,
   VolumeGradeType
 } from '../../utils/grades/Grades';
-import {Alert} from 'antd';
+import {Alert, Button, Space, Tooltip} from 'antd';
 import React from 'react';
+import {BulbTwoTone, EyeInvisibleOutlined} from '@ant-design/icons';
+import {System} from '../../systems-data/SystemsCommon';
+import {MovementType} from '../../systems-data/MovementTypeValues';
+import {MuscleGroup} from '../../systems-data/MuscleGroupsValues';
+import {useViewerConfigContext} from '../../../ViewerConfigProvider';
 
 type Props = {
   grade: VolumeGrade,
-  unit: string
+  system: System,
+  unit: MovementType | MuscleGroup
 }
 
 const RECS = {
@@ -33,16 +39,60 @@ const getWording = (grade: VolumeGrade): string => {
   return `${CONFIDENCE[grade.confidence]} ${RECS[grade.type]}`;
 };
 
-export const VolumeGradeInfo = ({grade, unit}: Props) => {
+type InfoMessageProps = {
+  msg: string,
+  system: System,
+  unit: MovementType | MuscleGroup
+}
+
+const InfoMessage = ({msg, unit, system}: InfoMessageProps) => {
+  const {highlightedExercises: highlight, highlightExercises} = useViewerConfigContext();
+
+  const highlightColor = (
+    highlight && system === highlight.system && unit === highlight.unit
+  ) ? '#eba02f' : '#b6b6b6';
+
+  const toggleHighlight = () => {
+    if (highlight && system === highlight.system && unit === highlight.unit) {
+      highlightExercises(null);
+    } else {
+      highlightExercises({unit, system});
+    }
+  }
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '100%',
+        alignItems: 'center'
+      }}>
+      <span>{msg}</span>
+      <Space>
+        <Tooltip title={'Highlight exercises'}>
+          <Button
+            onClick={toggleHighlight}
+            icon={<BulbTwoTone twoToneColor={highlightColor} />}
+          />
+        </Tooltip>
+      </Space>
+    </div>
+  );
+};
+
+export const VolumeGradeInfo = ({grade, system, unit}: Props) => {
   if (grade.type === VolumeGradeType.NoInfo) {
     return null;
   }
+
+  const message = `Your ${unit} training volume ${getWording(grade)}.`;
 
   return <Alert showIcon
                 style={{marginBottom: 10}}
                 type={grade.type === VolumeGradeType.Ok ?
                   (grade.confidence === ConfidenceLevel.High ? 'success' : 'info')
                   : 'warning'}
-                message={`Your ${unit} training volume ${getWording(grade)}.`}
+                message={<InfoMessage msg={message} unit={unit} system={system} />}
   />;
 };

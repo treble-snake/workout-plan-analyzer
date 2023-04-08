@@ -2,6 +2,19 @@ import {Exercise, WorkoutPlan} from '../../types/workout';
 import {EXERCISES_BY_ID} from '../../temp-data/exercises';
 import {clone} from 'ramda';
 import {ExerciseInfo} from '../../types/exercise';
+import {ExerciseHighlight} from './ViewerConfigProvider';
+import {System} from './analytics/systems-data/SystemsCommon';
+
+export const isHighlighted = (exc: Exercise, highlight: ExerciseHighlight | null) => {
+  if (!highlight) {
+    return false;
+  }
+
+  return (
+    highlight.system === System.Muscle && exc.info.muscleGroup === highlight.unit ||
+    highlight.system === System.Movement && exc.info.movementType === highlight.unit
+  );
+};
 
 const normalizeExercise = (exc: Exercise): Exercise => {
   const info = EXERCISES_BY_ID[exc.info.id];
@@ -46,13 +59,13 @@ export const denormalizePlan = (plan: WorkoutPlan) => {
   });
 
   return denormalizedPlan;
-}
+};
 
 export const toBase64 = (plan: WorkoutPlan) => {
   return window.btoa(JSON.stringify(denormalizePlan(plan)));
-}
+};
 
 export const fromBase64 = (encoded: string): WorkoutPlan => {
   const denormalizedPlan = JSON.parse(window.atob(encoded));
   return normalizePlan(denormalizedPlan);
-}
+};

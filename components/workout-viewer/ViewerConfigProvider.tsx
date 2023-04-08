@@ -1,7 +1,9 @@
 import {createContext, useContext, useEffect, useState} from 'react';
-import {ExperienceLevel} from './analytics/systems-data/SystemsCommon';
+import {ExperienceLevel, System} from './analytics/systems-data/SystemsCommon';
 import {useWorkoutContext} from './WorkoutProvider';
 import {identity} from 'ramda';
+import {MovementType} from './analytics/systems-data/MovementTypeValues';
+import {MuscleGroup} from './analytics/systems-data/MuscleGroupsValues';
 
 export enum ViewerMode {
   View = 'View',
@@ -18,6 +20,11 @@ export enum SimpleViewMode {
   All = 'All',
 }
 
+export type ExerciseHighlight = {
+  system: System;
+  unit: MovementType | MuscleGroup;
+}
+
 interface ViewerConfigValues {
   mode: ViewerMode;
 
@@ -26,6 +33,8 @@ interface ViewerConfigValues {
   analyticsMode: AnalyticsMode;
 
   simpleViewMode: SimpleViewMode;
+
+  highlightedExercises: ExerciseHighlight | null;
 }
 
 interface ViewerConfig extends ViewerConfigValues {
@@ -36,13 +45,16 @@ interface ViewerConfig extends ViewerConfigValues {
   setAnalyticsMode: (mode: AnalyticsMode) => void;
 
   setSimpleViewMode: (mode: SimpleViewMode) => void;
+
+  highlightExercises: (unit: ExerciseHighlight | null) => void;
 }
 
 const DEFAULT_CONFIG: ViewerConfigValues = {
   experience: ExperienceLevel.Intermediate,
   mode: ViewerMode.Edit,
   analyticsMode: AnalyticsMode.Simple,
-  simpleViewMode: SimpleViewMode.WarningsOnly
+  simpleViewMode: SimpleViewMode.WarningsOnly,
+  highlightedExercises: null
 };
 
 const ViewerConfigContext = createContext<ViewerConfig>({
@@ -50,7 +62,8 @@ const ViewerConfigContext = createContext<ViewerConfig>({
   setMode: identity,
   setExperience: identity,
   setAnalyticsMode: identity,
-  setSimpleViewMode: identity
+  setSimpleViewMode: identity,
+  highlightExercises: identity
 });
 
 export const useViewerConfigContext = () => {
@@ -83,7 +96,10 @@ export const ViewerConfigProvider = ({children}: Props) => {
     setAnalyticsMode: (mode: AnalyticsMode) =>
       mode !== config.analyticsMode && setConfig({...config, analyticsMode: mode}),
     setSimpleViewMode: (mode: SimpleViewMode) =>
-      mode !== config.simpleViewMode && setConfig({...config, simpleViewMode: mode})
+      mode !== config.simpleViewMode && setConfig({...config, simpleViewMode: mode}),
+    highlightExercises: (unit: ExerciseHighlight | null) => {
+      setConfig({...config, highlightedExercises: unit});
+    }
   }}>
     {children}
   </ViewerConfigContext.Provider>;
