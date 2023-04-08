@@ -1,32 +1,12 @@
 import type {NextPage} from 'next';
-import Link from 'next/link';
-import {useEffect, useState} from 'react';
-import {LocalStorageApi} from '../api-lib/LocalStorageApi';
-import { PageHeader } from '@ant-design/pro-layout';
-import { Button, message } from 'antd';
-import {WorkoutPlan} from '../types/workout';
-import {PlusCircleOutlined} from '@ant-design/icons';
+import {PageHeader} from '@ant-design/pro-layout';
 import {WorkoutPlanList} from '../components/workout-list/WorkoutPlanList';
+import {NewPlanButton} from '../components/workout-list/NewPlanButton';
 
 const Home: NextPage = () => {
-  const [plans, setPlans] = useState<WorkoutPlan[]>([]);
-  useEffect(() => {
-    LocalStorageApi.listPlans()
-      .then((storedPlans) => {
-        setPlans(storedPlans);
-      })
-      .catch(() => message.error('Load failed'));
-  }, []);
   return <>
-    {/*<Typography.Title>Workout Plans</Typography.Title>*/}
-    <PageHeader title={'Workout Plans'}
-                subTitle={<Link href={'/new-plan'} legacyBehavior>
-                  <Button icon={<PlusCircleOutlined />} type={'primary'}>
-                    New plan
-                  </Button>
-                </Link>}
-    />
-    <WorkoutPlanList plans={plans} />
+    <PageHeader title={'Workout Plans'} subTitle={<NewPlanButton />} />
+    <WorkoutPlanList />
   </>;
 };
 
