@@ -11,6 +11,7 @@ import {rangeToText} from '../../../exercises/RangeUtils';
 import {VolumeGradeTag} from '../sets/VolumeGradeTag';
 import {MuscleGroupFrequencyGrade} from '../sets/MuscleGroupFrequencyGrade';
 import {GradedSets} from '../types';
+import React from 'react';
 
 type Props<T> = {
   system: System,
@@ -85,3 +86,5 @@ export const DetailedAnalytics = <T extends Record<string, string>>(props: Props
     }
   </>;
 };
+
+export default React.memo(DetailedAnalytics);

@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useState} from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 import {ExperienceLevel, System} from './analytics/systems-data/SystemsCommon';
 import {useWorkoutContext} from './WorkoutProvider';
 import {identity} from 'ramda';
@@ -87,7 +87,7 @@ export const ViewerConfigProvider = ({children}: Props) => {
 
   // TODO: setMode from WorkoutProvider causes infinite loop if not checked
   //       it might be a smell. Having WorkoutProvider inside ConfigProvider seems wrong.
-  return <ViewerConfigContext.Provider value={{
+  const value: ViewerConfig = React.useMemo(() =>({
     ...config,
     setMode: (mode) =>
       mode !== config.mode && setConfig({...config, mode}),
@@ -100,7 +100,10 @@ export const ViewerConfigProvider = ({children}: Props) => {
     highlightExercises: (unit: ExerciseHighlight | null) => {
       setConfig({...config, highlightedExercises: unit});
     }
-  }}>
+  }), [config.mode, config.analyticsMode]);
+
+
+  return <ViewerConfigContext.Provider value={value}>
     {children}
   </ViewerConfigContext.Provider>;
 };

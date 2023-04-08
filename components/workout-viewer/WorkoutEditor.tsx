@@ -1,16 +1,20 @@
-import { PageHeader } from '@ant-design/pro-layout';
-import { Col, Descriptions, Layout, Row, Space, Tag, Typography } from 'antd';
+import {PageHeader} from '@ant-design/pro-layout';
+import {Col, Descriptions, Layout, Row, Space, Tag, Typography} from 'antd';
 import {MemoizedWorkoutDayEditor} from './day-card/WorkoutDayEditor';
 import {useWorkoutContext} from './WorkoutProvider';
 import {AddDays} from './day-card/AddDays';
 import {ViewerActions} from './actions/ViewerActions';
 import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
 import {useRouter} from 'next/router';
+import React from 'react';
 
-export const WorkoutEditor = () => {
+export const WorkoutEditorComponent = () => {
   const {plan, setMeta} = useWorkoutContext();
   const {mode} = useViewerConfigContext();
   const router = useRouter();
+
+  console.info('WorkoutEditor render');
+  // callbacks
 
   const isEditable = mode === ViewerMode.Edit;
 
@@ -72,10 +76,19 @@ export const WorkoutEditor = () => {
         <Typography.Paragraph editable={isEditable && {
           onChange: (recommendations) => setMeta({recommendations}),
         }}>
-          {plan.recommendations || (isEditable &&
-            <i>Add recommendations</i>)}
+          {
+            plan.recommendations ||
+            (isEditable && <i>Add recommendations</i>)
+          }
         </Typography.Paragraph>
       </Descriptions.Item>
     </Descriptions>
   </>;
 };
+
+export const WorkoutEditor = React.memo(WorkoutEditorComponent, (prevProps, nextProps) => {
+  console.info('WorkoutEditor memo');
+  console.info('prevProps', prevProps);
+  console.info('nextProps', nextProps);
+  return false;
+});

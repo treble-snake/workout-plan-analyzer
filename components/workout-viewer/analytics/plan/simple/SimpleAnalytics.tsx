@@ -10,6 +10,7 @@ import {VolumeGradeType} from '../../utils/grades/Grades';
 import {GradedSets} from '../types';
 import {MuscleGroup} from '../../systems-data/MuscleGroupsValues';
 import {MovementType} from '../../systems-data/MovementTypeValues';
+import React from 'react';
 
 type Props<T> = {
   system: System,
@@ -65,3 +66,5 @@ export const SimpleAnalytics = <T extends Record<string, string>>(props: Props<T
     }
   </>);
 };
+
+export default SimpleAnalytics;

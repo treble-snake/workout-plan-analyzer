@@ -1,19 +1,24 @@
 import {LocalStorageApi} from '../LocalStorageApi';
 
-const UrlHandlers: Record<string, () => Promise<any>> = {
-  '/plans': () => {
-    return LocalStorageApi.listPlans();
-  }
+const planListHandler = () => {
+  return LocalStorageApi.listPlans();
 };
 
-export const localStorageFetcher = (resource: string, init: any) => {
-  console.debug('resource', resource);
-  console.debug('init', init);
+const planHandler = (id: string) => {
+  return LocalStorageApi.getPlan(id);
+}
 
-  const handler = UrlHandlers[resource];
-  if (!handler) {
-    return Promise.reject(`No handler for ${resource}`);
+export const localStorageFetcher = (resource: string, init: any) => {
+  console.info('localStorageFetcher: fetching resource', resource, 'with params', init);
+
+  if (resource === '/plans') {
+    return planListHandler();
   }
 
-  return handler();
+  if (resource.startsWith('/plans/')) {
+    const id = resource.split('/')[2];
+    return planHandler(id);
+  }
+
+  return Promise.reject(`No handler for ${resource}`);
 };

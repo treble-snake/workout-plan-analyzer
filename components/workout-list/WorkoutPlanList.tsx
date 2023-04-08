@@ -3,6 +3,7 @@ import {usePlanList} from '../../api-lib/hooks/usePlanList';
 import {GlobalLoading} from '../../common/GlobalLoading';
 import {EmptyPlansList} from './EmptyPlansList';
 import {WorkoutPlanItem} from './WorkoutPlanItem';
+import {ErrorMessage} from '../../common/ErrorMessage';
 
 export const WorkoutPlanList = () => {
     const {plans, error, isLoading} = usePlanList();
@@ -11,7 +12,7 @@ export const WorkoutPlanList = () => {
     }
 
     if (error) {
-      return <Alert showIcon type={'error'} message={'Error loading plans'} />;
+      return <ErrorMessage text={'Error loading plans'} />;
     }
 
     if (!plans || plans.length === 0) {
