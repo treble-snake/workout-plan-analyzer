@@ -34,11 +34,11 @@ export const SimpleAnalytics = <T extends Record<string, string>>(props: Props<T
         })
         .sort((a, b) => {
           if (a.grade.type !== VolumeGradeType.Ok && b.grade.type !== VolumeGradeType.Ok) {
-            return a.grade.confidence > b.grade.confidence ? -1 : 1;
+            return a.grade.confidence > b.grade.confidence ? 1 : -1;
           }
 
           if (a.grade.type === VolumeGradeType.Ok && b.grade.type === VolumeGradeType.Ok) {
-            return a.grade.confidence > b.grade.confidence ? 1 : -1;
+            return a.grade.confidence > b.grade.confidence ? -1 : 1;
           }
 
           if (a.grade.type !== VolumeGradeType.Ok) {
@@ -48,6 +48,7 @@ export const SimpleAnalytics = <T extends Record<string, string>>(props: Props<T
           if (b.grade.type !== VolumeGradeType.Ok) {
             return 1;
           }
+
           return 0;
         })
         .map(({unit, grade}) => {
