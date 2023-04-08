@@ -9,7 +9,7 @@ const planHandler = (id: string) => {
 }
 
 export const localStorageFetcher = (resource: string, init: any) => {
-  console.info('localStorageFetcher: fetching resource', resource, 'with params', init);
+  console.debug('localStorageFetcher: fetching resource', resource, 'with params', init);
 
   if (resource === '/plans') {
     return planListHandler();

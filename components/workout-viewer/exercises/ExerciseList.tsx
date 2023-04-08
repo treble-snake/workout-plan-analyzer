@@ -2,15 +2,16 @@ import {WorkoutDay} from '../../../types/workout';
 import {ExerciseListItem} from './ExerciseListItem';
 import {SupersetListItem} from './SupersetListItem';
 import {Col, Empty, Row} from 'antd';
-import {useViewerConfigContext, ViewerMode} from '../ViewerConfigProvider';
+import {viewerEditingModeState, ViewerMode} from '../ViewerConfigState';
 import {NewExerciseRow} from './NewExerciseRow';
+import {useRecoilValue} from 'recoil';
 
 type Props = {
   day: WorkoutDay;
 }
 
 export const ExerciseList = ({day}: Props) => {
-  const {mode} = useViewerConfigContext();
+  const mode = useRecoilValue(viewerEditingModeState);
 
   const tableHeader = <Row>
     <Col span={3} offset={mode === ViewerMode.Edit ? 12 : 16}

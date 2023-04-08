@@ -2,15 +2,17 @@ import {System} from '../../systems-data/SystemsCommon';
 import {QtyRange} from '../../../../../types/workout';
 import {SystemsMeta} from '../../systems-data/SystemsMeta';
 import {
+  highlightedExercisesState,
   SimpleViewMode,
-  useViewerConfigContext
-} from '../../../ViewerConfigProvider';
+  simpleViewModeState
+} from '../../../ViewerConfigState';
 import {VolumeGradeInfo} from './VolumeGradeInfo';
 import {VolumeGradeType} from '../../utils/grades/Grades';
 import {GradedSets} from '../types';
 import {MuscleGroup} from '../../systems-data/MuscleGroupsValues';
 import {MovementType} from '../../systems-data/MovementTypeValues';
 import React from 'react';
+import {useRecoilValue} from 'recoil';
 
 type Props<T> = {
   system: System,
@@ -21,7 +23,8 @@ type Props<T> = {
 export const SimpleAnalytics = <T extends Record<string, string>>(props: Props<T>) => {
   const {system, sets, frequency} = props;
   const {units} = SystemsMeta[system];
-  const {simpleViewMode, highlightedExercises: highlighted} = useViewerConfigContext();
+  const simpleViewMode = useRecoilValue(simpleViewModeState);
+  const highlighted = useRecoilValue(highlightedExercisesState);
 
   // TODO: add frequency tips
 

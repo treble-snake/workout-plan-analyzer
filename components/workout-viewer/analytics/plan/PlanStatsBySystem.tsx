@@ -1,13 +1,11 @@
 import {QtyRange} from '../../../../types/workout';
 import {Col, Spin} from 'antd';
 import {System} from '../systems-data/SystemsCommon';
-import {
-  AnalyticsMode,
-  useViewerConfigContext
-} from '../../ViewerConfigProvider';
+import {AnalyticsMode, analyticsModeState} from '../../ViewerConfigState';
 import {SystemsMeta} from '../systems-data/SystemsMeta';
 import {GradedSets} from './types';
 import React, {Suspense} from 'react';
+import {useRecoilValue} from 'recoil';
 
 const SimpleAnalytics = React.lazy(() => import('./simple/SimpleAnalytics'));
 const DetailedAnalytics = React.lazy(() => import('./detailed/DetailedAnalytics'));
@@ -21,7 +19,7 @@ type Props<T> = {
 export const PlanStatsBySystem = <T extends Record<string, string>>(props: Props<T>) => {
   const {system, sets, frequency} = props;
   const {title, description} = SystemsMeta[system];
-  const {analyticsMode} = useViewerConfigContext();
+  const analyticsMode = useRecoilValue(analyticsModeState);
 
   return (
     <Col xl={12} md={24} xxl={9}>

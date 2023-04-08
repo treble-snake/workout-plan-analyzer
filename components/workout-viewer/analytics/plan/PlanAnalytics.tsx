@@ -7,16 +7,19 @@ import {PlanStatsBySystem} from './PlanStatsBySystem';
 import {System} from '../systems-data/SystemsCommon';
 import {ExperienceSwitch} from '../../ExperienceSwitch';
 import {AnalyticsModeSwitch} from './configs/AnalyticsModeSwitch';
-import {useViewerConfigContext} from '../../ViewerConfigProvider';
+import {lifterExperienceState} from '../../ViewerConfigState';
 import {mapObjIndexed} from 'ramda';
 import {gradeByMuscleGroup} from '../utils/grades/gradeByMuscleGroup';
 import {MuscleGroup} from '../systems-data/MuscleGroupsValues';
 import {MovementType} from '../systems-data/MovementTypeValues';
 import {gradeByMovementType} from '../utils/grades/gradeByMovementType';
+import {useRecoilValue} from 'recoil';
 
 export const PlanAnalytics = () => {
   const {plan} = useWorkoutContext();
-  const {experience} = useViewerConfigContext();
+  const experience = useRecoilValue(lifterExperienceState);
+  console.debug('PlanAnalytics render');
+
   const {
     freqByMuscleGroup,
     freqByMovementType,

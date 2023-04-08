@@ -4,9 +4,14 @@ import {ExerciseControls} from './ExerciseControls';
 import {RangeInput, RangeType} from './RangeInput';
 import {useDayIndexContext} from '../day-card/WorkoutDayEditor';
 import {useWorkoutContext} from '../WorkoutProvider';
-import {useViewerConfigContext, ViewerMode} from '../ViewerConfigProvider';
+import {
+  highlightedExercisesState,
+  viewerEditingModeState,
+  ViewerMode
+} from '../ViewerConfigState';
 import React from 'react';
 import {isHighlighted} from '../WorkoutUtils';
+import {useRecoilValue} from 'recoil';
 
 type Props = {
   exercise: Exercise;
@@ -21,7 +26,8 @@ export const ExerciseListItem = ({
                                  }: Props) => {
     const dayIndex = useDayIndexContext();
     const {setReps, setSets} = useWorkoutContext();
-    const {mode, highlightedExercises: highlight} = useViewerConfigContext();
+    const mode = useRecoilValue(viewerEditingModeState);
+    const highlight = useRecoilValue(highlightedExercisesState);
 
     const updateReps = (range: QtyRange) => {
       setReps(range, dayIndex, index, supersetIndex);

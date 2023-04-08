@@ -4,18 +4,17 @@ import {MemoizedWorkoutDayEditor} from './day-card/WorkoutDayEditor';
 import {useWorkoutContext} from './WorkoutProvider';
 import {AddDays} from './day-card/AddDays';
 import {ViewerActions} from './actions/ViewerActions';
-import {useViewerConfigContext, ViewerMode} from './ViewerConfigProvider';
+import {viewerEditingModeState, ViewerMode} from './ViewerConfigState';
 import {useRouter} from 'next/router';
 import React from 'react';
+import {useRecoilValue} from 'recoil';
 
 export const WorkoutEditorComponent = () => {
   const {plan, setMeta} = useWorkoutContext();
-  const {mode} = useViewerConfigContext();
+  const mode = useRecoilValue(viewerEditingModeState);
   const router = useRouter();
 
-  console.info('WorkoutEditor render');
-  // callbacks
-
+  console.debug('WorkoutEditor render');
   const isEditable = mode === ViewerMode.Edit;
 
   return <>
@@ -86,9 +85,5 @@ export const WorkoutEditorComponent = () => {
   </>;
 };
 
-export const WorkoutEditor = React.memo(WorkoutEditorComponent, (prevProps, nextProps) => {
-  console.info('WorkoutEditor memo');
-  console.info('prevProps', prevProps);
-  console.info('nextProps', nextProps);
-  return false;
-});
+// TODO: ?
+export const WorkoutEditor = React.memo(WorkoutEditorComponent);
