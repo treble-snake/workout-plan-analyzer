@@ -1,45 +1,29 @@
-import {WorkoutPlan} from '../../types/workout';
-import {Button, Card, Col, Empty, Row, Tag} from 'antd';
-import Link from 'next/link';
+import {Alert, Row} from 'antd';
+import {usePlanList} from '../../api-lib/hooks/usePlanList';
+import {GlobalLoading} from '../../common/GlobalLoading';
+import {EmptyPlansList} from './EmptyPlansList';
+import {WorkoutPlanItem} from './WorkoutPlanItem';
 
-type Props = {
-  plans: WorkoutPlan[];
-}
+export const WorkoutPlanList = () => {
+    const {plans, error, isLoading} = usePlanList();
+    if (isLoading) {
+      return <GlobalLoading />;
+    }
 
-export const WorkoutPlanList = ({plans}: Props) => {
-  if (plans.length === 0) {
-    return <Empty />;
+    if (error) {
+      return <Alert showIcon type={'error'} message={'Error loading plans'} />;
+    }
+
+    if (!plans || plans.length === 0) {
+      return <EmptyPlansList />;
+    }
+
+    return (
+      <Row gutter={16}>
+        {plans.map((it) => {
+          return <WorkoutPlanItem plan={it} key={it.id} />;
+        })}
+      </Row>
+    );
   }
-
-  return (
-    <Row gutter={16}>
-      {
-        plans.map((it) => {
-          return (
-            <Col
-              key={it.id}
-              xs={24}
-              sm={12}
-              md={8}
-              lg={6}
-              xxl={4}
-            >
-              <Card title={it.title}
-                    style={{marginBottom: 16}}
-                    actions={[
-                      <Link key={'open'} href={`/plans/${it.id}`} legacyBehavior>
-                        <Button>Open</Button>
-                      </Link>
-                    ]
-                    }
-                    extra={it.isDraft && <Tag>Draft</Tag>}
-              >
-                <p>Days: {it.days.length}</p>
-              </Card>
-            </Col>
-          );
-        })
-      }
-    </Row>
-  );
-};
+;
