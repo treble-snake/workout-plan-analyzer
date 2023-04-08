@@ -21,6 +21,7 @@ export const useDayIndexContext = () => {
 
 export const WorkoutDayEditor = ({day, index}: Props) => {
   const {mode} = useViewerConfigContext();
+  // console.info('WorkoutDayEditor render', index);
 
   return <DayIndexContext.Provider value={index}>
     <Card

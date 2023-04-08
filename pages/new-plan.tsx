@@ -9,6 +9,7 @@ import {PlanStorage} from '../api-lib';
 import {WorkoutPlan} from '../types/workout';
 import {GlobalLoading} from '../common/GlobalLoading';
 import {Alert} from 'antd';
+import {ErrorMessage} from '../common/ErrorMessage';
 
 const NewPlan: NextPage = () => {
   const [loading, setLoading] = useState(true);
@@ -31,7 +32,7 @@ const NewPlan: NextPage = () => {
   }
 
   if (error || !draft) {
-    return <Alert type={'error'} banner description={'Something went wrong'} />;
+    return <ErrorMessage text={'Something went wrong, sorry :('} />;
   }
 
   return (

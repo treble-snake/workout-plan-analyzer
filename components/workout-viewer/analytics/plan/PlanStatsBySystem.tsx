@@ -1,14 +1,16 @@
 import {QtyRange} from '../../../../types/workout';
-import {Col} from 'antd';
+import {Col, Spin} from 'antd';
 import {System} from '../systems-data/SystemsCommon';
 import {
   AnalyticsMode,
   useViewerConfigContext
 } from '../../ViewerConfigProvider';
 import {SystemsMeta} from '../systems-data/SystemsMeta';
-import {SimpleAnalytics} from './simple/SimpleAnalytics';
-import {DetailedAnalytics} from './detailed/DetailedAnalytics';
 import {GradedSets} from './types';
+import React, {Suspense} from 'react';
+
+const SimpleAnalytics = React.lazy(() => import('./simple/SimpleAnalytics'));
+const DetailedAnalytics = React.lazy(() => import('./detailed/DetailedAnalytics'));
 
 type Props<T> = {
   system: System,
@@ -27,11 +29,16 @@ export const PlanStatsBySystem = <T extends Record<string, string>>(props: Props
       {description && <p>{description}</p>}
       {
         analyticsMode === AnalyticsMode.Simple &&
-        <SimpleAnalytics system={system} sets={sets} frequency={frequency} />
+        <Suspense fallback={<Spin size={'large'}/>}>
+          <SimpleAnalytics system={system} sets={sets} frequency={frequency} />
+        </Suspense>
       }
       {
         analyticsMode === AnalyticsMode.Detailed &&
-        <DetailedAnalytics system={system} sets={sets} frequency={frequency} />
+        <Suspense fallback={<Spin size={'large'}/>}>
+          <DetailedAnalytics system={system} sets={sets}
+                             frequency={frequency} />
+        </Suspense>
       }
     </Col>
   );

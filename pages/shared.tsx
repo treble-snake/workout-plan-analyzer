@@ -9,6 +9,7 @@ import {GlobalLoading} from '../common/GlobalLoading';
 import {fromBase64} from '../components/workout-viewer/WorkoutUtils';
 import {WorkoutPlan} from '../types/workout';
 import {Alert} from 'antd';
+import {ErrorMessage} from '../common/ErrorMessage';
 
 const SharedPlan: NextPage = () => {
   const [isLoading, setLoading] = useState(true);
@@ -43,9 +44,7 @@ const SharedPlan: NextPage = () => {
   }
 
   if (error || !plan) {
-    return <Alert type={'error'} banner description={
-      error || 'Something went wrong'
-    } />;
+    return <ErrorMessage text={error || 'Something went wrong'} />;
   }
 
   return (
