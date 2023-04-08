@@ -9,7 +9,6 @@ import {
 import {clone, move, remove} from 'ramda';
 import {ExerciseInfo} from '../../types/exercise';
 import {denormalizePlan, normalizePlan} from './WorkoutUtils';
-import {ViewerConfigProvider} from './ViewerConfigProvider';
 import {PlanStorage} from '../../api-lib';
 import {EMPTY_PLAN} from '../../common/constants';
 
@@ -190,8 +189,6 @@ export const WorkoutProvider = ({children, plan: presetPlan}: Props) => {
     deletePlan: async () => PlanStorage.deletePlan(plan.id),
     resetDraft
   }}>
-    <ViewerConfigProvider>
       {children}
-    </ViewerConfigProvider>
   </WorkoutContext.Provider>;
 };

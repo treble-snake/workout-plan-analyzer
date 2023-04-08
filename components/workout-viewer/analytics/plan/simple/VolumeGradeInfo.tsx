@@ -5,11 +5,12 @@ import {
 } from '../../utils/grades/Grades';
 import {Alert, Button, Space, Tooltip} from 'antd';
 import React from 'react';
-import {BulbTwoTone, EyeInvisibleOutlined} from '@ant-design/icons';
+import {BulbTwoTone} from '@ant-design/icons';
 import {System} from '../../systems-data/SystemsCommon';
 import {MovementType} from '../../systems-data/MovementTypeValues';
 import {MuscleGroup} from '../../systems-data/MuscleGroupsValues';
-import {useViewerConfigContext} from '../../../ViewerConfigProvider';
+import {highlightedExercisesState} from '../../../ViewerConfigState';
+import {useRecoilState} from 'recoil';
 
 type Props = {
   grade: VolumeGrade,
@@ -46,7 +47,7 @@ type InfoMessageProps = {
 }
 
 const InfoMessage = ({msg, unit, system}: InfoMessageProps) => {
-  const {highlightedExercises: highlight, highlightExercises} = useViewerConfigContext();
+  const [highlight, highlightExercises] = useRecoilState(highlightedExercisesState);
 
   const highlightColor = (
     highlight && system === highlight.system && unit === highlight.unit

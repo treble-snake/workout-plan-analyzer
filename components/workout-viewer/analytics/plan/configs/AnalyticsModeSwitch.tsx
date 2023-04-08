@@ -1,17 +1,15 @@
 import {
   AnalyticsMode,
+  analyticsModeState,
   SimpleViewMode,
-  useViewerConfigContext
-} from '../../../ViewerConfigProvider';
+  simpleViewModeState
+} from '../../../ViewerConfigState';
 import {Segmented, Space} from 'antd';
+import {useRecoilState} from 'recoil';
 
 export const AnalyticsModeSwitch = () => {
-  const {
-    analyticsMode,
-    setAnalyticsMode,
-    simpleViewMode,
-    setSimpleViewMode
-  } = useViewerConfigContext();
+  const [analyticsMode, setAnalyticsMode] = useRecoilState(analyticsModeState);
+  const [simpleViewMode, setSimpleViewMode] = useRecoilState(simpleViewModeState);
 
   return <Space>
       <span>View:</span>

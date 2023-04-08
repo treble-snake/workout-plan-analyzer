@@ -1,7 +1,7 @@
 import {System} from '../../systems-data/SystemsCommon';
 import {QtyRange} from '../../../../../types/workout';
 import {SystemsMeta} from '../../systems-data/SystemsMeta';
-import {useViewerConfigContext} from '../../../ViewerConfigProvider';
+import {lifterExperienceState} from '../../../ViewerConfigState';
 import {Col, Row, Space} from 'antd';
 import {MuscleGroupLandmarks} from '../sets/MuscleGroupLandmarks';
 import {MuscleGroup} from '../../systems-data/MuscleGroupsValues';
@@ -12,6 +12,7 @@ import {VolumeGradeTag} from '../sets/VolumeGradeTag';
 import {MuscleGroupFrequencyGrade} from '../sets/MuscleGroupFrequencyGrade';
 import {GradedSets} from '../types';
 import React from 'react';
+import {useRecoilValue} from 'recoil';
 
 type Props<T> = {
   system: System,
@@ -22,7 +23,7 @@ type Props<T> = {
 export const DetailedAnalytics = <T extends Record<string, string>>(props: Props<T>) => {
   const {system, sets, frequency} = props;
   const {units} = SystemsMeta[system];
-  const {experience} = useViewerConfigContext();
+  const experience = useRecoilValue(lifterExperienceState);
 
   return <><Row>
     <Col style={{textAlign: 'center'}}

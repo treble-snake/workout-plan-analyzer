@@ -6,7 +6,8 @@ import {WorkoutDayTitle} from './WorkoutDayTitle';
 import {ExerciseList} from '../exercises/ExerciseList';
 import {createContext, memo, useContext} from 'react';
 import {WorkoutDayStats} from '../analytics/day/WorkoutDayStats';
-import {useViewerConfigContext, ViewerMode} from '../ViewerConfigProvider';
+import {viewerEditingModeState, ViewerMode} from '../ViewerConfigState';
+import {useRecoilValue} from 'recoil';
 
 type Props = {
   day: PlanDay
@@ -20,8 +21,8 @@ export const useDayIndexContext = () => {
 };
 
 export const WorkoutDayEditor = ({day, index}: Props) => {
-  const {mode} = useViewerConfigContext();
-  // console.info('WorkoutDayEditor render', index);
+  const mode = useRecoilValue(viewerEditingModeState);
+  console.debug('WorkoutDayEditor render', index);
 
   return <DayIndexContext.Provider value={index}>
     <Card

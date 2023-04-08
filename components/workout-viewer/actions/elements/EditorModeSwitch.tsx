@@ -1,8 +1,9 @@
-import {useViewerConfigContext, ViewerMode} from '../../ViewerConfigProvider';
+import {viewerEditingModeState, ViewerMode} from '../../ViewerConfigState';
 import {Switch} from 'antd';
+import {useRecoilState} from 'recoil';
 
 export const EditorModeSwitch = () => {
-  const {setMode, mode} = useViewerConfigContext();
+  const [mode, setMode] = useRecoilState(viewerEditingModeState);
 
   return (
     <Switch title={'Editor mode'}

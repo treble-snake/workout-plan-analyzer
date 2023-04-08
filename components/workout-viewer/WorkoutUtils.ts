@@ -2,7 +2,7 @@ import {Exercise, WorkoutPlan} from '../../types/workout';
 import {EXERCISES_BY_ID} from '../../temp-data/exercises';
 import {clone} from 'ramda';
 import {ExerciseInfo} from '../../types/exercise';
-import {ExerciseHighlight} from './ViewerConfigProvider';
+import {ExerciseHighlight} from './ViewerConfigState';
 import {System} from './analytics/systems-data/SystemsCommon';
 
 export const isHighlighted = (exc: Exercise, highlight: ExerciseHighlight | null) => {

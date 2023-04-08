@@ -1,10 +1,6 @@
 import {Superset, WorkoutDay} from '../../../types/workout';
 import {Button, Tooltip} from 'antd';
-import {
-  ArrowDownOutlined,
-  ArrowUpOutlined,
-  CloseOutlined
-} from '@ant-design/icons';
+import {CloseOutlined} from '@ant-design/icons';
 import {useWorkoutContext} from '../WorkoutProvider';
 import {useDayIndexContext} from '../day-card/WorkoutDayEditor';
 
