@@ -1,9 +1,24 @@
 import {PlusCircleOutlined} from '@ant-design/icons';
 import {Button, Card} from 'antd';
-import {useWorkoutContext} from '../WorkoutProvider';
+import {PlanDay} from '../../../types/workout';
+import {useSetRecoilState} from 'recoil';
+import {workoutPlanDaysSelector} from '../state/workout/WorkoutPlanState';
+import {memo} from 'react';
+import {makeNewDay} from '../WorkoutUtils';
 
-export const AddDays = () => {
-  const {addDay} = useWorkoutContext();
+const addDayToList = (days: PlanDay[], isRest: boolean) => {
+  return [
+    ...days,
+    makeNewDay(isRest),
+  ] as PlanDay[];
+};
+
+export const AddDaysComponent = () => {
+  const setDays = useSetRecoilState(workoutPlanDaysSelector);
+  const addDay = (isRest: boolean) =>
+    setDays((currentDays) => addDayToList(currentDays, isRest));
+
+  console.debug('AddDays render')
   // TODO: Card is duplicate
   return <Card title={'New bright day!'}
                style={{textAlign: 'center'}}>
@@ -16,3 +31,5 @@ export const AddDays = () => {
       onClick={() => addDay(true)}>Add rest day</Button>
   </Card>;
 };
+
+export const AddDays = memo(AddDaysComponent);

@@ -1,47 +1,26 @@
-import {PageHeader} from '@ant-design/pro-layout';
-import {Col, Descriptions, Layout, Row, Space, Tag, Typography} from 'antd';
-import {MemoizedWorkoutDayEditor} from './day-card/WorkoutDayEditor';
-import {useWorkoutContext} from './WorkoutProvider';
-import {AddDays} from './day-card/AddDays';
-import {ViewerActions} from './actions/ViewerActions';
-import {viewerEditingModeState, ViewerMode} from './ViewerConfigState';
-import {useRouter} from 'next/router';
+import {Col, Layout, Row} from 'antd';
+import {viewerEditingModeState, ViewerMode} from './state/ViewerConfigState';
 import React from 'react';
 import {useRecoilValue} from 'recoil';
+import {ViewerHeader} from './meta-info/ViewerHeader';
+import {WorkoutRecommendations} from './meta-info/WorkoutRecommendations';
+import {workoutDayIdsSelector} from './state/workout/WorkoutPlanState';
+import {WorkoutDayEditor} from './day-card/WorkoutDayEditor';
+import {AddDays} from './day-card/AddDays';
 
-export const WorkoutEditorComponent = () => {
-  const {plan, setMeta} = useWorkoutContext();
+export const WorkoutEditor = () => {
   const mode = useRecoilValue(viewerEditingModeState);
-  const router = useRouter();
+  const dayIds = useRecoilValue(workoutDayIdsSelector);
 
-  console.debug('WorkoutEditor render');
+  // console.debug('WorkoutEditor render');
   const isEditable = mode === ViewerMode.Edit;
 
   return <>
-    <PageHeader
-      onBack={() => router.push('/')}
-      title={
-        <Space>
-          {plan.isDraft && <Tag>Draft</Tag>}
-          <Typography.Text editable={isEditable && {
-            onChange: (title) => setMeta({title})
-          }}
-          >
-            {plan.title || (isEditable ? <i>Add title</i> : 'Untitled plan')}
-          </Typography.Text>
-        </Space>
-      }
-    >
-      <ViewerActions />
-      <Descriptions size="small" column={1}>
-        <Descriptions.Item
-          label="Days">{plan.days.length}</Descriptions.Item>
-      </Descriptions>
-    </PageHeader>
+    <ViewerHeader />
     <Layout.Content className={'plans-content'}>
       <Row gutter={16}>
         {
-          plan.days.map((it, i) => (
+          dayIds.map((id, i) => (
             <Col
               style={{marginBottom: 16}}
               xs={24}
@@ -49,8 +28,8 @@ export const WorkoutEditorComponent = () => {
               md={12}
               xl={8}
               xxl={6}
-              key={i}>
-              <MemoizedWorkoutDayEditor index={i} day={it} />
+              key={id}>
+              <WorkoutDayEditor id={id} index={i} />
             </Col>
           ))
         }
@@ -70,20 +49,6 @@ export const WorkoutEditorComponent = () => {
         }
       </Row>
     </Layout.Content>
-    <Descriptions>
-      <Descriptions.Item label="Recommendations">
-        <Typography.Paragraph editable={isEditable && {
-          onChange: (recommendations) => setMeta({recommendations}),
-        }}>
-          {
-            plan.recommendations ||
-            (isEditable && <i>Add recommendations</i>)
-          }
-        </Typography.Paragraph>
-      </Descriptions.Item>
-    </Descriptions>
+    <WorkoutRecommendations />
   </>;
 };
-
-// TODO: ?
-export const WorkoutEditor = React.memo(WorkoutEditorComponent);

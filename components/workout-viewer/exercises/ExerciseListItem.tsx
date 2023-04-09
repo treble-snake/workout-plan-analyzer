@@ -2,40 +2,41 @@ import {Exercise, QtyRange} from '../../../types/workout';
 import {Col, Row, Tooltip, Typography} from 'antd';
 import {ExerciseControls} from './ExerciseControls';
 import {RangeInput, RangeType} from './RangeInput';
-import {useDayIndexContext} from '../day-card/WorkoutDayEditor';
-import {useWorkoutContext} from '../WorkoutProvider';
+import {useDayIdContext} from '../day-card/WorkoutDayEditor';
 import {
   highlightedExercisesState,
   viewerEditingModeState,
   ViewerMode
-} from '../ViewerConfigState';
-import React from 'react';
+} from '../state/ViewerConfigState';
+import React, {memo} from 'react';
 import {isHighlighted} from '../WorkoutUtils';
-import {useRecoilValue} from 'recoil';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {workoutDayExercisesSelector} from '../state/workout/WorkoutPlanState';
+import {mergeRight, update} from 'ramda';
 
 type Props = {
   exercise: Exercise;
-  supersetIndex?: number;
   index: number;
 }
 
-export const ExerciseListItem = ({
-                                   exercise,
-                                   index,
-                                   supersetIndex
-                                 }: Props) => {
-    const dayIndex = useDayIndexContext();
-    const {setReps, setSets} = useWorkoutContext();
+export const ExerciseListItemComponent = ({
+                                            exercise,
+                                            index,
+                                          }: Props) => {
+    console.debug('Exercise List Item render', exercise.info.name);
+
+    const dayId = useDayIdContext();
     const mode = useRecoilValue(viewerEditingModeState);
     const highlight = useRecoilValue(highlightedExercisesState);
-
-    const updateReps = (range: QtyRange) => {
-      setReps(range, dayIndex, index, supersetIndex);
+    const setExercises = useSetRecoilState(workoutDayExercisesSelector(dayId));
+    const updateExercise = (patch: Partial<Exercise>) => {
+      setExercises((current) =>
+        update(index, mergeRight(current[index], patch), current));
     };
 
-    const updateSets = (range: QtyRange) => {
-      setSets(range, dayIndex, index, supersetIndex);
-    };
+    // TODO: important - use debounce
+    const updateReps = (range: QtyRange) => updateExercise({reps: range});
+    const updateSets = (range: QtyRange) => updateExercise({sets: range});
 
     let textStyle: React.CSSProperties = {padding: 0, margin: 0};
     if (isHighlighted(exercise, highlight)) {
@@ -45,10 +46,7 @@ export const ExerciseListItem = ({
     }
 
     return <Row>
-      <Col span={mode === ViewerMode.Edit ? 14 : 16}
-           style={{
-             paddingLeft: supersetIndex !== undefined ? 0 : 6,
-           }}>
+      <Col span={mode === ViewerMode.Edit ? 14 : 16}>
         <Tooltip title={exercise.info.name}>
           <Typography.Paragraph ellipsis style={{...textStyle}}>
             {exercise.info.name}
@@ -67,11 +65,10 @@ export const ExerciseListItem = ({
 
       {
         mode === ViewerMode.Edit &&
-        <Col span={2} style={{border: '0px dashed black'}}>
-          <ExerciseControls index={index} supersetIndex={supersetIndex} />
-        </Col>
+        <ExerciseControls index={index} />
       }
     </Row>;
   }
 ;
 
+export const ExerciseListItem = memo(ExerciseListItemComponent);

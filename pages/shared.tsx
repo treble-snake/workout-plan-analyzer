@@ -8,7 +8,6 @@ import {useEffect, useState} from 'react';
 import {GlobalLoading} from '../common/GlobalLoading';
 import {fromBase64} from '../components/workout-viewer/WorkoutUtils';
 import {WorkoutPlan} from '../types/workout';
-import {Alert} from 'antd';
 import {ErrorMessage} from '../common/ErrorMessage';
 
 const SharedPlan: NextPage = () => {

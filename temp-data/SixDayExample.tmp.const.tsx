@@ -8,6 +8,7 @@ export const SixDayExamplePlan: WorkoutPlan = {
   recommendations: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   days: [
     {
+      id: '5d7354cc-e024-4c20-b0bf-cfcf5c75392f',
       title: 'Push',
       exercises: [
         {
@@ -40,25 +41,22 @@ export const SixDayExamplePlan: WorkoutPlan = {
           reps: {from: 12, to: 15}
         },
         {
-          exercises: [
-            {
-              info: {
-                id: '8811b1ee-b232-4a56-bff1-4d5419c7e28f',
-                // name: 'Lateral raise',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 12, to: 15}
-            },
-            {
-              info: {
-                id: 'c8790bb9-0b73-4071-a454-c758ccec01cb',
-                // name: 'Triceps pushdown',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 12, to: 15}
-            }
-          ]
+          info: {
+            id: '8811b1ee-b232-4a56-bff1-4d5419c7e28f',
+            // name: 'Lateral raise',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 12, to: 15}
         },
+        {
+          info: {
+            id: 'c8790bb9-0b73-4071-a454-c758ccec01cb',
+            // name: 'Triceps pushdown',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 12, to: 15}
+        }
+        ,
         {
           info: {
             id: 'f2d5a714-71eb-4a3b-918d-2f538ad37687',
@@ -78,6 +76,7 @@ export const SixDayExamplePlan: WorkoutPlan = {
       ]
     },
     {
+      id: '1cda3053-2280-44c6-a67b-788b732f2f2b',
       title: 'Legs',
       exercises: [
         {
@@ -126,6 +125,7 @@ export const SixDayExamplePlan: WorkoutPlan = {
       ]
     },
     {
+      id: '3621095d-477d-4128-9d2e-0d5ff90864a6',
       title: 'Pull',
       exercises: [
         {
@@ -150,102 +150,84 @@ export const SixDayExamplePlan: WorkoutPlan = {
           sets: {from: 3, to: 3},
           reps: {from: 10, to: 12}
         }, {
-          exercises: [
-            {
-            info: {
-              id: 'bc2318a2-1fe5-4f8a-abe5-36d872978f55',
-              // name: 'Standing cable pullover',
-            } as ExerciseInfo,
-            sets: {from: 2, to: 3},
-            reps: {from: 12, to: 15}
-          },{
-            info: {
-              id: '968bde1b-2489-4187-a135-db8376113645',
-              // name: 'Barbell Upright row',
-            } as ExerciseInfo,
-            sets: {from: 2, to: 3},
-            reps: {from: 14, to: 18}
-          },
-          ]
+          info: {
+            id: 'bc2318a2-1fe5-4f8a-abe5-36d872978f55',
+            // name: 'Standing cable pullover',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 12, to: 15}
+        }, {
+          info: {
+            id: '968bde1b-2489-4187-a135-db8376113645',
+            // name: 'Barbell Upright row',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 14, to: 18}
         },
         {
-          exercises: [
-            {
-              info: {
-                id: 'f37064c5-daff-49a5-85db-5649ff2998ee',
-                // name: 'DB Shrug',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 12, to: 15}
-            }, {
-              info: {
-                id: '93828de1-4295-4e5d-9932-327e0faece29',
-                // name: 'Incline DB Curl',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 12, to: 15}
-            },
-          ]
-        }
+
+          info: {
+            id: 'f37064c5-daff-49a5-85db-5649ff2998ee',
+            // name: 'DB Shrug',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 12, to: 15}
+        }, {
+          info: {
+            id: '93828de1-4295-4e5d-9932-327e0faece29',
+            // name: 'Incline DB Curl',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 12, to: 15}
+        },
       ]
     },
     {
+      id: '7859029c-614d-4203-be5a-c82b3808e4ca',
       title: 'Bro Day',
       exercises: [
         {
-          exercises: [
-            {
-              info: {
-                id: '9b9464c1-569f-4f7c-9ba1-ec3a24a0ff0b',
-                // name: 'Barbel curl',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 8, to: 10}
-            }, {
-              info: {
-                id: 'c8790bb9-0b73-4071-a454-c758ccec01cb',
-                // name: 'Tricep pushdown',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 12, to: 15}
-            },
-          ]
+          info: {
+            id: '9b9464c1-569f-4f7c-9ba1-ec3a24a0ff0b',
+            // name: 'Barbel curl',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 8, to: 10}
         }, {
-          exercises: [
-            {
-              info: {
-                id: 'fd4d93d5-6db0-4922-bbdc-166fbed7e8e5',
-                // name: 'Reverse Barbel curl',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 12, to: 15}
-            }, {
-              info: {
-                id: '59053cdf-0752-4517-9c87-5876391dddcf',
-                // name: 'Triceps Extension',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 8, to: 10}
-            },
-          ]
+          info: {
+            id: 'c8790bb9-0b73-4071-a454-c758ccec01cb',
+            // name: 'Tricep pushdown',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 12, to: 15}
         }, {
-          exercises: [
-            {
-              info: {
-                id: 'e1b81ba0-2edd-43d9-adf1-7c6a061d5296',
-                // name: 'Lateral raise (Cable)',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 12, to: 15}
-            }, {
-              info: {
-                id: 'f0af0388-99e7-4442-95b4-1ac00ea9dbe0',
-                // name: 'Hammer curl (Cable)',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 12, to: 15}
-            },
-          ]
+          info: {
+            id: 'fd4d93d5-6db0-4922-bbdc-166fbed7e8e5',
+            // name: 'Reverse Barbel curl',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 12, to: 15}
+        }, {
+          info: {
+            id: '59053cdf-0752-4517-9c87-5876391dddcf',
+            // name: 'Triceps Extension',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 8, to: 10}
+        }, {
+          info: {
+            id: 'e1b81ba0-2edd-43d9-adf1-7c6a061d5296',
+            // name: 'Lateral raise (Cable)',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 12, to: 15}
+        }, {
+          info: {
+            id: 'f0af0388-99e7-4442-95b4-1ac00ea9dbe0',
+            // name: 'Hammer curl (Cable)',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 12, to: 15}
         },
         {
           info: {
@@ -259,6 +241,7 @@ export const SixDayExamplePlan: WorkoutPlan = {
     },
     {
       title: 'Lower',
+      id: 'b88e0724-0881-4722-9a82-2b70ec18fef3',
       exercises: [
         {
           info: {
@@ -283,23 +266,19 @@ export const SixDayExamplePlan: WorkoutPlan = {
           reps: {from: 10, to: 12}
         },
         {
-          exercises: [
-            {
-              info: {
-                id: '27f79c27-945a-4ce8-88d6-7488d0b3f3b9',
-                // name: 'Lying leg curl',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 2},
-              reps: {from: 12, to: 15}
-            }, {
-              info: {
-                id: 'f37064c5-daff-49a5-85db-5649ff2998ee',
-                // name: 'Shrugs',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 10, to: 12}
-            },
-          ]
+          info: {
+            id: '27f79c27-945a-4ce8-88d6-7488d0b3f3b9',
+            // name: 'Lying leg curl',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 2},
+          reps: {from: 12, to: 15}
+        }, {
+          info: {
+            id: 'f37064c5-daff-49a5-85db-5649ff2998ee',
+            // name: 'Shrugs',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 10, to: 12}
         }, {
           info: {
             id: '43d201b9-28af-4659-9dfd-1a821d1cf203',
@@ -311,6 +290,7 @@ export const SixDayExamplePlan: WorkoutPlan = {
       ]
     },
     {
+      id: 'cdad6890-969e-452c-b139-1f8664f91046',
       title: 'Upper',
       exercises: [
         {
@@ -337,54 +317,49 @@ export const SixDayExamplePlan: WorkoutPlan = {
           reps: {from: 10, to: 12}
         },
         {
-          exercises: [
-            {
-              info: {
-                id: '9f8c7188-63ff-41a0-be74-e4b76a844ac5',
-                // name: 'Overhead Press DB',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 8, to: 12}
-            }, {
-              info: {
-                id: 'b812061b-7531-47de-aaa6-c34d3202f0a5',
-                // name: 'Seated hammer 1-arm row',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 3},
-              reps: {from: 8, to: 12}
-            },
-          ]
+          info: {
+            id: '9f8c7188-63ff-41a0-be74-e4b76a844ac5',
+            // name: 'Overhead Press DB',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 8, to: 12}
+        }, {
+          info: {
+            id: 'b812061b-7531-47de-aaa6-c34d3202f0a5',
+            // name: 'Seated hammer 1-arm row',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 3},
+          reps: {from: 8, to: 12}
         },
         {
-          exercises: [
-            {
-              info: {
-                id: 'c8790bb9-0b73-4071-a454-c758ccec01cb',
-                // name: 'Triceps pushdown',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 2},
-              reps: {from: 20, to: 25}
-            },
-            {
-              info: {
-                id: '38952d79-84f7-486e-bf0a-cd01e30d9e8b',
-                // name: 'Hammer curl (DB)',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 2},
-              reps: {from: 20, to: 25}
-            },
-            {
-              info: {
-                id: '8811b1ee-b232-4a56-bff1-4d5419c7e28f',
-                // name: 'Lateral raise',
-              } as ExerciseInfo,
-              sets: {from: 2, to: 2},
-              reps: {from: 20, to: 25}
-            },
-          ]
+          info: {
+            id: 'c8790bb9-0b73-4071-a454-c758ccec01cb',
+            // name: 'Triceps pushdown',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 2},
+          reps: {from: 20, to: 25}
+        },
+        {
+          info: {
+            id: '38952d79-84f7-486e-bf0a-cd01e30d9e8b',
+            // name: 'Hammer curl (DB)',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 2},
+          reps: {from: 20, to: 25}
+        },
+        {
+          info: {
+            id: '8811b1ee-b232-4a56-bff1-4d5419c7e28f',
+            // name: 'Lateral raise',
+          } as ExerciseInfo,
+          sets: {from: 2, to: 2},
+          reps: {from: 20, to: 25}
         },
       ]
     },
-    {isRest: true}
+    {
+      id: '250783ea-8528-4363-b973-e627ecbc5d63',
+      isRest: true
+    }
   ]
 };

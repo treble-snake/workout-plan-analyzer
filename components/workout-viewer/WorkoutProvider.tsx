@@ -8,7 +8,7 @@ import {
 } from '../../types/workout';
 import {clone, move, remove} from 'ramda';
 import {ExerciseInfo} from '../../types/exercise';
-import {denormalizePlan, normalizePlan} from './WorkoutUtils';
+import {normalizePlan, denormalizePlan} from './WorkoutUtils';
 import {PlanStorage} from '../../api-lib';
 import {EMPTY_PLAN} from '../../common/constants';
 
@@ -68,20 +68,20 @@ type Props = {
 
 // TODO: Split into draft, shared and editor providers?
 export const WorkoutProvider = ({children, plan: presetPlan}: Props) => {
-  const [plan, setPlan] = useState(normalizePlan(presetPlan || clone(EMPTY_PLAN)));
+  const [plan, setPlan] = useState(denormalizePlan(presetPlan || clone(EMPTY_PLAN)));
 
-  useEffect(() => {
-    if (plan.isDraft) {
-      // TODO: throttle
-      PlanStorage.saveDraft(denormalizePlan(plan))
-        .then(() => console.debug('Draft saved'))
-        .catch(e => console.error('Draft saving failed', e));
-    }
-  }, [plan]);
+  // useEffect(() => {
+  //   if (plan.isDraft) {
+  //     // TODO: throttle
+  //     PlanStorage.saveDraft(denormalizePlan(plan))
+  //       .then(() => console.debug('Draft saved'))
+  //       .catch(e => console.error('Draft saving failed', e));
+  //   }
+  // }, [plan]);
 
 
   const setDays = (days: WorkoutPlan['days']) => {
-    setPlan(normalizePlan({...plan, days}));
+    setPlan(denormalizePlan({...plan, days}));
   };
 
   const addDay = (isRest: boolean) => {
@@ -170,7 +170,7 @@ export const WorkoutProvider = ({children, plan: presetPlan}: Props) => {
   };
 
   const resetDraft = async () => {
-    const newPlan = denormalizePlan(await PlanStorage.createPlan());
+    const newPlan = normalizePlan(await PlanStorage.createPlan());
     await PlanStorage.saveDraft(newPlan);
     setPlan(newPlan);
   }

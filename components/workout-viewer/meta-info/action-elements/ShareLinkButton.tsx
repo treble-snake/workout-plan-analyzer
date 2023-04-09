@@ -1,10 +1,12 @@
 import {Typography} from 'antd';
-import {useWorkoutContext} from '../../WorkoutProvider';
 import {useEffect, useState} from 'react';
 import {toBase64} from '../../WorkoutUtils';
+import {useRecoilValue} from 'recoil';
+import {workoutPlanState} from '../../state/workout/WorkoutPlanState';
 
+// TODO: use lazy computation !!!
 export const ShareLinkButton = () => {
-  const {plan} = useWorkoutContext();
+  const plan = useRecoilValue(workoutPlanState);
   const [shareLink, setShareLink] = useState('');
 
   // TODO: some weird Next.js stuff. Figure out.

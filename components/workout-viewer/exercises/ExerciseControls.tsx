@@ -1,27 +1,30 @@
-import {Superset, WorkoutDay} from '../../../types/workout';
-import {Button, Tooltip} from 'antd';
+import {Button, Col, Tooltip} from 'antd';
 import {CloseOutlined} from '@ant-design/icons';
-import {useWorkoutContext} from '../WorkoutProvider';
-import {useDayIndexContext} from '../day-card/WorkoutDayEditor';
+import {useDayIdContext} from '../day-card/WorkoutDayEditor';
+import {useSetRecoilState} from 'recoil';
+import {workoutDayExercisesSelector} from '../state/workout/WorkoutPlanState';
+import {memo} from 'react';
+import {remove} from 'ramda';
 
 type Props = {
-  supersetIndex?: number;
   index: number;
 }
 
 const BUTTON_SIZE = 14;
 
-export const ExerciseControls = ({
-                                   index,
-                                   supersetIndex
-                                 }: Props) => {
-  const {removeExercise, plan} = useWorkoutContext();
-  const dayIndex = useDayIndexContext();
-  const day = plan.days[dayIndex] as WorkoutDay;
-  const exrQty = supersetIndex ?
-    ((day.exercises[supersetIndex] as Superset).exercises.length) :
-    day.exercises.length;
-  return <>
+export const ExerciseControlsComponent = ({
+                                            index,
+                                          }: Props) => {
+  console.debug('Exercise Controls render');
+  const dayId = useDayIdContext();
+  const setExercises = useSetRecoilState(workoutDayExercisesSelector(dayId));
+  const removeExercise = () => {
+    setExercises((currentList) => {
+      return remove(index, 1, currentList);
+    });
+  };
+
+  return <Col span={2}>
     {/*{*/}
     {/*  index > 0 &&*/}
     {/*  <Button size={'small'}*/}
@@ -42,16 +45,18 @@ export const ExerciseControls = ({
     {/*  />*/}
     {/*}*/}
 
+
     <Tooltip title={'Delete'}>
       <Button size={'small'}
               danger
               type={'link'}
               style={{width: BUTTON_SIZE, height: BUTTON_SIZE}}
               icon={<CloseOutlined />}
-              onClick={() => removeExercise(dayIndex, index, supersetIndex)}
+              onClick={removeExercise}
 
       />
     </Tooltip>
-  </>;
+  </Col>;
 };
 
+export const ExerciseControls = memo(ExerciseControlsComponent);

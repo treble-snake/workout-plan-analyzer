@@ -1,17 +1,18 @@
-import {WorkoutDay} from '../../../types/workout';
+import {ExerciseList} from '../../../types/workout';
 import {ExerciseListItem} from './ExerciseListItem';
-import {SupersetListItem} from './SupersetListItem';
 import {Col, Empty, Row} from 'antd';
-import {viewerEditingModeState, ViewerMode} from '../ViewerConfigState';
+import {viewerEditingModeState, ViewerMode} from '../state/ViewerConfigState';
 import {NewExerciseRow} from './NewExerciseRow';
 import {useRecoilValue} from 'recoil';
+import {memo} from 'react';
 
 type Props = {
-  day: WorkoutDay;
+  exercises: ExerciseList;
 }
 
-export const ExerciseList = ({day}: Props) => {
+export const ExerciseEditorListComponent = ({exercises}: Props) => {
   const mode = useRecoilValue(viewerEditingModeState);
+  console.debug('Exercise Editor List render');
 
   const tableHeader = <Row>
     <Col span={3} offset={mode === ViewerMode.Edit ? 12 : 16}
@@ -19,7 +20,7 @@ export const ExerciseList = ({day}: Props) => {
     <Col span={5} style={{textAlign: 'center'}}>Reps</Col>
   </Row>;
 
-  if (day.exercises.length === 0) {
+  if (exercises.length === 0) {
     return mode === ViewerMode.Edit ?
       <>
         {tableHeader}
@@ -31,10 +32,8 @@ export const ExerciseList = ({day}: Props) => {
   return <>
     {tableHeader}
     {
-      day.exercises.map((it, i) => {
-        return ('exercises' in it) ?
-          <SupersetListItem superset={it} key={i} index={i} /> :
-          <ExerciseListItem exercise={it} key={i} index={i} />;
+      exercises.map((it, i) => {
+        return <ExerciseListItem exercise={it} key={i} index={i} />;
       })
     }
     {
@@ -42,3 +41,5 @@ export const ExerciseList = ({day}: Props) => {
     }
   </>;
 };
+
+export const ExerciseEditorList = memo(ExerciseEditorListComponent);

@@ -1,7 +1,7 @@
 import {System} from '../../systems-data/SystemsCommon';
 import {QtyRange} from '../../../../../types/workout';
 import {SystemsMeta} from '../../systems-data/SystemsMeta';
-import {lifterExperienceState} from '../../../ViewerConfigState';
+import {lifterExperienceState} from '../../../state/ViewerConfigState';
 import {Col, Row, Space} from 'antd';
 import {MuscleGroupLandmarks} from '../sets/MuscleGroupLandmarks';
 import {MuscleGroup} from '../../systems-data/MuscleGroupsValues';

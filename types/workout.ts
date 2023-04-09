@@ -11,20 +11,19 @@ export type Exercise = {
   reps: QtyRange;
 }
 
-export type Superset = {
-  description?: string;
-  exercises: Exercise[];
-};
-
 export type RestDay = {
+  id: string;
   title?: string;
   isRest: boolean;
 }
 
+export type ExerciseList = Exercise[];
+
 export type WorkoutDay = {
+  id: string;
   title?: string;
   description?: string,
-  exercises: (Exercise|Superset)[];
+  exercises: ExerciseList;
 };
 
 export type PlanDay = WorkoutDay | RestDay;

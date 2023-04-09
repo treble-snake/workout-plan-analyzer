@@ -9,7 +9,7 @@ import {BulbTwoTone} from '@ant-design/icons';
 import {System} from '../../systems-data/SystemsCommon';
 import {MovementType} from '../../systems-data/MovementTypeValues';
 import {MuscleGroup} from '../../systems-data/MuscleGroupsValues';
-import {highlightedExercisesState} from '../../../ViewerConfigState';
+import {highlightedExercisesState} from '../../../state/ViewerConfigState';
 import {useRecoilState} from 'recoil';
 
 type Props = {

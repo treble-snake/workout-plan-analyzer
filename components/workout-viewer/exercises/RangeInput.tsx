@@ -58,11 +58,11 @@ export enum RangeType {
 
 type Props = {
   range: QtyRange;
-  type?: RangeType,
+  type: RangeType,
   update: (range: QtyRange) => void,
 }
 
-export const RangeInput = ({range, update, type = RangeType.Reps}: Props) => {
+export const RangeInputComponent = ({range, update, type}: Props) => {
   const [text, setText] = useState(rangeToText(range));
 
   const onChange = (value: string) => {
@@ -94,3 +94,5 @@ export const RangeInput = ({range, update, type = RangeType.Reps}: Props) => {
            }} />
   </AutoComplete>;
 };
+
+export const RangeInput = RangeInputComponent;

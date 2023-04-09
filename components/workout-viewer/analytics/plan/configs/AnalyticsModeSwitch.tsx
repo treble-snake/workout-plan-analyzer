@@ -3,7 +3,7 @@ import {
   analyticsModeState,
   SimpleViewMode,
   simpleViewModeState
-} from '../../../ViewerConfigState';
+} from '../../../state/ViewerConfigState';
 import {Segmented, Space} from 'antd';
 import {useRecoilState} from 'recoil';
 
