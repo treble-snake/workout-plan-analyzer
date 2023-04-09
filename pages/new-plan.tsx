@@ -1,45 +1,40 @@
 import type {NextPage} from 'next';
 import {WorkoutEditor} from '../components/workout-viewer/WorkoutEditor';
-import {WorkoutProvider} from '../components/workout-viewer/WorkoutProvider';
 import {
   PlanAnalytics
 } from '../components/workout-viewer/analytics/plan/PlanAnalytics';
-import {useEffect, useState} from 'react';
-import {PlanStorage} from '../api-lib';
-import {WorkoutPlan} from '../types/workout';
+import {useEffect} from 'react';
 import {GlobalLoading} from '../common/GlobalLoading';
-import {Alert} from 'antd';
 import {ErrorMessage} from '../common/ErrorMessage';
+import {useSetRecoilState} from 'recoil';
+import {
+  workoutPlanState
+} from '../components/workout-viewer/state/workout/WorkoutPlanState';
+import {useDraft} from '../api-lib/hooks/useDraft';
 
 const NewPlan: NextPage = () => {
-  const [loading, setLoading] = useState(true);
-  const [draft, setDraft] = useState<WorkoutPlan | null>(null);
-  const [error, setError] = useState(null);
+  const setWorkout = useSetRecoilState(workoutPlanState);
+  const {draft, error, isLoading} = useDraft();
 
   useEffect(() => {
-    setLoading(true);
-    PlanStorage.loadDraft()
-      .then((draft) => setDraft(draft))
-      .catch(error => {
-        console.error(error);
-        setError(error)
-      })
-      .finally(() => setLoading(false));
-  }, []);
+    if (draft) {
+      setWorkout(draft);
+    }
+  }, [setWorkout, draft]);
 
-  if (loading) {
+  if (isLoading) {
     return <GlobalLoading />;
   }
 
-  if (error || !draft) {
+  if (error) {
     return <ErrorMessage text={'Something went wrong, sorry :('} />;
   }
 
   return (
-    <WorkoutProvider plan={draft}>
+    <>
       <WorkoutEditor />
       <PlanAnalytics />
-    </WorkoutProvider>
+    </>
   );
 };
 

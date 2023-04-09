@@ -3,15 +3,26 @@ import {Col, Row} from 'antd';
 import {rangeToText} from '../../exercises/RangeUtils';
 import {System} from '../systems-data/SystemsCommon';
 import {SystemsMeta} from '../systems-data/SystemsMeta';
+import {useRecoilValue} from 'recoil';
+import {workoutDaysStatsSelector} from '../../state/workout/WorkoutStatsState';
+import {useDayIdContext} from '../../day-card/WorkoutDayEditor';
 
 type Props<T> = {
   system: System,
-  sets: Record<keyof T, QtyRange>,
 }
 
-export const DayStatsBySystem = <T extends Record<string, string>>(props: Props<T>) => {
-  const {sets, system} = props;
+export const DayStatsBySystem = (props: Props<string>) => {
+  console.debug('DayStatsBySystem render', props.system);
+  const {system} = props;
   const {short: title, units} = SystemsMeta[system];
+  const dayId = useDayIdContext();
+  const {
+    setsByMovementType,
+    setsByMuscleGroup
+  } = useRecoilValue(workoutDaysStatsSelector(dayId));
+  const sets: Record<string, QtyRange> =
+    system === System.Movement ? setsByMovementType : setsByMuscleGroup;
+
   return (
     <>
       <Row>
@@ -33,3 +44,5 @@ export const DayStatsBySystem = <T extends Record<string, string>>(props: Props<
     </>
   );
 };
+
+export default DayStatsBySystem;

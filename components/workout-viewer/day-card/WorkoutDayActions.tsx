@@ -5,21 +5,33 @@ import {
   DeleteFilled,
   QuestionCircleOutlined
 } from '@ant-design/icons';
-import {useWorkoutContext} from '../WorkoutProvider';
-import {useDayIndexContext} from './WorkoutDayEditor';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {
+  workoutPlanDaysSelector,
+  workoutPlanLengthSelector
+} from '../state/workout/WorkoutPlanState';
+import {move, remove} from 'ramda';
 
-export const WorkoutDayActions = () => {
-  const {plan, removeDay, moveDay} = useWorkoutContext();
-  const dayIndex = useDayIndexContext();
+type Props = {
+  index: number;
+}
+
+export const WorkoutDayActions = ({index}: Props) => {
+  const planLength = useRecoilValue(workoutPlanLengthSelector);
+  const setDays = useSetRecoilState(workoutPlanDaysSelector);
+
+  const removeDay = () => setDays((days) => remove(index, 1, days));
+  const moveDay = (shift: number) =>
+    setDays((days) => move(index, index + shift, days));
 
   return <>
     {
-      dayIndex !== 0 &&
+      index !== 0 &&
       <Tooltip title={'Move left'}>
         <Button icon={<ArrowLeftOutlined />}
                 size={'small'}
                 type={'link'}
-                onClick={() => moveDay(dayIndex, dayIndex - 1)}
+                onClick={() => moveDay(-1)}
         />
       </Tooltip>
     }
@@ -27,7 +39,7 @@ export const WorkoutDayActions = () => {
     <Tooltip title={'Delete'}>
       <Popconfirm title="Are you sure？" okText="Yes" cancelText="No"
                   icon={<QuestionCircleOutlined style={{color: 'red'}} />}
-                  onConfirm={() => removeDay(dayIndex)}
+                  onConfirm={removeDay}
       >
         <Button icon={<DeleteFilled />}
                 size={'small'}
@@ -37,12 +49,12 @@ export const WorkoutDayActions = () => {
     </Tooltip>
 
     {
-      dayIndex !== plan.days.length - 1 &&
+      index !== planLength - 1 &&
       <Tooltip title={'Move right'}>
         <Button icon={<ArrowRightOutlined />}
                 size={'small'}
                 type={'link'}
-                onClick={() => moveDay(dayIndex, dayIndex + 1)}
+                onClick={() => moveDay(1)}
         />
       </Tooltip>
     }

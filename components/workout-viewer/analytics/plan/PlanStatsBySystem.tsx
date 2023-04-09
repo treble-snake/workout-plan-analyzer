@@ -1,7 +1,7 @@
 import {QtyRange} from '../../../../types/workout';
 import {Col, Spin} from 'antd';
 import {System} from '../systems-data/SystemsCommon';
-import {AnalyticsMode, analyticsModeState} from '../../ViewerConfigState';
+import {AnalyticsMode, analyticsModeState} from '../../state/ViewerConfigState';
 import {SystemsMeta} from '../systems-data/SystemsMeta';
 import {GradedSets} from './types';
 import React, {Suspense} from 'react';

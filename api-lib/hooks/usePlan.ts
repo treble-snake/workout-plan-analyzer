@@ -1,17 +1,19 @@
 import useSWR from 'swr';
 import {WorkoutPlan} from '../../types/workout';
-import {normalizePlan} from '../../components/workout-viewer/WorkoutUtils';
 
 export function usePlan(id: null | string) {
   const {
     data,
     error,
-    isLoading
+    isLoading,
+    mutate
   } = useSWR<WorkoutPlan>(id === null ? null : `/plans/${id}`);
-  const plan = data ? normalizePlan(data) : data;
+  console.debug('usePlan', {data, error, isLoading});
+  const plan = data;
   return {
     plan,
     isLoading,
-    error
+    error,
+    mutate
   };
 }

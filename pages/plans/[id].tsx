@@ -1,6 +1,5 @@
 import type {NextPage} from 'next';
 import {useRouter} from 'next/router';
-import {WorkoutProvider} from '../../components/workout-viewer/WorkoutProvider';
 import {WorkoutEditor} from '../../components/workout-viewer/WorkoutEditor';
 import {
   PlanAnalytics
@@ -8,11 +7,26 @@ import {
 import {GlobalLoading} from '../../common/GlobalLoading';
 import {usePlan} from '../../api-lib/hooks/usePlan';
 import {ErrorMessage} from '../../common/ErrorMessage';
+import {useSetRecoilState} from 'recoil';
+import {
+  workoutPlanState
+} from '../../components/workout-viewer/state/workout/WorkoutPlanState';
+import {useEffect} from 'react';
 
 const PlanById: NextPage = () => {
+  console.debug('render PlanById');
+
   const {query, isReady} = useRouter();
   const id = String(query.id);
   const {plan, error, isLoading} = usePlan(id);
+  const setWorkout = useSetRecoilState(workoutPlanState);
+
+  useEffect(() => {
+    console.debug('PlanById useEffect');
+    if (plan) {
+      setWorkout(plan);
+    }
+  }, [setWorkout, plan]);
 
   if (isLoading || !isReady) {
     return <GlobalLoading />;
@@ -29,11 +43,10 @@ const PlanById: NextPage = () => {
     return <ErrorMessage text={text} />;
   }
 
-  return (
-    <WorkoutProvider plan={plan}>
+  return (<>
       <WorkoutEditor />
       <PlanAnalytics />
-    </WorkoutProvider>
+    </>
   );
 };
 

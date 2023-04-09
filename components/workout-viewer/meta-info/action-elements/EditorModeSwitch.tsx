@@ -1,4 +1,4 @@
-import {viewerEditingModeState, ViewerMode} from '../../ViewerConfigState';
+import {viewerEditingModeState, ViewerMode} from '../../state/ViewerConfigState';
 import {Switch} from 'antd';
 import {useRecoilState} from 'recoil';
 

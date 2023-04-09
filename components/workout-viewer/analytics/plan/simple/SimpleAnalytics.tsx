@@ -5,7 +5,7 @@ import {
   highlightedExercisesState,
   SimpleViewMode,
   simpleViewModeState
-} from '../../../ViewerConfigState';
+} from '../../../state/ViewerConfigState';
 import {VolumeGradeInfo} from './VolumeGradeInfo';
 import {VolumeGradeType} from '../../utils/grades/Grades';
 import {GradedSets} from '../types';

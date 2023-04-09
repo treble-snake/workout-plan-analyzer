@@ -1,28 +1,32 @@
-import {PlanDay} from '../../../types/workout';
-import {useWorkoutContext} from '../WorkoutProvider';
 import {Typography} from 'antd';
-import {useDayIndexContext} from './WorkoutDayEditor';
-import {viewerEditingModeState, ViewerMode} from '../ViewerConfigState';
-import {useRecoilValue} from 'recoil';
+import {viewerEditingModeState, ViewerMode} from '../state/ViewerConfigState';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
+import React from 'react';
+import {workoutDayById} from '../state/workout/WorkoutPlanState';
 
 const {Paragraph} = Typography;
 
 type Props = {
-  day: PlanDay;
+  id: string;
+  title: string | undefined;
+  isRest: boolean;
 }
 
-export const WorkoutDayTitle = ({day}: Props) => {
-  const {setDayMetadata} = useWorkoutContext();
-  // const {mode} = useViewerConfigContext();
+export const WorkoutDayTitleComponent = ({isRest, title, id}: Props) => {
   const mode = useRecoilValue(viewerEditingModeState);
-  const dayIndex = useDayIndexContext();
+  const setDay = useSetRecoilState(workoutDayById(id));
+  const updateTitle = (title: string) => setDay((day) => {
+    return {...day, title};
+  });
 
-  const defaultTitle = 'isRest' in day ? 'Rest' : `Day ${dayIndex + 1}`;
+  const compiledTitle = title || (isRest ? 'Rest Day' : 'Workout Day');
   return <Paragraph
     style={{margin: 0}}
     editable={mode === ViewerMode.View ? false : {
-    onChange: (value) => setDayMetadata(dayIndex, {title: value}),
-  }}>
-    {day.title || defaultTitle}
+      onChange: updateTitle
+    }}>
+    {compiledTitle}
   </Paragraph>;
 };
+
+export const WorkoutDayTitle = React.memo(WorkoutDayTitleComponent);

@@ -1,6 +1,6 @@
-import {ExperienceLevel, System} from './analytics/systems-data/SystemsCommon';
-import {MovementType} from './analytics/systems-data/MovementTypeValues';
-import {MuscleGroup} from './analytics/systems-data/MuscleGroupsValues';
+import {ExperienceLevel, System} from '../analytics/systems-data/SystemsCommon';
+import {MovementType} from '../analytics/systems-data/MovementTypeValues';
+import {MuscleGroup} from '../analytics/systems-data/MuscleGroupsValues';
 import {atom} from 'recoil';
 
 export enum ViewerMode {

@@ -1,27 +1,26 @@
-import {WorkoutDay} from '../../../../types/workout';
-import {Collapse, Segmented} from 'antd';
-import {rangeToText} from '../../exercises/RangeUtils';
-import {calculateWorkingSets} from '../utils/WorkingSets';
-import {useState} from 'react';
-import {DayStatsBySystem} from './DayStatsBySystem';
+import {Collapse, Segmented, Spin} from 'antd';
+import React, {memo, Suspense, useState} from 'react';
 import {System} from '../systems-data/SystemsCommon';
 import {SystemsMeta} from '../systems-data/SystemsMeta';
 
-type Props = {
-  day: WorkoutDay;
-}
+const TotalDaySets = React.lazy(() => import('./TotalDaySets'));
+const DayStatsBySystem = React.lazy(() => import('./DayStatsBySystem'));
 
-export const WorkoutDayStats = ({day}: Props) => {
-  const [system, setSystem] = useState<number | string>(System.Muscle);
-  const {
-    totalSets, setsByMovementType, setsByMuscleGroup
-  } = calculateWorkingSets([day]);
+export const WorkoutDayStatsComponent = () => {
+  const [system, setSystem] = useState(System.Muscle);
+  console.debug('Workout Day Stats render');
 
   return (
     <Collapse ghost key={'1'}>
-      <Collapse.Panel header={`Total sets: ${rangeToText(totalSets)}`} key="1"
-                      style={{textAlign: 'left'}}>
-
+      <Collapse.Panel
+        key="1"
+        style={{textAlign: 'left'}}
+        header={
+          <Suspense fallback={<Spin size={'small'} />}>
+            <TotalDaySets />
+          </Suspense>
+        }
+      >
         <Segmented
           options={
             Object.values(System).map((it) => ({
@@ -30,21 +29,16 @@ export const WorkoutDayStats = ({day}: Props) => {
           }
           block
           value={system}
-          onChange={setSystem}
+          onChange={(it) => setSystem(it as System)}
           size={'small'}
           style={{marginBottom: 10}}
         />
-
-        {
-          system === System.Muscle &&
-          <DayStatsBySystem system={System.Muscle} sets={setsByMuscleGroup} />
-        }
-        {
-          system === System.Movement &&
-          <DayStatsBySystem system={System.Movement}
-                            sets={setsByMovementType} />
-        }
-        </Collapse.Panel>
+        <Suspense fallback={<Spin size={'small'} />}>
+            <DayStatsBySystem system={system} />
+        </Suspense>
+      </Collapse.Panel>
     </Collapse>
   );
 };
+
+export const WorkoutDayStats = memo(WorkoutDayStatsComponent);

@@ -1,6 +1,6 @@
-import {lifterExperienceState} from './ViewerConfigState';
+import {lifterExperienceState} from '../state/ViewerConfigState';
 import {Segmented} from 'antd';
-import {ExperienceLevel} from './analytics/systems-data/SystemsCommon';
+import {ExperienceLevel} from './systems-data/SystemsCommon';
 import {useRecoilState} from 'recoil';
 
 export const ExperienceSwitch = () => {
