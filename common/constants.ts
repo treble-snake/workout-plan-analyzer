@@ -1,4 +1,4 @@
-import {QtyRange, WorkoutPlan} from '../types/workout';
+import {PlanDay, QtyRange, WorkoutPlan} from '../types/workout';
 
 // TODO: remove unused
 export const COMMON_REP_RANGES: Record<string, QtyRange> = {
@@ -21,5 +21,5 @@ export const EMPTY_PLAN: WorkoutPlan = Object.freeze({
   isDraft: true,
   title: 'My New Awesome Plan',
   recommendations: 'Warm up recommendations: before the workout you might do 5-10 minutes of light cardio like walking on a treadmill. Before each exercise do a few sets with lower weights until you feel confident and connected to the movement.',
-  days: []
+  days: Object.freeze([]) as unknown as PlanDay[]
 });

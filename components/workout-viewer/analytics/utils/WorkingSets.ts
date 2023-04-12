@@ -1,48 +1,77 @@
-import {filterWorkouts, getAllExercises} from './AnalyticUtils';
-import {ExerciseList, PlanDay, QtyRange} from '../../../../types/workout';
-import {sumRanges} from '../../exercises/RangeUtils';
+import {ExerciseList, QtyRange} from '../../../../types/workout';
+import {emptyRange, sumRanges} from '../../exercises/RangeUtils';
 import {MuscleGroup} from '../systems-data/MuscleGroupsValues';
 import {MovementType} from '../systems-data/MovementTypeValues';
+import {mapObjIndexed, mergeRight, uniq} from 'ramda';
 
-function emptyRangeMap<T extends Object>(by: T): Record<keyof T, QtyRange> {
+export function emptyRangeMap<T extends Object>(by: T): Record<keyof T, QtyRange> {
   return Object.values(by).reduce((acc, it) => {
-    acc[it] = {from: 0, to: 0};
+    acc[it] = emptyRange();
     return acc;
   }, {});
 }
 
-// TODO: use only exercises, not days
-/** @deprecated */
-export const calculateWorkingSets = (days: PlanDay[]) => {
-  console.time('calculateWorkingSets');
-  const workoutDays = filterWorkouts(days);
-  console.debug('Working sets calc v1');
+export const sumAllRanges = <T extends string>(
+  rangesA: Record<T, QtyRange>,
+  rangesB: Record<T, QtyRange>
+) => {
+  // get all keys
+  return (uniq(Object.keys(rangesA).concat(Object.keys(rangesB))) as T[])
+    .reduce((acc, key) => {
+      // and add all ranges
+      acc[key] = sumRanges(
+        rangesA[key] || emptyRange(),
+        rangesB[key] || emptyRange()
+      );
+      return acc;
+    }, {} as Record<T, QtyRange>);
+};
 
-  const allExercises = getAllExercises(workoutDays);
-  const setsByMuscleGroup = emptyRangeMap(MuscleGroup);
-  const setsByMovementType = emptyRangeMap(MovementType);
-  let totalSets = {from: 0, to: 0} as QtyRange;
+export const calculateWorkingSetsV3 = (exercises: ExerciseList) => {
+  console.time('calculateWorkingSets_v3');
 
-  allExercises.forEach(({info, sets}) => {
-    // TODO: wtf???
-    try {
-      totalSets = sumRanges(totalSets, sets);
-      setsByMovementType[info.movementType] = sumRanges(setsByMovementType[info.movementType], sets);
-      setsByMuscleGroup[info.muscleGroup] = sumRanges(setsByMuscleGroup[info.muscleGroup], sets);
-    } catch (e) {
-      console.error('Working sets calc error for', info, sets);
-    }
+  const {
+    totalSets,
+    setsByMovementType,
+    setsByMuscleGroup,
+    movementsUsed,
+    musclesUsed
+  } = exercises.reduce((acc, {info, sets}) => {
+    return {
+      totalSets: sumRanges(acc.totalSets, sets),
+      setsByMovementType: {
+        ...acc.setsByMovementType,
+        [info.movementType]: sumRanges(acc.setsByMovementType[info.movementType], sets)
+      },
+      setsByMuscleGroup: {
+        ...acc.setsByMuscleGroup,
+        [info.muscleGroup]: sumRanges(acc.setsByMuscleGroup[info.muscleGroup], sets)
+      },
+      musclesUsed: mergeRight(acc.musclesUsed, {[info.muscleGroup]: true}),
+      movementsUsed: mergeRight(acc.movementsUsed, {[info.movementType]: true})
+    };
+  }, {
+    totalSets: emptyRange(),
+    setsByMovementType: emptyRangeMap(MovementType),
+    setsByMuscleGroup: emptyRangeMap(MuscleGroup),
+    musclesUsed: {} as Record<MuscleGroup, boolean>,
+    movementsUsed: {} as Record<MovementType, boolean>
   });
 
-  console.timeEnd('calculateWorkingSets');
+  console.timeEnd('calculateWorkingSets_v3');
   return {
     totalSets,
     setsByMovementType,
-    setsByMuscleGroup
+    setsByMuscleGroup,
+    musclesUsed: Object.keys(musclesUsed) as MuscleGroup[],
+    movementsUsed: Object.keys(movementsUsed) as MovementType[]
   };
-}
+};
 
-export const calculateWorkingSetsV2 = (exercises: ExerciseList) => {
-  console.debug('Working sets calc V2');
-  return calculateWorkingSets([{exercises} as PlanDay])
+export const calcWeeklyFrequency = <T extends Object>(planLength: number, timePerWeek: Record<keyof T, number>) => {
+  const weeklyRatio = 7 / planLength;
+  return mapObjIndexed((num) => {
+    const freq = num * weeklyRatio;
+    return {from: Math.floor(freq), to: Math.ceil(freq)};
+  }, timePerWeek);
 };

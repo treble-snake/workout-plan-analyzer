@@ -4,7 +4,7 @@ import {rangeToText} from '../../exercises/RangeUtils';
 import {System} from '../systems-data/SystemsCommon';
 import {SystemsMeta} from '../systems-data/SystemsMeta';
 import {useRecoilValue} from 'recoil';
-import {workoutDaysStatsSelector} from '../../state/workout/WorkoutStatsState';
+import {workoutDayStatsSelector} from '../../state/workout/WorkoutStatsState';
 import {useDayIdContext} from '../../day-card/WorkoutDayEditor';
 
 type Props<T> = {
@@ -19,7 +19,7 @@ export const DayStatsBySystem = (props: Props<string>) => {
   const {
     setsByMovementType,
     setsByMuscleGroup
-  } = useRecoilValue(workoutDaysStatsSelector(dayId));
+  } = useRecoilValue(workoutDayStatsSelector(dayId));
   const sets: Record<string, QtyRange> =
     system === System.Movement ? setsByMovementType : setsByMuscleGroup;
 
