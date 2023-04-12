@@ -11,6 +11,7 @@ import {
   workoutPlanState
 } from '../components/workout-viewer/state/workout/WorkoutPlanState';
 import {useDraft} from '../api-lib/hooks/useDraft';
+import {denormalizePlan} from '../components/workout-viewer/WorkoutUtils';
 
 const NewPlan: NextPage = () => {
   const setWorkout = useSetRecoilState(workoutPlanState);
@@ -18,7 +19,7 @@ const NewPlan: NextPage = () => {
 
   useEffect(() => {
     if (draft) {
-      setWorkout(draft);
+      setWorkout(denormalizePlan(draft));
     }
   }, [setWorkout, draft]);
 

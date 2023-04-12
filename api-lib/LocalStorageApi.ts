@@ -29,16 +29,14 @@ export const LocalStorageApi: PlanStorageApi = {
   ]),
   getPlan: async function (id: string): Promise<WorkoutPlan | undefined> {
     const plans = await this.listPlans();
-    const plan = plans.find(it => it.id === id);
-    return plan ? denormalizePlan(plan) : plan;
+    return plans.find(it => it.id === id);
   },
   async createPlan(): Promise<WorkoutPlan> {
     return denormalizePlan(EMPTY_PLAN);
   },
   async loadDraft(): Promise<WorkoutPlan> {
     const draftJson = localStorage.getItem(DRAFT_KEY);
-    const draft = draftJson ? JSON.parse(draftJson) : EMPTY_PLAN;
-    return denormalizePlan(draft);
+    return draftJson ? JSON.parse(draftJson) : EMPTY_PLAN;
   },
   async saveDraft(draft: WorkoutPlan): Promise<void> {
     localStorage.setItem(DRAFT_KEY, JSON.stringify(normalizePlan(draft)));

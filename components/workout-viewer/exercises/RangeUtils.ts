@@ -2,6 +2,8 @@ import {QtyRange} from '../../../types/workout';
 
 const RANGE_REGEX = /^[\d\-]+$/;
 
+export const emptyRange = () => ({from: 0, to: 0});
+
 export const rangeToText = (range: QtyRange) => range.from === range.to ?
   String(range.from) :
   `${range.from}-${range.to}`;

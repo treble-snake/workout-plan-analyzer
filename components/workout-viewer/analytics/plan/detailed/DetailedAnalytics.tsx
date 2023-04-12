@@ -57,7 +57,7 @@ export const DetailedAnalytics = <T extends Record<string, string>>(props: Props
             <Col span={6} style={{textAlign: 'center'}}>
               <Row>
                 <Col span={12}>
-                  {rangeToText(sets[it].range)}
+                  {rangeToText(sets[it].sets)}
                 </Col>
                 <Col span={12} style={{textAlign: 'left'}}>
                   <VolumeGradeTag grade={sets[it].grade} />

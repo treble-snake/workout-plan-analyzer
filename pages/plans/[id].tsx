@@ -12,6 +12,7 @@ import {
   workoutPlanState
 } from '../../components/workout-viewer/state/workout/WorkoutPlanState';
 import {useEffect} from 'react';
+import {denormalizePlan} from '../../components/workout-viewer/WorkoutUtils';
 
 const PlanById: NextPage = () => {
   console.debug('render PlanById');
@@ -24,7 +25,7 @@ const PlanById: NextPage = () => {
   useEffect(() => {
     console.debug('PlanById useEffect');
     if (plan) {
-      setWorkout(plan);
+      setWorkout(denormalizePlan(plan));
     }
   }, [setWorkout, plan]);
 
