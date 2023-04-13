@@ -15,6 +15,7 @@ export const SavePlanButton = () => {
   // TODO: maybe use SWRMutate instead of this?
   const saveChanges = () => {
     setLoading(true);
+    // TODO: ask for the name to save for shared plans
     PlanStorage.savePlan(plan)
       .then((id) => {
         if (plan.isDraft || plan.isShared) {

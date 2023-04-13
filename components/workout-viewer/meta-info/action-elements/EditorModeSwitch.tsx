@@ -2,6 +2,7 @@ import {viewerEditingModeState, ViewerMode} from '../../state/ViewerConfigState'
 import {Switch} from 'antd';
 import {useRecoilState} from 'recoil';
 
+// TODO: make it faster or put a loading indicator
 export const EditorModeSwitch = () => {
   const [mode, setMode] = useRecoilState(viewerEditingModeState);
 

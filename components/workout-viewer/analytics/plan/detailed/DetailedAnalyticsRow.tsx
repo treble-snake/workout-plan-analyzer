@@ -12,25 +12,26 @@ import {MuscleGroupFrequencyGrade} from '../sets/MuscleGroupFrequencyGrade';
 import {GradedSets} from '../types';
 import React, {memo} from 'react';
 import {useRecoilValue} from 'recoil';
+import {ToggleHighlightButton} from '../ToggleHighlightButton';
 
-type Props<T> = {
+type Props = {
   system: System,
   sets: GradedSets,
   frequency: QtyRange,
-  unit: keyof T
+  unit: MovementType | MuscleGroup
 }
 
-export const DetailedAnalyticsRowComponent = <T extends Record<string, string>>(props: Props<T>) => {
+export const DetailedAnalyticsRowComponent = (props: Props) => {
   const {system, sets, frequency, unit} = props;
   const experience = useRecoilValue(lifterExperienceState);
-  const unitName = String(unit);
 
   return (
     <Row gutter={10}>
       <Col span={12} style={{marginBottom: 4}}>
         <Space
           style={{display: 'flex', justifyContent: 'space-between'}}>
-          {unitName}
+          <ToggleHighlightButton system={system} unit={unit}/>
+          {unit}
           {
             system === System.Muscle &&
             <MuscleGroupLandmarks level={experience}
