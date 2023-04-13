@@ -13,16 +13,19 @@ type Props<T> = {
   system: System,
 }
 
-export const PlanStatsBySystem = <T extends Record<string, string>>(props: Props<T>) => {
+export const PlanStatsBySystemComponent = <T extends Record<string, string>>(props: Props<T>) => {
   const {system} = props;
   const {title, description} = SystemsMeta[system];
   const analyticsMode = useRecoilValue(analyticsModeState);
+  // TODO: check https://recoiljs.org/docs/api-reference/utils/noWait
   const {
     setsByMuscle,
     musclesFrequency,
     setsByMovement,
     movementsFrequency
   } = useRecoilValue(workoutTotalStatsSelector);
+
+  console.debug('PlanStatsBySystemComponent render', system, analyticsMode);
 
   const sets = system === System.Muscle ? setsByMuscle : setsByMovement;
   const frequency = system === System.Muscle ? musclesFrequency : movementsFrequency;
@@ -31,20 +34,20 @@ export const PlanStatsBySystem = <T extends Record<string, string>>(props: Props
     <Col xl={12} md={24} xxl={9}>
       <b>By {title}</b>
       {description && <p>{description}</p>}
-      {
-        analyticsMode === AnalyticsMode.Simple &&
-        <Suspense fallback={<Spin size={'large'} />}>
+      <Suspense fallback={<Spin size={'large'} />}>
+        {
+          analyticsMode === AnalyticsMode.Simple &&
           <SimpleAnalytics system={system} sets={sets}
                            frequency={frequency} />
-        </Suspense>
-      }
-      {
-        analyticsMode === AnalyticsMode.Detailed &&
-        <Suspense fallback={<Spin size={'large'} />}>
+        }
+        {
+          analyticsMode === AnalyticsMode.Detailed &&
           <DetailedAnalytics system={system} sets={sets}
                              frequency={frequency} />
-        </Suspense>
-      }
+        }
+      </Suspense>
     </Col>
   );
 };
+
+export const PlanStatsBySystem = PlanStatsBySystemComponent;

@@ -20,7 +20,8 @@ type Props<T> = {
   frequency: Record<keyof T, QtyRange>,
 }
 
-export const SimpleAnalytics = <T extends Record<string, string>>(props: Props<T>) => {
+export const SimpleAnalyticsComponent = <T extends Record<string, string>>(props: Props<T>) => {
+  console.debug('SimpleAnalyticsComponent render');
   const {system, sets, frequency} = props;
   const {units} = SystemsMeta[system];
   const simpleViewMode = useRecoilValue(simpleViewModeState);
@@ -63,11 +64,18 @@ export const SimpleAnalytics = <T extends Record<string, string>>(props: Props<T
         })
         .map(({unit, grade}) => {
           return (
-            <VolumeGradeInfo key={unit} grade={grade} system={system} unit={unit} />
+            <VolumeGradeInfo
+              key={`${system}_${unit}_${grade.type}_${grade.confidence}`}
+              grade={grade}
+              system={system}
+              unit={unit}
+            />
           );
         })
     }
   </>);
 };
+
+export const SimpleAnalytics = SimpleAnalyticsComponent;
 
 export default SimpleAnalytics;

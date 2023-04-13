@@ -8,8 +8,6 @@ import {
 import {EXERCISES_BY_ID} from '../../temp-data/exercises';
 import {clone} from 'ramda';
 import {ExerciseInfo} from '../../types/exercise';
-import {ExerciseHighlight} from './state/ViewerConfigState';
-import {System} from './analytics/systems-data/SystemsCommon';
 import {v4} from 'uuid';
 
 export const makeNewDay = (isRest = false) => {
@@ -20,17 +18,6 @@ export const makeNewDay = (isRest = false) => {
     (day as WorkoutDay).exercises = [];
   }
   return day as PlanDay;
-};
-
-export const isHighlighted = (exc: Exercise, highlight: ExerciseHighlight | null) => {
-  if (!highlight) {
-    return false;
-  }
-
-  return (
-    highlight.system === System.Muscle && exc.info.muscleGroup === highlight.unit ||
-    highlight.system === System.Movement && exc.info.movementType === highlight.unit
-  );
 };
 
 const denormalizeExercise = (exc: Exercise): Exercise => {
@@ -54,7 +41,6 @@ export const denormalizePlan = (plan: WorkoutPlan): WorkoutPlan => {
   newPlan.days.forEach((day) => {
     // TODO: remove this hack ?
     if (!day.id) {
-      console.warn('NORMALIZING PLAN WITH IDS');
       day.id = v4();
     }
     if ('exercises' in day) {

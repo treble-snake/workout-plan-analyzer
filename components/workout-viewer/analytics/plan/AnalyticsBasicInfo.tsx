@@ -21,4 +21,4 @@ export const AnalyticsBasicInfoComponent = () => {
   );
 };
 
-export const AnalyticsHeader = React.memo(AnalyticsBasicInfoComponent);
+export const AnalyticsBasicInfo = React.memo(AnalyticsBasicInfoComponent);
