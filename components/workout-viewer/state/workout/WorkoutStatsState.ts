@@ -23,7 +23,6 @@ import {
 export const workoutDayStatsSelector = selectorFamily({
   key: 'workoutDaysStatsSelector',
   get: (dayId: string) => ({get}) => {
-    console.debug('workoutDaysStatsSelector day', dayId);
     const exercises = get(workoutDayExercisesSelector(dayId));
     return calculateWorkingSetsV3(exercises);
   }
@@ -32,7 +31,6 @@ export const workoutDayStatsSelector = selectorFamily({
 export const workoutTotalStatsSelector = selector({
   key: 'workoutTotalStatsSelector',
   get: ({get}) => {
-    console.debug('workout_Total_StatsSelector');
     console.time('workout_Total_StatsSelector');
     const days = get(workoutPlanDaysSelector);
     const experience = get(lifterExperienceState);
@@ -101,39 +99,3 @@ export const workoutTotalStatsSelector = selector({
     return result;
   }
 });
-
-// export const workoutByMuscleFrequencySelector = selector({
-//   key: 'workoutByMuscleFrequencySelector',
-//   get: ({get}) => {
-//     const dayIds = get(workoutDayIdsSelector);
-//     return dayIds.reduce((acc, dayId) => {
-//         const dayStats = get(workoutDayStatsSelector(dayId));
-//         Object.entries(dayStats.setsByMuscleGroup).forEach(([muscleGroup, sets]) => {
-//           if (sets.from > 0) {
-//             acc[muscleGroup as MuscleGroup] = acc[muscleGroup as MuscleGroup] + 1;
-//           }
-//         });
-//         return acc;
-//       },
-//       {} as Record<MuscleGroup, number>
-//     );
-//   }
-// });
-//
-// export const workoutByMuscleStatsSelector = selector({
-//   key: 'workoutByMuscleStatsSelector',
-//   get: ({get}) => {
-//     console.debug('re-calc workout_ByMuscle_StatsSelector');
-//     const dayIds = get(workoutDayIdsSelector);
-//     return dayIds.reduce((acc, dayId) => {
-//         const dayStats = get(workoutDayStatsSelector(dayId));
-//         return mapObjIndexed((current, key) => {
-//           return sumRanges(current, dayStats.setsByMuscleGroup[key]);
-//         }, acc);
-//       },
-//       emptyRangeMap(MuscleGroup)
-//     );
-//   }
-// });
-//
-

@@ -10,7 +10,6 @@ import {DeletePlanButton} from './action-elements/DeletePlanButton';
 
 export const ViewerActionsComponent = () => {
   const {isDraft, isDemo, isShared} = useRecoilValue(planTagsSelector);
-  console.debug('Viewer Actions render');
 
   return <>
     <ShareLinkButton />

@@ -28,8 +28,6 @@ export const sumAllRanges = <T extends string>(
 };
 
 export const calculateWorkingSetsV3 = (exercises: ExerciseList) => {
-  console.time('calculateWorkingSets_v3');
-
   const {
     totalSets,
     setsByMovementType,
@@ -58,7 +56,6 @@ export const calculateWorkingSetsV3 = (exercises: ExerciseList) => {
     movementsUsed: {} as Record<MovementType, boolean>
   });
 
-  console.timeEnd('calculateWorkingSets_v3');
   return {
     totalSets,
     setsByMovementType,

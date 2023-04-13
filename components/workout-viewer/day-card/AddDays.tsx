@@ -18,7 +18,6 @@ export const AddDaysComponent = () => {
   const addDay = (isRest: boolean) =>
     setDays((currentDays) => addDayToList(currentDays, isRest));
 
-  console.debug('AddDays render')
   // TODO: Card is duplicate
   return <Card title={'New bright day!'}
                style={{textAlign: 'center'}}>

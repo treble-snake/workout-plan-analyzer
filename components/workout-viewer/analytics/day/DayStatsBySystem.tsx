@@ -12,7 +12,6 @@ type Props<T> = {
 }
 
 export const DayStatsBySystem = (props: Props<string>) => {
-  console.debug('DayStatsBySystem render', props.system);
   const {system} = props;
   const {short: title, units} = SystemsMeta[system];
   const dayId = useDayIdContext();

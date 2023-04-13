@@ -12,7 +12,6 @@ type Props = {
 
 export const ExerciseEditorListComponent = ({exercises}: Props) => {
   const mode = useRecoilValue(viewerEditingModeState);
-  console.debug('Exercise Editor List render');
 
   const tableHeader = <Row>
     <Col span={3} offset={mode === ViewerMode.Edit ? 12 : 16}

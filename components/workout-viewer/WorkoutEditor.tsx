@@ -11,8 +11,6 @@ import {AddDays} from './day-card/AddDays';
 export const WorkoutEditor = () => {
   const mode = useRecoilValue(viewerEditingModeState);
   const dayIds = useRecoilValue(workoutDayIdsSelector);
-
-  // console.debug('WorkoutEditor render');
   const isEditable = mode === ViewerMode.Edit;
 
   return <>
