@@ -20,6 +20,7 @@ const SharedPlan: NextPage = () => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const setWorkout = useSetRecoilState(workoutPlanState);
+  const [planIsReady, setPlanIsReady] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -34,6 +35,7 @@ const SharedPlan: NextPage = () => {
           id: ''
         };
         setWorkout(denormalizePlan(plan));
+        setPlanIsReady(true);
       } catch (e) {
         console.error('Failed to parse shared plan', e);
         setError('Failed to read shared plan data');
@@ -44,12 +46,12 @@ const SharedPlan: NextPage = () => {
     setLoading(false);
   }, []);
 
-  if (isLoading) {
-    return <GlobalLoading enabled={isLoading} />;
-  }
-
   if (error) {
     return <ErrorMessage text={error || 'Something went wrong'} />;
+  }
+
+  if (isLoading || !planIsReady) {
+    return <GlobalLoading enabled={isLoading} />;
   }
 
   return (

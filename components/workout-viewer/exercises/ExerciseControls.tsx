@@ -15,7 +15,6 @@ const BUTTON_SIZE = 14;
 export const ExerciseControlsComponent = ({
                                             index,
                                           }: Props) => {
-  console.debug('Exercise Controls render');
   const dayId = useDayIdContext();
   const setExercises = useSetRecoilState(workoutDayExercisesSelector(dayId));
   const removeExercise = () => {

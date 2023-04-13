@@ -29,7 +29,11 @@ export const LocalStorageApi: PlanStorageApi = {
   ]),
   getPlan: async function (id: string): Promise<WorkoutPlan | undefined> {
     const plans = await this.listPlans();
-    return plans.find(it => it.id === id);
+    const find = plans.find(it => it.id === id);
+    if (!find) {
+      throw new Error('Plan not found');
+    }
+    return find;
   },
   async createPlan(): Promise<WorkoutPlan> {
     return denormalizePlan(EMPTY_PLAN);

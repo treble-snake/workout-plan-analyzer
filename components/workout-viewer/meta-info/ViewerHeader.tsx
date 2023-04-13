@@ -15,8 +15,6 @@ export const ViewerHeaderComponent = () => {
   const [title, setTitle] = useRecoilState(planTitleSelector);
   const isDraft = useRecoilValue(planIsDraftSelector);
   const router = useRouter();
-
-  console.debug('ViewerHeader render');
   const isEditable = mode === ViewerMode.Edit;
 
   return (

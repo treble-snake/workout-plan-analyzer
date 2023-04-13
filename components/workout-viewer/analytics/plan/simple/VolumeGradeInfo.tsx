@@ -83,7 +83,6 @@ const InfoMessage = ({msg, unit, system}: InfoMessageProps) => {
 };
 
 const VolumeGradeInfoComponent = ({grade, system, unit}: Props) => {
-  console.debug('VolumeGradeInfo', grade, system, unit);
   if (grade.type === VolumeGradeType.NoInfo) {
     return null;
   }

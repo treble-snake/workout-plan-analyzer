@@ -1,8 +1,6 @@
 import {PlanStorage} from '../index';
 
 export const localStorageFetcher = (resource: string, init: any) => {
-  console.debug('localStorageFetcher: fetching resource', resource, 'with params', init);
-
   if (resource === '/plans') {
     return PlanStorage.listPlans();
   }

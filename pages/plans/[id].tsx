@@ -11,27 +11,23 @@ import {useSetRecoilState} from 'recoil';
 import {
   workoutPlanState
 } from '../../components/workout-viewer/state/workout/WorkoutPlanState';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {denormalizePlan} from '../../components/workout-viewer/WorkoutUtils';
 
 const PlanById: NextPage = () => {
-  console.debug('render PlanById');
-
   const {query, isReady} = useRouter();
   const id = String(query.id);
   const {plan, error, isLoading} = usePlan(id);
   const setWorkout = useSetRecoilState(workoutPlanState);
+  // TODO: maybe make plan nullable in the state?
+  const [planIsReady, setPlanIsReady] = useState(false);
 
   useEffect(() => {
-    console.debug('PlanById useEffect');
     if (plan) {
       setWorkout(denormalizePlan(plan));
+      setPlanIsReady(true);
     }
   }, [setWorkout, plan]);
-
-  if (isLoading || !isReady) {
-    return <GlobalLoading />;
-  }
 
   if (error || !plan) {
     let text = 'Something went wrong.';
@@ -42,6 +38,10 @@ const PlanById: NextPage = () => {
       text += ` (${String(error)})`;
     }
     return <ErrorMessage text={text} />;
+  }
+
+  if (isLoading || !isReady || !planIsReady) {
+    return <GlobalLoading />;
   }
 
   return (<>

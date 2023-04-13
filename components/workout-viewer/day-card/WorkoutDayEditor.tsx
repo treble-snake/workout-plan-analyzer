@@ -14,12 +14,7 @@ type Props = {
   index: number;
 }
 
-const DayIndexContext = createContext<number>(-1);
 const DayIdContext = createContext<string>('');
-
-export const useDayIndexContext = () => {
-  return useContext(DayIndexContext);
-};
 
 export const useDayIdContext = () => {
   return useContext(DayIdContext);
@@ -28,10 +23,8 @@ export const useDayIdContext = () => {
 export const WorkoutDayEditorComponent = ({index, id}: Props) => {
   const mode = useRecoilValue(viewerEditingModeState);
   const day = useRecoilValue(workoutDayById(id));
-  console.debug('Workout Day Editor render', index, id, day.title);
 
-  return <DayIndexContext.Provider value={index}>
-    <DayIdContext.Provider value={id}>
+  return <DayIdContext.Provider value={id}>
       <Card
         className={'workout-day-card'}
         size={'small'}
@@ -50,8 +43,7 @@ export const WorkoutDayEditorComponent = ({index, id}: Props) => {
             <ExerciseEditorList exercises={day.exercises} />
         }
       </Card>
-    </DayIdContext.Provider>
-  </DayIndexContext.Provider>;
+    </DayIdContext.Provider>;
 };
 
 export const WorkoutDayEditor = memo(WorkoutDayEditorComponent);

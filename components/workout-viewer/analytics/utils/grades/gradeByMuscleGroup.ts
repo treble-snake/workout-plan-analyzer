@@ -23,9 +23,6 @@ export const gradeByMuscleGroup = ({
                                             level,
                                             sets: {from, to}
                                           }: Props): VolumeGrade => {
-
-  // console.debug('gradeByMuscleGroup', muscle);
-
   const landmarks = WeeklySetsPerMuscleGroup[level][muscle];
   const maintenanceVol = landmarks[VolumeLandmarks.MV];
   const minVol = landmarks[VolumeLandmarks.MEV];

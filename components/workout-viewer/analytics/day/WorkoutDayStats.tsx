@@ -8,7 +8,6 @@ const DayStatsBySystem = React.lazy(() => import('./DayStatsBySystem'));
 
 export const WorkoutDayStatsComponent = () => {
   const [system, setSystem] = useState(System.Muscle);
-  console.debug('Workout Day Stats render');
 
   return (
     <Collapse ghost key={'1'}>

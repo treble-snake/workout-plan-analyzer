@@ -24,9 +24,6 @@ export const PlanStatsBySystemComponent = <T extends Record<string, string>>(pro
     setsByMovement,
     movementsFrequency
   } = useRecoilValue(workoutTotalStatsSelector);
-
-  console.debug('PlanStatsBySystemComponent render', system, analyticsMode);
-
   const sets = system === System.Muscle ? setsByMuscle : setsByMovement;
   const frequency = system === System.Muscle ? musclesFrequency : movementsFrequency;
 

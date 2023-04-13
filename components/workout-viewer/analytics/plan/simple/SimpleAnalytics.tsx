@@ -21,7 +21,6 @@ type Props<T> = {
 }
 
 export const SimpleAnalyticsComponent = <T extends Record<string, string>>(props: Props<T>) => {
-  console.debug('SimpleAnalyticsComponent render');
   const {system, sets, frequency} = props;
   const {units} = SystemsMeta[system];
   const simpleViewMode = useRecoilValue(simpleViewModeState);

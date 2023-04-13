@@ -10,8 +10,6 @@ import {
 export const WorkoutRecommendationsComponent = () => {
   const [recommendations, setRecommendations] = useRecoilState(planRecommendationsSelector);
   const mode = useRecoilValue(viewerEditingModeState);
-
-  console.debug('WorkoutRecommendations render');
   const isEditable = mode === ViewerMode.Edit;
 
   return (

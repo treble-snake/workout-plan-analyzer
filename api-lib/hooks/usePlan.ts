@@ -8,7 +8,6 @@ export function usePlan(id: null | string) {
     isLoading,
     mutate
   } = useSWR<WorkoutPlan>(id === null ? null : `/plans/${id}`);
-  console.debug('usePlan', {data, error, isLoading});
   const plan = data;
   return {
     plan,

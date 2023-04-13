@@ -29,6 +29,7 @@ export const viewerEditingModeState = atom({
   default: selector({
     key: 'viewerEditingModeDefault',
     get: ({get}) => {
+      // TODO: refresh on each plan load? it's kinda persistent now
       const plan = get(workoutPlanState);
       if (plan.isDemo || plan.isShared) {
         return ViewerMode.View;

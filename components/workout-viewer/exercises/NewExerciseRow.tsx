@@ -23,7 +23,6 @@ const DEFAULT_SETS = {from: 2, to: 3};
 const DEFAULT_REPS = {from: 10, to: 12};
 
 export const NewExerciseRowComponent = () => {
-  console.debug('NewExerciseRow render');
   const dayId = useDayIdContext();
   const setExercises = useSetRecoilState(workoutDayExercisesSelector(dayId));
   const addExercise = (exerciseId: string) => {
