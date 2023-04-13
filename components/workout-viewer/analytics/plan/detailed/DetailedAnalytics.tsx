@@ -5,6 +5,8 @@ import {Col, Row} from 'antd';
 import {GradedSets} from '../types';
 import React from 'react';
 import {DetailedAnalyticsRow} from './DetailedAnalyticsRow';
+import {MuscleGroup} from '../../systems-data/MuscleGroupsValues';
+import {MovementType} from '../../systems-data/MovementTypeValues';
 
 type Props<T> = {
   system: System,
@@ -29,7 +31,7 @@ export const DetailedAnalyticsComponent = <T extends Record<string, string>>(pro
         return (
           <DetailedAnalyticsRow
             key={`${system}_${it}`}
-            unit={it}
+            unit={it as MuscleGroup | MovementType}
             system={system}
             sets={sets[it]}
             frequency={frequency[it]}

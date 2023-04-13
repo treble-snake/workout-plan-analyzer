@@ -91,8 +91,8 @@ export const workoutTotalStatsSelector = selector({
       totalSets: total.totalSets,
       setsByMuscle: gradedSetsByMuscle,
       setsByMovement: gradedSetsByMovement,
-      musclesFrequency,
-      movementsFrequency
+      musclesFrequency: musclesFrequency as Record<string, QtyRange>,
+      movementsFrequency: movementsFrequency as Record<string, QtyRange>
     };
 
     console.timeEnd('workout_Total_StatsSelector');
