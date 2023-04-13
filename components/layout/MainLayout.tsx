@@ -11,7 +11,8 @@ export const MainLayout = ({children}: any) => {
   return <>
     <Head>
       <title>{'Icebreaker "Bicep"'}</title>
-      <meta name="description" content="Your little helper in composing and analyzing workout plans for hypertrophy" />
+      <meta name="description"
+            content="Your little helper in composing and analyzing workout plans for hypertrophy" />
     </Head>
     <Layout className={styles.container}>
       <Alert type={'warning'}
@@ -19,16 +20,21 @@ export const MainLayout = ({children}: any) => {
              message={'This is an early alpha version, things might break or change dramatically.'} />
       <Layout.Header>
         <Menu theme="dark" mode="horizontal" selectedKeys={[router.asPath]}
+              style={{
+                backgroundImage: 'url(/logo-ship-light.png)',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right center',
+              }}
               items={[
                 {
                   label: <Link href={'/'}>Plans</Link>,
                   key: '/'
                 }, {
-                  label: <Link href={'/sources'}>Sources</Link>,
-                  key: '/sources'
-                }, {
                   label: <Link href={'/help'}>Help</Link>,
                   key: '/help'
+                }, {
+                  label: <Link href={'/sources'}>Sources</Link>,
+                  key: '/sources'
                 },
               ]}
         />
