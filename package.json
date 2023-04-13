@@ -1,6 +1,6 @@
 {
   "name": "workout-plan-analyzer",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "scripts": {
     "dev": "REACT_APP_VERSION=$npm_package_version next dev",
