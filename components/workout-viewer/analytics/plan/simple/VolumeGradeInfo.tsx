@@ -59,7 +59,7 @@ const InfoMessage = ({msg, unit, system}: InfoMessageProps) => {
     } else {
       highlightExercises({unit, system});
     }
-  }
+  };
 
   return (
     <div
@@ -82,7 +82,8 @@ const InfoMessage = ({msg, unit, system}: InfoMessageProps) => {
   );
 };
 
-export const VolumeGradeInfo = ({grade, system, unit}: Props) => {
+const VolumeGradeInfoComponent = ({grade, system, unit}: Props) => {
+  console.debug('VolumeGradeInfo', grade, system, unit);
   if (grade.type === VolumeGradeType.NoInfo) {
     return null;
   }
@@ -94,6 +95,15 @@ export const VolumeGradeInfo = ({grade, system, unit}: Props) => {
                 type={grade.type === VolumeGradeType.Ok ?
                   (grade.confidence === ConfidenceLevel.High ? 'success' : 'info')
                   : 'warning'}
-                message={<InfoMessage msg={message} unit={unit} system={system} />}
+                message={<InfoMessage msg={message} unit={unit}
+                                      system={system} />}
   />;
 };
+
+export const VolumeGradeInfo = React.memo(VolumeGradeInfoComponent, (prevProps, nextProps) => {
+    return prevProps.grade.type === nextProps.grade.type &&
+      prevProps.grade.confidence === nextProps.grade.confidence &&
+      prevProps.system === nextProps.system &&
+      prevProps.unit === nextProps.unit;
+  }
+);

@@ -4,12 +4,11 @@ import {ExerciseControls} from './ExerciseControls';
 import {RangeInput, RangeType} from './RangeInput';
 import {useDayIdContext} from '../day-card/WorkoutDayEditor';
 import {
-  highlightedExercisesState,
+  isExerciseHighlightedSelector,
   viewerEditingModeState,
   ViewerMode
 } from '../state/ViewerConfigState';
 import React, {memo} from 'react';
-import {isHighlighted} from '../WorkoutUtils';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {workoutDayExercisesSelector} from '../state/workout/WorkoutPlanState';
 import {mergeRight, update} from 'ramda';
@@ -23,11 +22,13 @@ export const ExerciseListItemComponent = ({
                                             exercise,
                                             index,
                                           }: Props) => {
-    console.debug('Exercise List Item render', exercise.info.name);
-
     const dayId = useDayIdContext();
     const mode = useRecoilValue(viewerEditingModeState);
-    const highlight = useRecoilValue(highlightedExercisesState);
+    const isHighlighted = useRecoilValue(isExerciseHighlightedSelector({
+      muscle: exercise.info.muscleGroup,
+      movement: exercise.info.movementType
+    }));
+
     const setExercises = useSetRecoilState(workoutDayExercisesSelector(dayId));
     const updateExercise = (patch: Partial<Exercise>) => {
       setExercises((current) =>
@@ -39,7 +40,7 @@ export const ExerciseListItemComponent = ({
     const updateSets = (range: QtyRange) => updateExercise({sets: range});
 
     let textStyle: React.CSSProperties = {padding: 0, margin: 0};
-    if (isHighlighted(exercise, highlight)) {
+    if (isHighlighted) {
       textStyle.color = '#000b3d';
       textStyle.background = 'linear-gradient(90deg, rgba(145,202,255,1) 0%, rgba(145,202,255,0) 90%)';
       textStyle.padding = '0 0 0 5px';

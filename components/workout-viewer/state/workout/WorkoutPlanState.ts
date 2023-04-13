@@ -12,6 +12,7 @@ export const workoutPlanState = atom<WorkoutPlan>({
     ({onSet}) => {
       onSet((workoutPlan) => {
         // TODO: autosave all plans?
+        // TODO: throttle
         if (workoutPlan.isDraft) {
           PlanStorage.saveDraft(workoutPlan).catch(console.error);
         }

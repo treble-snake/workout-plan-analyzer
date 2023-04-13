@@ -11,12 +11,13 @@ import {
   workoutPlanLengthSelector
 } from '../state/workout/WorkoutPlanState';
 import {move, remove} from 'ramda';
+import {memo} from 'react';
 
 type Props = {
   index: number;
 }
 
-export const WorkoutDayActions = ({index}: Props) => {
+export const WorkoutDayActionsComponent = ({index}: Props) => {
   const planLength = useRecoilValue(workoutPlanLengthSelector);
   const setDays = useSetRecoilState(workoutPlanDaysSelector);
 
@@ -60,3 +61,5 @@ export const WorkoutDayActions = ({index}: Props) => {
     }
   </>;
 };
+
+export const WorkoutDayActions = memo(WorkoutDayActionsComponent);
