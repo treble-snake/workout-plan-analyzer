@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.2](https://github.com/treble-snake/workout-plan-analyzer/compare/v0.5.1...v0.5.2) (2023-04-13)
+
+
+### Features
+
+* add faq and art ([01f8934](https://github.com/treble-snake/workout-plan-analyzer/commit/01f893402afbce174511f5a0c8fa9224403ad857))
+
 ### 0.5.1 (2023-04-13)
 
 
