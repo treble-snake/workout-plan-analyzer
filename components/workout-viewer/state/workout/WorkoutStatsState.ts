@@ -4,9 +4,11 @@ import {
   workoutPlanDaysSelector
 } from './WorkoutPlanState';
 import {
-  calculateWorkingSetsV3, calcWeeklyFrequency, emptyRangeMap,
+  analyzeDayWorkingSets,
+  calcWeeklyFrequency,
+  emptyRangeMap,
   sumAllRanges
-} from '../../analytics/utils/WorkingSets';
+} from '../../analytics/utils/AnalyticUtils';
 import {emptyRange, sumRanges} from '../../exercises/RangeUtils';
 import {MuscleGroup} from '../../analytics/systems-data/MuscleGroupsValues';
 import {MovementType} from '../../analytics/systems-data/MovementTypeValues';
@@ -19,12 +21,29 @@ import {lifterExperienceState} from '../ViewerConfigState';
 import {
   gradeByMuscleGroup
 } from '../../analytics/utils/grades/gradeByMuscleGroup';
+import {System} from '../../analytics/systems-data/SystemsCommon';
 
 export const workoutDayStatsSelector = selectorFamily({
   key: 'workoutDaysStatsSelector',
   get: (dayId: string) => ({get}) => {
     const exercises = get(workoutDayExercisesSelector(dayId));
-    return calculateWorkingSetsV3(exercises);
+    const experience = get(lifterExperienceState);
+    return analyzeDayWorkingSets(exercises, experience);
+  }
+});
+
+export const workoutDayHasWarningsSelector = selectorFamily({
+  key: 'workoutDaysStatsSelector',
+  get: (dayId: string) => ({get}) => {
+    const stats = get(workoutDayStatsSelector(dayId));
+    for (const system of Object.values(System)) {
+      for (const hasWarning of Object.values(stats.warningsBy[system])) {
+        if (hasWarning) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 });
 
@@ -45,10 +64,10 @@ export const workoutTotalStatsSelector = selector({
       const dayStats = get(workoutDayStatsSelector(id));
       return {
         totalSets: sumRanges(acc.totalSets, dayStats.totalSets),
-        setsByMuscle: sumAllRanges(acc.setsByMuscle, dayStats.setsByMuscleGroup),
-        setsByMovement: sumAllRanges(acc.setsByMovement, dayStats.setsByMovementType),
-        musclesUsed: acc.musclesUsed.concat(dayStats.musclesUsed),
-        movementsUsed: acc.movementsUsed.concat(dayStats.movementsUsed)
+        setsByMuscle: sumAllRanges(acc.setsByMuscle, dayStats.setsBy[System.Muscle]),
+        setsByMovement: sumAllRanges(acc.setsByMovement, dayStats.setsBy[System.Movement]),
+        musclesUsed: acc.musclesUsed.concat(dayStats.usedBy[System.Muscle]),
+        movementsUsed: acc.movementsUsed.concat(dayStats.usedBy[System.Movement])
       };
     }, {
       totalSets: emptyRange() as QtyRange,
@@ -89,10 +108,14 @@ export const workoutTotalStatsSelector = selector({
 
     const result = {
       totalSets: total.totalSets,
-      setsByMuscle: gradedSetsByMuscle,
-      setsByMovement: gradedSetsByMovement,
-      musclesFrequency: musclesFrequency as Record<string, QtyRange>,
-      movementsFrequency: movementsFrequency as Record<string, QtyRange>
+      setsBy: {
+        [System.Muscle]: gradedSetsByMuscle,
+        [System.Movement]: gradedSetsByMovement,
+      },
+      frequencyBy: {
+        [System.Muscle]: musclesFrequency as Record<string, QtyRange>,
+        [System.Movement]: movementsFrequency as Record<string, QtyRange>,
+      }
     };
 
     console.timeEnd('workout_Total_StatsSelector');

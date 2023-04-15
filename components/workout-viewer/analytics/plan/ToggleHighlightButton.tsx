@@ -3,16 +3,18 @@ import {highlightedExercisesState} from '../../state/ViewerConfigState';
 import {System} from '../systems-data/SystemsCommon';
 import {MuscleGroup} from '../systems-data/MuscleGroupsValues';
 import {MovementType} from '../systems-data/MovementTypeValues';
-import {Button, Space, Tooltip} from 'antd';
+import {Button, Tooltip} from 'antd';
 import {BulbTwoTone} from '@ant-design/icons';
 import React from 'react';
+import {BaseButtonProps} from 'antd/es/button/button';
 
 type Props = {
   system: System,
-  unit: MovementType | MuscleGroup
+  unit: MovementType | MuscleGroup,
+  buttonProps?: BaseButtonProps
 }
 
-export const ToggleHighlightButtonComponent = ({system, unit}: Props) => {
+export const ToggleHighlightButtonComponent = ({system, unit,buttonProps}: Props) => {
   const [highlight, highlightExercises] = useRecoilState(highlightedExercisesState);
 
   const highlightColor = (
@@ -32,6 +34,7 @@ export const ToggleHighlightButtonComponent = ({system, unit}: Props) => {
       <Button
         onClick={toggleHighlight}
         icon={<BulbTwoTone twoToneColor={highlightColor} />}
+        {...buttonProps}
       />
     </Tooltip>
   );

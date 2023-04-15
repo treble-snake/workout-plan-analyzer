@@ -32,8 +32,6 @@ export enum VolumeLandmarks {
   MRV = 'MRV',
 }
 
-export const COMMON_SESSION_VOLUME = {from: 4, to: 12}; // For intermediate - advanced ?
-
 type MuscleGroupLandmarks = Record<MuscleGroup, {
   frequency: QtyRange;
   [VolumeLandmarks.MV]: number,
@@ -58,7 +56,7 @@ export const RP_URLS = {
   [MuscleGroup.Calves]: 'https://rpstrength.com/calves-training-tips-hypertrophy/',
   [MuscleGroup.Forearms]: 'https://rpstrength.com/expert-advice/forearm-growth-training-tips',
   [MuscleGroup.Abs]: 'https://rpstrength.com/ab-training/'
-}
+};
 
 const IntermediateAndAdvanced: MuscleGroupLandmarks = {
   [MuscleGroup.Quads]: {
@@ -436,4 +434,10 @@ export const WeeklySetsPerMuscleGroup: Record<ExperienceLevel, MuscleGroupLandma
   [ExperienceLevel.Beginner]: Beginner,
   [ExperienceLevel.Intermediate]: IntermediateAndAdvanced,
   [ExperienceLevel.Advanced]: IntermediateAndAdvanced,
-}
+};
+
+export const GenericDailySetsPerMuscleGroup: Record<ExperienceLevel, QtyRange> = {
+  [ExperienceLevel.Beginner]: {from: 3, to: 8},
+  [ExperienceLevel.Intermediate]: {from: 3, to: 10},
+  [ExperienceLevel.Advanced]: {from: 3, to: 12},
+};

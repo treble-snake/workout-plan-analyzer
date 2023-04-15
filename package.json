@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/colors": "^7.0.0",
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-layout": "^7.10.3",
     "antd": "^5.4.2",

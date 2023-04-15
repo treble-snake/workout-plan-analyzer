@@ -18,45 +18,38 @@ const FAQ: {
         <p>For now the tool is mainly focused on <b>hypertrophy</b> (a.k.a.
           muscle
           building)</p>
-        <p>However, it&apos;s important to remember that it&apos;s can only give
-          you a <b>rough
-            guidelines</b>.</p>
+        <p>However, it&apos;s important to remember that it can only give
+          you <b>rough
+            guidelines</b>, and your individual preferences, needs and goal
+          might differ from what the algorithm is doing.</p>
+        <p>
+          If the tool gets any traction, I&apos;ll try to add more features
+          to provide more flexibility and configurability.
+        </p>
+        <p>
+          At the end of the day, remember that consistency is way more
+          important,
+          than any specific workout plan.
+        </p>
       </>
     },
     {
-      slug: 'how-to-use',
+      slug: 'who-can-use-it',
       question: 'Who can use it?',
       answer: <>
-        <p>Hope is the tool can be useful for everybody interested in
-          hypertrophy.</p>
+        <p>Hope is that the tool can be useful for everybody interested in
+          hypertrophy and fitness.</p>
         <p>
-          If you are only a <b>beginner</b> and got a workout plan from
+          If you are a <b>beginner</b> and got a workout plan from
           somewhere
-          (like the Internets),
+          (like &quot;the Internets&quot;),
           the tool can hopefully tell you if it&apos;s a at least a sensible
           plan.
         </p>
         <p>
           If you are an <b>intermediate or advanced</b> lifter, it can help you
-          build your own plan or refine an existing one.
+          build your own plan or refine an existing one.<br />
           You could also use it to build plans for other people.
-        </p>
-      </>
-    },
-    {
-      slug: 'where-is-the-data-stored',
-      question: 'Where is the data stored?',
-      answer: <>
-        <p>Nothing is stored on the server at the moment.</p>
-        <p>
-          All the data is stored in your browser&apos;s local storage.
-          It means that if you clear your browser&apos;s cache, all your data
-          will be
-          lost.<br />
-          Also, if you use different browsers or computers, you won&apos;t see
-          your
-          plans.<br />
-          You can export and import them via &quot;Copy URL&quot; button though.
         </p>
       </>
     },
@@ -77,6 +70,40 @@ const FAQ: {
       </>
     },
     {
+      slug: 'how-to-count-drop-sets',
+      question: 'How do I count drop sets, rest pause, etc?',
+      answer: <>
+        <p>
+          The tool doesn&apos;t have a special support for drop sets, rest
+          pause and other advanced intensity techniques at the moment.<br />
+          It&apos;s kinda personal and depends on how much they mess you up,
+          but the rule of thumb might be - count them 2 for 1 and error on the
+          lower side.<br />
+          So 1 or 2 drop sets would be counted as 1 set, 3 or 4 drop sets would
+          be
+          counted as 2, etc. Same with rest pause sets.<br />
+          It&apos;s even more difficult with cluster sets, you have to go by
+          feel.
+        </p>
+      </>
+    },
+    {
+      slug: 'where-is-the-data-stored',
+      question: 'Where is the data stored?',
+      answer: <>
+        <p>Nothing is stored on the server at the moment (but it probably will
+          be in the future).</p>
+        <p>
+          All the data is stored in your browser&apos;s local storage.
+          It means that if you clear your browser&apos;s cache, all your data
+          will be lost.<br />
+          Also, if you use different browsers or computers, you won&apos;t see
+          your plans.<br />
+          You can export and import them via &quot;Copy URL&quot; button though.
+        </p>
+      </>
+    },
+    {
       question: 'What\'s with the name?',
       slug: 'whats-with-the-name',
       answer: <>
@@ -85,7 +112,7 @@ const FAQ: {
           natural choice 😁<br />
           But how is that related to fitness? Let&apos;s name
           it &quot;Bicep&quot; - that&apos;s how!<br />
-          P.S. Yes, naming is hard. Shut up.
+          P.S. Naming is hard. Shut up.
         </p>
       </>
     }

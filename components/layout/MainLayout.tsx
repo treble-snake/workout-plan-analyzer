@@ -15,9 +15,6 @@ export const MainLayout = ({children}: any) => {
             content="Your little helper in composing and analyzing workout plans for hypertrophy" />
     </Head>
     <Layout className={styles.container}>
-      <Alert type={'warning'}
-             banner
-             message={'This is an early alpha version, things might break or change dramatically.'} />
       <Layout.Header>
         <Menu theme="dark" mode="horizontal" selectedKeys={[router.asPath]}
               style={{
@@ -40,6 +37,9 @@ export const MainLayout = ({children}: any) => {
         />
       </Layout.Header>
       <Layout.Content>
+        <Alert type={'warning'}
+               banner
+               message={'This is an early alpha version, things might break or change dramatically.'} />
         <main className={styles.main}>
           {children}
         </main>

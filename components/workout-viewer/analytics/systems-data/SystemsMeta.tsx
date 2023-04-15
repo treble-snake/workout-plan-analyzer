@@ -7,7 +7,7 @@ import {LinkOutlined, YoutubeOutlined} from '@ant-design/icons';
 type SystemMetaInfo = {
   title: string;
   short: string;
-  units: Record<string, string>;
+  units: typeof MovementType | typeof MuscleGroup;
   description?: React.ReactNode
 }
 export const SystemsMeta: Record<System, SystemMetaInfo> = {

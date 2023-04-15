@@ -1,14 +1,23 @@
 import {useDayIdContext} from '../../day-card/WorkoutDayEditor';
 import {useRecoilValue} from 'recoil';
-import {workoutDayStatsSelector} from '../../state/workout/WorkoutStatsState';
+import {
+  workoutDayHasWarningsSelector,
+  workoutDayStatsSelector
+} from '../../state/workout/WorkoutStatsState';
 import {rangeToText} from '../../exercises/RangeUtils';
 import {memo} from 'react';
+import {DailyVolumeWarning} from './DailyVolumeWarning';
+import {Space} from 'antd';
 
 export const TotalDaySetsComponent = () => {
   const dayId = useDayIdContext();
   const {totalSets} = useRecoilValue(workoutDayStatsSelector(dayId));
+  const hasWarnings = useRecoilValue(workoutDayHasWarningsSelector(dayId));
   return (
-    <span>Total sets: {rangeToText(totalSets)}</span>
+    <Space>
+      <span>Total sets: {rangeToText(totalSets)}</span>
+      <DailyVolumeWarning hasWarning={hasWarnings} />
+    </Space>
   );
 };
 

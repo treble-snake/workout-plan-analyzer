@@ -26,8 +26,6 @@ export const SimpleAnalyticsComponent = <T extends Record<string, string>>(props
   const simpleViewMode = useRecoilValue(simpleViewModeState);
   const highlighted = useRecoilValue(highlightedExercisesState);
 
-  // TODO: add frequency tips
-
   return (<>
     {
       Object.values(units)

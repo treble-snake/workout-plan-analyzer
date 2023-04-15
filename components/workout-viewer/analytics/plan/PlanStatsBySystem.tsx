@@ -19,13 +19,11 @@ export const PlanStatsBySystemComponent = <T extends Record<string, string>>(pro
   const analyticsMode = useRecoilValue(analyticsModeState);
   // TODO: check https://recoiljs.org/docs/api-reference/utils/noWait
   const {
-    setsByMuscle,
-    musclesFrequency,
-    setsByMovement,
-    movementsFrequency
+    setsBy,
+    frequencyBy
   } = useRecoilValue(workoutTotalStatsSelector);
-  const sets = system === System.Muscle ? setsByMuscle : setsByMovement;
-  const frequency = system === System.Muscle ? musclesFrequency : movementsFrequency;
+  const sets = setsBy[system];
+  const frequency = frequencyBy[system];
 
   return (
     <Col xl={12} md={24} xxl={9}>
