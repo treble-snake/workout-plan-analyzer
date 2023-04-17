@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/treble-snake/workout-plan-analyzer/compare/v0.6.0...v0.7.0) (2023-04-17)
+
+
+### Features
+
+* add dark mode ([6968ca1](https://github.com/treble-snake/workout-plan-analyzer/commit/6968ca17574283daad82cf11a93ba5e2e8a206c5))
+
 ## [0.6.0](https://github.com/treble-snake/workout-plan-analyzer/compare/v0.5.2...v0.6.0) (2023-04-15)
 
 
