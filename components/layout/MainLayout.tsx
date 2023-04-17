@@ -4,6 +4,7 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import styles from './MainLayout.module.css';
 import pj from '../../package.json';
+import {ThemeSwitch} from './theme/ThemeSwitch';
 
 export const MainLayout = ({children}: any) => {
   const router = useRouter();
@@ -33,6 +34,10 @@ export const MainLayout = ({children}: any) => {
                   label: <Link href={'/sources'}>Sources</Link>,
                   key: '/sources'
                 },
+                {
+                  label: <ThemeSwitch />,
+                  key: 'dark-mode',
+                }
               ]}
         />
       </Layout.Header>

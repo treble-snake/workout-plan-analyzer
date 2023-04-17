@@ -1,4 +1,4 @@
-import {Space, Tag, Typography} from 'antd';
+import {Button, Space, Tag, Typography} from 'antd';
 import {PageHeader} from '@ant-design/pro-layout';
 import React from 'react';
 import {useRecoilState, useRecoilValue} from 'recoil';
@@ -9,6 +9,7 @@ import {
   planIsDraftSelector,
   planTitleSelector
 } from '../state/workout/WorkoutMetaSelectors';
+import {ArrowLeftOutlined} from '@ant-design/icons';
 
 export const ViewerHeaderComponent = () => {
   const mode = useRecoilValue(viewerEditingModeState);
@@ -19,16 +20,17 @@ export const ViewerHeaderComponent = () => {
 
   return (
     <PageHeader
+      backIcon={<Button type={'link'} icon={<ArrowLeftOutlined />}/>}
       onBack={() => router.push('/')}
       title={
         <Space>
           {isDraft && <Tag>Draft</Tag>}
-          <Typography.Text editable={isEditable && {
+          <Typography.Title level={3} style={{margin: 0}} editable={isEditable && {
             onChange: setTitle
           }}
           >
             {title || (isEditable ? <i>Add title</i> : 'Untitled plan')}
-          </Typography.Text>
+          </Typography.Title>
         </Space>
       }
     >
