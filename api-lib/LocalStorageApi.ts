@@ -8,9 +8,11 @@ import {
   denormalizePlan,
   normalizePlan
 } from '../components/workout-viewer/WorkoutUtils';
+import {Theme} from '../components/layout/theme/types';
 
 const DRAFT_KEY = 'wpa:draft';
 const PLANS_PREFIX_KEY = 'wpa:saved-plans';
+const THEME_KEY = 'wpa:ui-theme';
 
 function fetchPlans(): WorkoutPlan[] {
   const json = localStorage.getItem(PLANS_PREFIX_KEY) ?? '[]';
@@ -67,5 +69,11 @@ export const LocalStorageApi: PlanStorageApi = {
   },
   async deletePlan(id: string): Promise<void> {
     savePlans(fetchPlans().filter(it => it.id !== id));
+  },
+  async saveTheme(theme: Theme) {
+    localStorage.setItem(THEME_KEY, theme);
+  },
+  async getTheme(): Promise<Theme | null> {
+    return (localStorage.getItem(THEME_KEY) as Theme) || null;
   }
 };

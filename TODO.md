@@ -15,3 +15,4 @@
 * Set mods - straight, giant, drop, rest-pause, etc
 * Throttle autosave for draft programs
 * Use debounce for analytics
+* Remove @ant-design/pro-layout dependency
