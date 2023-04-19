@@ -12,8 +12,11 @@
     "@ant-design/colors": "^7.0.0",
     "@ant-design/icons": "^5.0.1",
     "@ant-design/pro-layout": "^7.10.3",
-    "antd": "^5.4.2",
+    "@next-auth/prisma-adapter": "^1.0.6",
+    "@prisma/client": "^4.13.0",
+    "antd": "^5.4.3",
     "next": "^13.3.0",
+    "next-auth": "^4.22.1",
     "ramda": "^0.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,12 +27,13 @@
   },
   "devDependencies": {
     "@types/node": "18.15.11",
-    "@types/ramda": "^0.28.24",
-    "@types/react": "18.0.35",
+    "@types/ramda": "^0.29.0",
+    "@types/react": "18.0.37",
     "@types/react-dom": "18.0.11",
     "@types/uuid": "^9.0.1",
     "eslint": "8.38.0",
     "eslint-config-next": "^13.3.0",
+    "prisma": "^4.13.0",
     "typescript": "5.0.4"
   }
 }
