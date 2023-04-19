@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/treble-snake/workout-plan-analyzer/compare/v0.6.0...v0.8.1) (2023-04-19)
+
+
+### Features
+
+* add dark mode ([b84eddb](https://github.com/treble-snake/workout-plan-analyzer/commit/b84eddb2882d9498c9a813d71ccccd6655edd7a8))
+* add user google auth ([7880ea5](https://github.com/treble-snake/workout-plan-analyzer/commit/7880ea566f22837861ebde237f009b4f79aa0f66))
+
+
+### Bug Fixes
+
+* add prisma to dockerfile ([8f4e202](https://github.com/treble-snake/workout-plan-analyzer/commit/8f4e202d39e807bb36471bbb1e9983fca25a2e50))
+
 ## [0.8.0](https://github.com/treble-snake/workout-plan-analyzer/compare/v0.6.0...v0.8.0) (2023-04-19)
 
 
