@@ -41,4 +41,5 @@ ENV PORT 3000
 # Uncomment the following line in case you want to disable telemetry.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-CMD ["node_modules/.bin/next", "start"]
+# TODO: this is absolute shit
+CMD ["/bin/bash", "-c",  "npx prisma migrate deploy && node_modules/.bin/next start"]
