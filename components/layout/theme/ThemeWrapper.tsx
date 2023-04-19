@@ -24,8 +24,7 @@ export const ThemeWrapper = ({children}: React.PropsWithChildren) => {
           return;
         }
         setThemeValue(
-          window &&
-          window.matchMedia &&
+          window?.matchMedia &&
           window.matchMedia('(prefers-color-scheme: dark)').matches ?
             Theme.dark :
             Theme.light);

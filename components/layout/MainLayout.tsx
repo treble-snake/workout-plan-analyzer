@@ -1,45 +1,23 @@
-import {Alert, Layout, Menu} from 'antd';
+import {Alert, Layout, Space} from 'antd';
 import Head from 'next/head';
-import Link from 'next/link';
-import {useRouter} from 'next/router';
 import styles from './MainLayout.module.css';
 import pj from '../../package.json';
-import {ThemeSwitch} from './theme/ThemeSwitch';
+import {TopMenu} from './top-menu/TopMenu';
+import {HeaderActions} from './top-menu/HeaderActions';
 
 export const MainLayout = ({children}: any) => {
-  const router = useRouter();
-
   return <>
     <Head>
       <title>{'Icebreaker "Bicep"'}</title>
       <meta name="description"
-            content="Your little helper in composing and analyzing workout plans for hypertrophy" />
+            content="The flagship of your gains is here to help you with composing and analyzing workout plans for hypertrophy" />
     </Head>
     <Layout className={styles.container}>
       <Layout.Header>
-        <Menu theme="dark" mode="horizontal" selectedKeys={[router.asPath]}
-              style={{
-                backgroundImage: 'url(/logo-ship-light.png)',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'right center',
-              }}
-              items={[
-                {
-                  label: <Link href={'/'}>Plans</Link>,
-                  key: '/'
-                }, {
-                  label: <Link href={'/help'}>Help</Link>,
-                  key: '/help'
-                }, {
-                  label: <Link href={'/sources'}>Sources</Link>,
-                  key: '/sources'
-                },
-                {
-                  label: <ThemeSwitch />,
-                  key: 'dark-mode',
-                }
-              ]}
-        />
+        <Space style={{justifyContent: 'space-between', width: '100%'}}>
+          <TopMenu />
+          <HeaderActions />
+        </Space>
       </Layout.Header>
       <Layout.Content>
         <Alert type={'warning'}

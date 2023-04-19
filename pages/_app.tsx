@@ -7,22 +7,25 @@ import {localStorageFetcher} from '../api-lib/swr-fetchers/localStorageFetcher';
 import {RecoilRoot} from 'recoil';
 import React from 'react';
 import {ThemeWrapper} from '../components/layout/theme/ThemeWrapper';
+import {SessionProvider} from 'next-auth/react';
 
 function MyApp({Component, pageProps: {session, ...pageProps},}: AppProps) {
   return (
-    <RecoilRoot>
-      <SWRConfig value={{
-        fetcher: localStorageFetcher
-      }}>
-        <ThemeWrapper>
-          <MainLayout>
-            <Alert.ErrorBoundary>
-              <Component {...pageProps} />
-            </Alert.ErrorBoundary>
-          </MainLayout>
-        </ThemeWrapper>
-      </SWRConfig>
-    </RecoilRoot>
+    <SessionProvider session={session}>
+      <RecoilRoot>
+        <SWRConfig value={{
+          fetcher: localStorageFetcher
+        }}>
+          <ThemeWrapper>
+            <MainLayout>
+              <Alert.ErrorBoundary>
+                <Component {...pageProps} />
+              </Alert.ErrorBoundary>
+            </MainLayout>
+          </ThemeWrapper>
+        </SWRConfig>
+      </RecoilRoot>
+    </SessionProvider>
   );
 }
 
