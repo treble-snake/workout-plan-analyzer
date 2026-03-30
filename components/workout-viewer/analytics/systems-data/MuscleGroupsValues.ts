@@ -437,7 +437,7 @@ export const WeeklySetsPerMuscleGroup: Record<ExperienceLevel, MuscleGroupLandma
 };
 
 export const GenericDailySetsPerMuscleGroup: Record<ExperienceLevel, QtyRange> = {
-  [ExperienceLevel.Beginner]: {from: 3, to: 8},
-  [ExperienceLevel.Intermediate]: {from: 3, to: 10},
-  [ExperienceLevel.Advanced]: {from: 3, to: 12},
+  [ExperienceLevel.Beginner]: {from: 1, to: 6},
+  [ExperienceLevel.Intermediate]: {from: 1, to: 6},
+  [ExperienceLevel.Advanced]: {from: 1, to: 10},
 };
